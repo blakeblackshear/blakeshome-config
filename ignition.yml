@@ -3,3 +3,49 @@ passwd:
     - name: core
       ssh_authorized_keys:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrOJ0dRoMpSrSb9pQhd6bzFzoMpCKsBU2z1NlwEgR1zB5kQoE27fJ9csrncLod2lp5MhUWxGi8ar2HtNTjcGZUGV5vtt7DyR5F2nEgdhJF7MbJaSdThzjUPKQUW6xoQuo09+8KsHnjGwTsjV/hepg+WzkKOfrk2EuxDqhSxvM8X2meSyxPFN6yrAU8yc0WTbZ/IoLhgXuGfkQ8TK301XclFF3BWQSLKST1qZFkJEDfwV+H3E+TI4ec7ljj2uz+rgqLhPv5ia/Nv3GLDKFaSuWmaIpr/zn+U2eWv89BpvXp1AmIGJGbukgbRiGrHR4Sft7hKqx0fug/KXacck1gbczJ blake@Blakes-MacBook-Pro.local
+systemd:
+  units:
+    # tell docker not to mess with iptables
+    - name: docker.service
+      dropins:
+        - name: 10-iptables.conf
+          contents: |
+            [Service]
+            Environment="DOCKER_OPTS=--iptables=false"
+    # enable the iptables restore service to load defined rules
+    - name: iptables-restore.service
+      enable: true
+    # install docker compose if not installed
+    - name: install-docker-compose.service
+      enable: true
+      contents: |
+        [Unit]
+        Description=Install docker-compose
+        ConditionPathExists=!/opt/bin/docker-compose
+        Wants=network-online.target
+        After=network-online.target
+
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=/usr/bin/mkdir -p /opt/bin/
+        ExecStart=/usr/bin/curl --create-dirs -o /opt/bin/docker-compose -sL https://github.com/docker/compose/releases/download/1.18.0/docker-compose-linux-x86_64
+        ExecStart=/usr/bin/chmod +x /opt/bin/docker-compose
+
+        [Install]
+        WantedBy=multi-user.target
+
+storage:
+  files:
+    # set the hostname
+    - filesystem: root
+      path: /etc/hostname
+      mode: 420
+      contents:
+        inline: blakeshome1
+    # set the iptables rules
+    - filesystem: root
+      path: /var/lib/iptables/rules-save
+      contents:
+        remote:
+          url: https://raw.githubusercontent.com/blakeblackshear/coreos-config/master/iptables-rules-save
