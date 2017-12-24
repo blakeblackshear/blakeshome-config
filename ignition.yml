@@ -6,15 +6,15 @@ passwd:
 systemd:
   units:
     # tell docker not to mess with iptables
-    - name: docker.service
-      dropins:
-        - name: 10-iptables.conf
-          contents: |
-            [Service]
-            Environment="DOCKER_OPTS=--iptables=false"
+    # - name: docker.service
+    #   dropins:
+    #     - name: 10-iptables.conf
+    #       contents: |
+    #         [Service]
+    #         Environment="DOCKER_OPTS=--iptables=false"
     # enable the iptables restore service to load defined rules
-    # - name: iptables-restore.service
-    #   enable: true
+    - name: iptables-restore.service
+      enable: true
     # install docker compose if not installed
     - name: install-docker-compose.service
       enable: true

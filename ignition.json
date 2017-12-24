@@ -43,13 +43,8 @@
   "systemd": {
     "units": [
       {
-        "dropins": [
-          {
-            "contents": "[Service]\nEnvironment=\"DOCKER_OPTS=--iptables=false\"\n",
-            "name": "10-iptables.conf"
-          }
-        ],
-        "name": "docker.service"
+        "enable": true,
+        "name": "iptables-restore.service"
       },
       {
         "contents": "[Unit]\nDescription=Install docker-compose\nConditionPathExists=!/opt/bin/docker-compose\nWants=network-online.target\nAfter=network-online.target\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/mkdir -p /opt/bin/\nExecStart=/usr/bin/curl --create-dirs -o /opt/bin/docker-compose -sL https://github.com/docker/compose/releases/download/1.18.0/docker-compose-linux-x86_64\nExecStart=/usr/bin/chmod +x /opt/bin/docker-compose\n\n[Install]\nWantedBy=multi-user.target\n",
