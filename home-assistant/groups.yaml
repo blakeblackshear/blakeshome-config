@@ -1,0 +1,126 @@
+master_lamps:
+  - light.master_blake_lamp
+  - light.master_ali_lamp
+
+kitchen:
+  name: Kitchen
+  control: hidden
+  entities:
+    - binary_sensor.motion_sensor_158d0001a2ba1f
+    - light.butlers_pantry_light
+    - light.kitchen_breakfast_lights
+    - light.kitchen_island_lights
+    - light.kitchen_recessed_lights
+    - light.pantry_light
+    - media_player.kitchen_home
+
+deck:
+  name: Deck
+  control: hidden
+  entities:
+    - light.deck_recessed_lights
+    - light.deck_string_lights
+    - media_player.deck
+
+living_room:
+  name: Living Room
+  control: hidden
+  entities:
+    - light.living_room_back_lamp
+    - light.living_room_chandelier_light
+    - light.living_room_front_lamp
+    - light.living_room_recessed_lights
+    - media_player.living_room
+    - remote.living_room
+    - sensor.downstairs_humidity
+    - sensor.downstairs_temperature
+    - vacuum.xiaomi_vacuum_cleaner
+    - climate.downstairs
+    - binary_sensor.door_window_sensor_158d0001b1b801
+    - binary_sensor.door_window_sensor_158d0001dcc9bd
+    - binary_sensor.door_window_sensor_158d0001ab59ab
+    - binary_sensor.door_window_sensor_158d0001ab67c2
+    - binary_sensor.door_window_sensor_158d0001b71164
+    - binary_sensor.door_window_sensor_158d0001b1b8be
+    - binary_sensor.door_window_sensor_158d0001dcba28
+
+outside:
+  name: Outside
+  control: hidden
+  entities:
+    - cover.alis_garage_door
+    - cover.blakes_garage_door
+    - light.driveway_lights
+    - light.porch_lights
+    - light.deck_recessed_lights
+    - light.deck_string_lights
+    - sensor.humidity_158d0001ab4496
+    - sensor.pressure_158d0001ab4496
+    - sensor.temperature_158d0001ab4496
+
+garage_doors:
+  - cover.alis_garage_door
+  - cover.blakes_garage_door
+
+master:
+  name: Master Bedroom
+  control: hidden
+  entities:
+    - binary_sensor.master_occupancy
+    - light.master_blake_lamp
+    - light.master_ali_lamp
+    - light.gateway_light_286c07fa2266
+    - sensor.illumination_286c07fa2266
+    - sensor.master_temperature
+    - binary_sensor.switch_158d00016d7770
+    - binary_sensor.switch_158d00019de5ec
+
+media_room:
+  name: Media Room
+  control: hidden
+  entities:
+    - light.media_stairs_light
+    - media_player.denon_avrx1300w
+    - media_player.media_room
+    - media_player.theater_room
+    - sensor.media_humidity
+    - sensor.media_temperature
+    - climate.media
+
+jakes_room:
+  name: Jake's Room
+  control: hidden
+  entities:
+    - sensor.kids_room_temperature
+    - binary_sensor.kids_room_occupancy
+
+hall:
+  name: Hall
+  control: hidden
+  entities:
+    - climate.upstairs
+    - sensor.upstairs_humidity
+    - sensor.upstairs_temperature
+    - light.hall_left_lamp
+    - light.hall_right_lamp
+    - light.hall_lights
+    - light.hall_stairs_light
+    - light.laundry_room_light
+    - binary_sensor.motion_sensor_158d0001215452
+    - binary_sensor.motion_sensor_158d0001d66c8d
+
+downstairs:
+  name: Downstairs
+  control: hidden
+  entities:
+    - light.foyer_back_light
+    - light.foyer_front_light
+    - light.half_bath_bathroom_light
+    - light.half_bath_hall_light
+    - light.playroom_light
+    - light.dining_room_light
+    - binary_sensor.door_window_sensor_158d0001dcba76
+    - binary_sensor.door_window_sensor_158d0001b780f8
+    - binary_sensor.door_window_sensor_158d0001b7812e
+    - binary_sensor.door_window_sensor_158d0001b1b1a3
+    - binary_sensor.motion_sensor_158d0001ad43f0

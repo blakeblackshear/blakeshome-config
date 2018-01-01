@@ -1,0 +1,81 @@
+version: "3"
+services:
+  mqtt:
+    container_name: mqtt
+    image: eclipse-mosquitto:latest
+    volumes:
+      - /srv/blakeshome/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mosquitto_data:/mosquitto/data
+    network_mode: host
+    # ports:
+    #   - "1883:1883"
+    #   - "9001:9001"
+  nodered:
+    container_name: nodered
+    image: nodered/node-red-docker:latest
+    volumes:
+      - nodered_data:/data
+    network_mode: host
+    # ports:
+    #   - "1880:1880"
+  unifi:
+    container_name: unifi
+    image: jacobalberty/unifi
+    volumes:
+      - unifi:/unifi
+    network_mode: host
+    environment:
+      TZ: "America/Chicago"
+      RUNAS_UID0: "false"
+  homeassistant:
+    container_name: hass
+    image: homeassistant/home-assistant
+    volumes:
+      - /srv/blakeshome/home-assistant:/config
+    network_mode: host
+    environment:
+      TZ: "America/Chicago"
+  pihole:
+    container_name: pihole
+    restart: unless-stopped
+    image: diginc/pi-hole:alpine
+    environment:
+      TZ: "America/Chicago"
+      WEBPASSWORD: "${DOCKER_PIHOLE_PW}"
+      ServerIP: 192.168.2.2
+      VIRTUAL_HOST: pihole.blakeshome.com
+    volumes:
+      - pihole:/etc/pihole
+      - /srv/blakeshome/dnsmasq.d:/etc/dnsmasq.d
+    network_mode: host
+    # ports:
+    # - "80:80"
+    # - "53:53/tcp"
+    # - "53:53/udp"
+  nginx:
+    container_name: nginx
+    restart: unless-stopped
+    image: nginx:latest
+    volumes:
+      - /srv/blakeshome/nginx:/etc/nginx/conf.d:ro
+      - ssl_certs:/etc/ssl/private:ro
+    network_mode: host
+  lets_encrypt:
+    container_name: acme.sh
+    restart: unless-stopped
+    image: neilpang/acme.sh
+    command: daemon
+    volumes:
+      - ssl_certs:/acme.sh
+    network_mode: host
+    environment:
+      CF_Email: blakeb@blakeshome.com
+      CF_Key: "${DOCKER_CF_KEY}"
+  # need to run `docker exec acme.sh --issue --dns dns_cf -d blakeshome.com`
+
+volumes:
+  mosquitto_data:
+  nodered_data:
+  unifi:
+  pihole:
+  ssl_certs:

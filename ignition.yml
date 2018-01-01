@@ -5,13 +5,6 @@ passwd:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrOJ0dRoMpSrSb9pQhd6bzFzoMpCKsBU2z1NlwEgR1zB5kQoE27fJ9csrncLod2lp5MhUWxGi8ar2HtNTjcGZUGV5vtt7DyR5F2nEgdhJF7MbJaSdThzjUPKQUW6xoQuo09+8KsHnjGwTsjV/hepg+WzkKOfrk2EuxDqhSxvM8X2meSyxPFN6yrAU8yc0WTbZ/IoLhgXuGfkQ8TK301XclFF3BWQSLKST1qZFkJEDfwV+H3E+TI4ec7ljj2uz+rgqLhPv5ia/Nv3GLDKFaSuWmaIpr/zn+U2eWv89BpvXp1AmIGJGbukgbRiGrHR4Sft7hKqx0fug/KXacck1gbczJ blake@Blakes-MacBook-Pro.local
 systemd:
   units:
-    # tell docker not to mess with iptables
-    # - name: docker.service
-    #   dropins:
-    #     - name: 10-iptables.conf
-    #       contents: |
-    #         [Service]
-    #         Environment="DOCKER_OPTS=--iptables=false"
     # enable the iptables restore service to load defined rules
     - name: iptables-restore.service
       enable: true
@@ -34,6 +27,44 @@ systemd:
 
         [Install]
         WantedBy=multi-user.target
+    # checkout configuration
+    - name: config-blakeshome.service
+      enable: true
+      contents: |
+        [Unit]
+        Description=Download blakeshome config
+        ConditionPathExists=!/srv/blakeshome/.git
+        Wants=network-online.target
+        After=network-online.target
+
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=/usr/bin/git clone https://github.com/blakeblackshear/blakeshome-config.git /srv/blakeshome
+
+        [Install]
+        WantedBy=multi-user.target
+    # TODO: mount the usb drive or sd card
+    # TODO: decrypt the files with password on usb drive
+    # run docker compose
+    - name: blakeshome.service
+      enable: true
+      contents: |
+        [Unit]
+        Description=Blakeshome (docker machine)
+        Wants=network-online.target
+        After=network-online.target config-blakeshome.service install-docker-compose.service
+
+        [Service]
+        EnvironmentFile=/srv/blakeshome/DOCKER.env
+        Type=oneshot
+        RemainAfterExit=yes
+        WorkingDirectory=/srv/blakeshome
+        ExecStart=/opt/bin/docker-compose up -d
+        ExecStop=/opt/bin/docker-compose down
+
+        [Install]
+        WantedBy=multi-user.target
 
 storage:
   files:
@@ -49,3 +80,8 @@ storage:
       contents:
         remote:
           url: https://raw.githubusercontent.com/blakeblackshear/coreos-config/master/iptables-rules-save
+  
+  directories:
+    - filesystem: root
+      path: /srv/blakeshome
+      

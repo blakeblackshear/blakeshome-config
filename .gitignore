@@ -1,1 +1,3 @@
 .vscode
+home-assistant/secrets.yaml
+DOCKER.env

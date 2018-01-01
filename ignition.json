@@ -16,6 +16,14 @@
     ]
   },
   "storage": {
+    "directories": [
+      {
+        "filesystem": "root",
+        "group": {},
+        "path": "/srv/blakeshome",
+        "user": {}
+      }
+    ],
     "files": [
       {
         "filesystem": "root",
@@ -50,6 +58,16 @@
         "contents": "[Unit]\nDescription=Install docker-compose\nConditionPathExists=!/opt/bin/docker-compose\nWants=network-online.target\nAfter=network-online.target\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/mkdir -p /opt/bin/\nExecStart=/usr/bin/curl --create-dirs -o /opt/bin/docker-compose -sL https://github.com/docker/compose/releases/download/1.18.0/docker-compose-linux-x86_64\nExecStart=/usr/bin/chmod +x /opt/bin/docker-compose\n\n[Install]\nWantedBy=multi-user.target\n",
         "enable": true,
         "name": "install-docker-compose.service"
+      },
+      {
+        "contents": "[Unit]\nDescription=Download blakeshome config\nConditionPathExists=!/srv/blakeshome/.git\nWants=network-online.target\nAfter=network-online.target\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/git clone https://github.com/blakeblackshear/blakeshome-config.git /srv/blakeshome\n\n[Install]\nWantedBy=multi-user.target\n",
+        "enable": true,
+        "name": "config-blakeshome.service"
+      },
+      {
+        "contents": "[Unit]\nDescription=Blakeshome (docker machine)\nWants=network-online.target\nAfter=network-online.target config-blakeshome.service install-docker-compose.service\n\n[Service]\nEnvironmentFile=/srv/blakeshome/DOCKER.env\nType=oneshot\nRemainAfterExit=yes\nWorkingDirectory=/srv/blakeshome\nExecStart=/opt/bin/docker-compose up -d\nExecStop=/opt/bin/docker-compose down\n\n[Install]\nWantedBy=multi-user.target\n",
+        "enable": true,
+        "name": "blakeshome.service"
       }
     ]
   }

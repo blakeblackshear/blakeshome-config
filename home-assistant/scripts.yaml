@@ -1,0 +1,12 @@
+clean_downstairs_vacuum:
+  sequence:
+    # This is written using the Script Syntax
+    - service: vacuum.xiaomi_remote_control_start
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+    - delay: 00:00:03
+    - service: vacuum.xiaomi_remote_control_move_step
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        velocity: 0.29
+        rotation: 0
+        duration: 4000

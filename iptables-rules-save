@@ -20,6 +20,9 @@
 -A INPUT -p tcp -m tcp --dport 53 -j ACCEPT
 -A INPUT -p udp -m udp --dport 53 -j ACCEPT
 
+# Allow multicast (for Xiaomi gateways)
+-I INPUT -p udp -j ACCEPT
+
 # Accept pings:
 -A INPUT -p icmp -m icmp --icmp-type 0 -j ACCEPT
 -A INPUT -p icmp -m icmp --icmp-type 3 -j ACCEPT
