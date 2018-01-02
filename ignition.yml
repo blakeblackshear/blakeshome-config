@@ -15,7 +15,6 @@ systemd:
         [Mount]
         What=/dev/sdb1
         Where=/media/passwords
-        Type=fat
 
         [Install]
         WantedBy=local-fs.target
@@ -94,7 +93,22 @@ systemd:
 
         [Install]
         WantedBy=multi-user.target
-    # TODO: run acme.sh to gen certs
+    # Get blakeshome cert
+    - name: cert-blakeshome.service
+      enable: true
+      contents: |
+        [Unit]
+        Description=Blakeshome (docker machine)
+        Wants=network-online.target
+        After=network-online.target blakeshome.service
+        
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=/bin/docker exec acme.sh --issue --dns dns_cf -d blakeshome.com
+
+        [Install]
+        WantedBy=multi-user.target
 
 storage:
   files:
