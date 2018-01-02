@@ -26,6 +26,7 @@ living_room:
   name: Living Room
   control: hidden
   entities:
+    - binary_sensor.motion_sensor_158d0001d54b06
     - light.living_room_back_lamp
     - light.living_room_chandelier_light
     - light.living_room_front_lamp
@@ -57,6 +58,8 @@ outside:
     - sensor.humidity_158d0001ab4496
     - sensor.pressure_158d0001ab4496
     - sensor.temperature_158d0001ab4496
+    - sensor.temperature_158d0001c163e1
+    - sensor.humidity_158d0001c163e1
 
 garage_doors:
   - cover.alis_garage_door
@@ -72,6 +75,8 @@ master:
     - light.gateway_light_286c07fa2266
     - sensor.illumination_286c07fa2266
     - sensor.master_temperature
+    - sensor.temperature_158d0001c164af
+    - sensor.humidity_158d0001c164af
     - binary_sensor.switch_158d00016d7770
     - binary_sensor.switch_158d00019de5ec
 
