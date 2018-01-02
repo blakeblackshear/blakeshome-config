@@ -42,7 +42,7 @@
         "path": "/var/lib/iptables/rules-save",
         "user": {},
         "contents": {
-          "source": "https://raw.githubusercontent.com/blakeblackshear/coreos-config/master/iptables-rules-save",
+          "source": "https://raw.githubusercontent.com/blakeblackshear/blakeshome-config/master/iptables-rules-save",
           "verification": {}
         }
       }
@@ -50,6 +50,11 @@
   },
   "systemd": {
     "units": [
+      {
+        "contents": "[Unit]\nBefore=local-fs.target\n\n[Mount]\nWhat=/dev/sdb1\nWhere=/media/passwords\nType=fat\n\n[Install]\nWantedBy=local-fs.target\n",
+        "enable": true,
+        "name": "media-passwords.mount"
+      },
       {
         "enable": true,
         "name": "iptables-restore.service"
@@ -60,12 +65,17 @@
         "name": "install-docker-compose.service"
       },
       {
-        "contents": "[Unit]\nDescription=Download blakeshome config\nConditionPathExists=!/srv/blakeshome/.git\nWants=network-online.target\nAfter=network-online.target\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/git clone https://github.com/blakeblackshear/blakeshome-config.git /srv/blakeshome\n\n[Install]\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=Download blakeshome config\nConditionPathExists=!/srv/blakeshome/.git\nWants=network-online.target\nAfter=network-online.target media-passwords.mount\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/git clone git://github.com/blakeblackshear/blakeshome-config.git /srv/blakeshome\n\n[Install]\nWantedBy=multi-user.target\n",
         "enable": true,
         "name": "config-blakeshome.service"
       },
       {
-        "contents": "[Unit]\nDescription=Blakeshome (docker machine)\nWants=network-online.target\nAfter=network-online.target config-blakeshome.service install-docker-compose.service\n\n[Service]\nEnvironmentFile=/srv/blakeshome/DOCKER.env\nType=oneshot\nRemainAfterExit=yes\nWorkingDirectory=/srv/blakeshome\nExecStart=/opt/bin/docker-compose up -d\nExecStop=/opt/bin/docker-compose down\n\n[Install]\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=Decrypt blakeshome config\nWants=network-online.target\nAfter=network-online.target config-blakeshome.service media-passwords.mount\n\n[Service]\nEnvironmentFile=/media/passwords/PASSWORDS.env\nType=oneshot\nRemainAfterExit=yes\nExecStart=/srv/blakeshome/decrypt.sh\n\n[Install]\nWantedBy=multi-user.target\n",
+        "enable": true,
+        "name": "decrypt-blakeshome.service"
+      },
+      {
+        "contents": "[Unit]\nDescription=Blakeshome (docker machine)\nWants=network-online.target\nAfter=network-online.target config-blakeshome.service decrypt-blakeshome.service install-docker-compose.service\n\n[Service]\nEnvironmentFile=/srv/blakeshome/DOCKER.env\nType=oneshot\nRemainAfterExit=yes\nWorkingDirectory=/srv/blakeshome\nExecStart=/opt/bin/docker-compose up -d\nExecStop=/opt/bin/docker-compose down\n\n[Install]\nWantedBy=multi-user.target\n",
         "enable": true,
         "name": "blakeshome.service"
       }
