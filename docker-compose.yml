@@ -6,10 +6,9 @@ services:
     volumes:
       - /srv/blakeshome/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
       - mosquitto_data:/mosquitto/data
-    network_mode: host
-    # ports:
-    #   - "1883:1883"
-    #   - "9001:9001"
+    ports:
+      - "1883:1883"
+      - "9001:9001"
   nodered:
     container_name: nodered
     image: nodered/node-red-docker:latest
@@ -47,11 +46,10 @@ services:
     volumes:
       - pihole:/etc/pihole
       - /srv/blakeshome/dnsmasq.d:/etc/dnsmasq.d
-    network_mode: host
-    # ports:
-    # - "80:80"
-    # - "53:53/tcp"
-    # - "53:53/udp"
+    ports:
+      - "80:80"
+      - "53:53/tcp"
+      - "53:53/udp"
   nginx:
     container_name: nginx
     restart: unless-stopped
@@ -71,7 +69,6 @@ services:
     environment:
       CF_Email: blakeb@blakeshome.com
       CF_Key: "${DOCKER_CF_KEY}"
-  # need to run `docker exec acme.sh --issue --dns dns_cf -d blakeshome.com`
 
 volumes:
   mosquitto_data:
