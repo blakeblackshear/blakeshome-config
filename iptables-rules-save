@@ -15,10 +15,8 @@
 # Nginx
 -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
 
-# Pihole
--A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
--A INPUT -p tcp -m tcp --dport 53 -j ACCEPT
--A INPUT -p udp -m udp --dport 53 -j ACCEPT
+# Unifi controller
+-A INPUT -p tcp -m tcp --dport 8080 -j ACCEPT
 
 # Allow multicast (for Xiaomi gateways)
 -I INPUT -p udp -j ACCEPT
