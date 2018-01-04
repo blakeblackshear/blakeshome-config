@@ -51,6 +51,11 @@
   "systemd": {
     "units": [
       {
+        "contents": "[Unit]\nDescription=Set the time zone\n\n[Service]\nExecStart=/usr/bin/timedatectl set-timezone America/Chicago\nRemainAfterExit=yes\nType=oneshot\n",
+        "enable": true,
+        "name": "settimezone.service"
+      },
+      {
         "contents": "[Unit]\nBefore=local-fs.target\n\n[Mount]\nWhat=/dev/sdb1\nWhere=/media/passwords\n\n[Install]\nWantedBy=local-fs.target\n",
         "enable": true,
         "name": "media-passwords.mount"
