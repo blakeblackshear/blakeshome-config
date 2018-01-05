@@ -129,3 +129,8 @@ downstairs:
     - binary_sensor.door_window_sensor_158d0001b7812e
     - binary_sensor.door_window_sensor_158d0001b1b1a3
     - binary_sensor.motion_sensor_158d0001ad43f0
+
+batteries:
+  name: Batteries
+  entities:
+    - sensor.pantry_motion_battery
