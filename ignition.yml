@@ -115,7 +115,8 @@ systemd:
         [Service]
         Type=oneshot
         RemainAfterExit=yes
-        ExecStart=/bin/docker exec acme.sh --issue --dns dns_cf -d blakeshome.com
+        ExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d blakeshome.com
+        ExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d unifi.blakeshome.com
 
         [Install]
         WantedBy=multi-user.target
