@@ -1,1 +1,2 @@
- - platform: yr
+sensor:
+  - platform: yr

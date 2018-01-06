@@ -1,0 +1,17 @@
+<!-- Real path is www/custom_ui/oauth.html -->
+<div hidden="" by-polymer-bundler=""><script>
+    window.oauth = window.oauth || {
+      init: function() {
+        var req = new XMLHttpRequest();
+        req.open('GET', '/api/__oauth2/auth', true);                                        
+        req.onload = function() {
+          if (req.status != 202) {
+            window.location = '/api/__oauth2/sign_in';
+          }
+        }
+        req.send();
+      }
+    }
+    
+    window.oauth.init()
+</script></div>

@@ -15,8 +15,6 @@ services:
     volumes:
       - nodered_data:/data
     network_mode: host
-    # ports:
-    #   - "1880:1880"
   unifi:
     container_name: unifi
     image: jacobalberty/unifi
@@ -50,6 +48,19 @@ services:
       - "80:80"
       - "53:53/tcp"
       - "53:53/udp"
+  oauth2_proxy:
+    container_name: oauth2_proxy
+    restart: unless-stopped
+    image: blakeblackshear/oauth2_proxy
+    volumes:
+      - /srv/blakeshome/oauth2_proxy:/etc/oauth2_proxy:ro
+    network_mode: host
+    environment:
+      OAUTH2_PROXY_CLIENT_ID: 114257218611-r0nucuv66g6n0h7dcsvnhqprgr6rq1jg.apps.googleusercontent.com
+      OAUTH2_PROXY_CLIENT_SECRET: "${OAUTH2_PROXY_CLIENT_SECRET}"
+      OAUTH2_PROXY_COOKIE_SECRET: "${OAUTH2_PROXY_COOKIE_SECRET}"
+      OAUTH2_PROXY_COOKIE_DOMAIN: blakeshome.com
+    command: -config=/etc/oauth2_proxy/oauth2_proxy.cfg
   nginx:
     container_name: nginx
     restart: unless-stopped

@@ -16,13 +16,15 @@ homeassistant:
 
 # Enables the frontend
 frontend:
+  extra_html_url: /local/custom_ui/oauth.html
+  extra_html_url_es5: /local/custom_ui/oauth.html
 
 # Enables configuration UI
 config:
 
 http:
   # Uncomment this to add a password (recommended!)
-  api_password: !secret api_password
+  # api_password: !secret api_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   base_url: blakeshome.com
 
