@@ -26,7 +26,7 @@ http:
   # Uncomment this to add a password (recommended!)
   # api_password: !secret api_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  base_url: blakeshome.com
+  base_url: hass.blakeshome.com
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -342,10 +342,10 @@ device_tracker:
 #  - platform: owntracks
 #  - platform: bluetooth_tracker
 
-# vacuum:
-#   - platform: xiaomi_miio
-#     host: 192.168.2.36
-#     token: !secret xiaomi_vacuum_token
+vacuum:
+  - platform: xiaomi_miio
+    host: 192.168.2.36
+    token: !secret xiaomi_vacuum_token
 
 xiaomi_aqara:
   discovery_retry: 5
@@ -377,8 +377,18 @@ timer:
     duration: '00:10:00'
 
 google_assistant:
-  project_id: homeassistant-blakeshome
+  project_id: blakeshome-assistant
   client_id: !secret google_assist_client_id
   access_token: !secret google_assist_access_token
   agent_user_id: blake.blackshear@gmail.com
   api_key: !secret google_assist_api_key
+  exposed_domains:
+    - switch
+    - light
+    - cover
+    - media_player
+    - group
+    - fan
+    - scene
+    - script
+    - vacuum

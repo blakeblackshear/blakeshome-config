@@ -85,7 +85,7 @@
         "name": "blakeshome.service"
       },
       {
-        "contents": "[Unit]\nDescription=Blakeshome (docker machine)\nWants=network-online.target\nAfter=network-online.target blakeshome.service\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d blakeshome.com\nExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d unifi.blakeshome.com\n\n[Install]\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=Blakeshome (docker machine)\nWants=network-online.target\nAfter=network-online.target blakeshome.service\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d blakeshome.com\nExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d hass.blakeshome.com\nExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d unifi.blakeshome.com\nExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d nodered.blakeshome.com\n\n[Install]\nWantedBy=multi-user.target\n",
         "enable": true,
         "name": "cert-blakeshome.service"
       }

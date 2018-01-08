@@ -1,6 +1,8 @@
 master_lamps:
-  - light.master_blake_lamp
-  - light.master_ali_lamp
+  name: Master Lamps
+  entities:
+    - light.master_blake_lamp
+    - light.master_ali_lamp
 
 kitchen:
   name: Kitchen
@@ -62,8 +64,10 @@ outside:
     - sensor.humidity_158d0001c163e1
 
 garage_doors:
-  - cover.alis_garage_door
-  - cover.blakes_garage_door
+  name: Garage Doors
+  entities:
+    - cover.alis_garage_door
+    - cover.blakes_garage_door
 
 master:
   name: Master Bedroom
@@ -133,4 +137,25 @@ downstairs:
 batteries:
   name: Batteries
   entities:
+    - sensor.pantry_motion_battery
+    - sensor.blake_bedside_button_battery
+    - sensor.ali_bedside_button_battery
+    - sensor.living_room_shutter_1_battery
+    - sensor.living_room_shutter_2_battery
+    - sensor.living_room_shutter_3_battery
+    - sensor.living_room_shutter_4_battery
+    - sensor.living_room_shutter_5_battery
+    - sensor.living_room_shutter_6_battery
+    - sensor.living_room_shutter_7_battery
+    - sensor.play_room_shutter_1_battery
+    - sensor.play_room_shutter_2_battery
+    - sensor.play_room_motion_battery
+    - sensor.dining_room_shutter_1_battery
+    - sensor.dining_room_shutter_2_battery
+    - sensor.laundry_room_motion_battery
+    - sensor.hall_motion_battery
+    - sensor.outside_temperature_battery
+    - sensor.living_room_motion_battery
+    - sensor.master_bathroom_temperature_battery
+    - sensor.crawl_space_temperature_battery
     - sensor.pantry_motion_battery

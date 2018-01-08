@@ -66,7 +66,8 @@ services:
     restart: unless-stopped
     image: nginx:latest
     volumes:
-      - /srv/blakeshome/nginx:/etc/nginx/conf.d:ro
+      - /srv/blakeshome/nginx/conf.d:/etc/nginx/conf.d:ro
+      - /srv/blakeshome/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ssl_certs:/etc/ssl/private:ro
     network_mode: host
   lets_encrypt:

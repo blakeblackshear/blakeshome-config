@@ -116,7 +116,9 @@ systemd:
         Type=oneshot
         RemainAfterExit=yes
         ExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d blakeshome.com
+        ExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d hass.blakeshome.com
         ExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d unifi.blakeshome.com
+        ExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d nodered.blakeshome.com
 
         [Install]
         WantedBy=multi-user.target

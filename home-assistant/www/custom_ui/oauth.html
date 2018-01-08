@@ -3,10 +3,10 @@
     window.oauth = window.oauth || {
       init: function() {
         var req = new XMLHttpRequest();
-        req.open('GET', '/api/__oauth2/auth', true);                                        
+        req.open('GET', '/api/websocket', true);                                        
         req.onload = function() {
-          if (req.status != 202) {
-            window.location = '/api/__oauth2/sign_in';
+          if (req.status == 401) {
+            window.location = 'https://blakeshome.com/oauth2/sign_in?rd=/hass';
           }
         }
         req.send();

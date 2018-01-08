@@ -1,4 +1,5 @@
 clean_downstairs_vacuum:
+  alias: Clean downstairs vacuum
   sequence:
     # This is written using the Script Syntax
     - service: vacuum.xiaomi_remote_control_start
