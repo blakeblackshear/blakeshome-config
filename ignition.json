@@ -39,6 +39,17 @@
       {
         "filesystem": "root",
         "group": {},
+        "path": "/etc/logrotate.d/secure",
+        "user": {},
+        "contents": {
+          "source": "data:,%2Fvar%2Flog%2Fsecure%20%7B%0A%20%20rotate%204%0A%20%20size%2010M%0A%20%20compress%0A%7D%0A",
+          "verification": {}
+        },
+        "mode": 644
+      },
+      {
+        "filesystem": "root",
+        "group": {},
         "path": "/var/lib/iptables/rules-save",
         "user": {},
         "contents": {
@@ -88,6 +99,11 @@
         "contents": "[Unit]\nDescription=Blakeshome (docker machine)\nWants=network-online.target\nAfter=network-online.target blakeshome.service\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d blakeshome.com\nExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d hass.blakeshome.com\nExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d unifi.blakeshome.com\nExecStart=-/bin/docker exec acme.sh --issue --dns dns_cf -d nodered.blakeshome.com\n\n[Install]\nWantedBy=multi-user.target\n",
         "enable": true,
         "name": "cert-blakeshome.service"
+      },
+      {
+        "contents": "[Unit]\nAfter=network-online.target\nDescription=Redirect journalctl sshd to /var/log/secure\n\n[Service]\nTimeoutStartSec=0\nExecStart=/bin/bash -c \"/usr/bin/journalctl -fn -l -t sshd \u003e\u003e /var/log/secure\"\nRestart=on-failure\nRestartSec=5s\n",
+        "enable": true,
+        "name": "sshd-logfile.service"
       }
     ]
   }

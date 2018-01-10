@@ -122,6 +122,19 @@ systemd:
 
         [Install]
         WantedBy=multi-user.target
+    # create sshd logfile for fail2ban
+    - name: sshd-logfile.service
+      enable: true
+      contents: |
+        [Unit]
+        After=network-online.target
+        Description=Redirect journalctl sshd to /var/log/secure
+
+        [Service]
+        TimeoutStartSec=0
+        ExecStart=/bin/bash -c "/usr/bin/journalctl -fn -l -t sshd >> /var/log/secure"
+        Restart=on-failure
+        RestartSec=5s
 
 storage:
   files:
@@ -131,6 +144,17 @@ storage:
       mode: 420
       contents:
         inline: blakeshome1
+    # configure logrotate
+    - filesystem: root
+      path: /etc/logrotate.d/secure
+      mode: 644
+      contents:
+        inline: |
+          /var/log/secure {
+            rotate 4
+            size 10M
+            compress
+          }
     # set the iptables rules
     - filesystem: root
       path: /var/lib/iptables/rules-save
