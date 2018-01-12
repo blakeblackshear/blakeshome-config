@@ -39,17 +39,6 @@
       {
         "filesystem": "root",
         "group": {},
-        "path": "/etc/logrotate.d/secure",
-        "user": {},
-        "contents": {
-          "source": "data:,%2Fvar%2Flog%2Fsecure%20%7B%0A%20%20rotate%204%0A%20%20size%2010M%0A%20%20compress%0A%7D%0A",
-          "verification": {}
-        },
-        "mode": 644
-      },
-      {
-        "filesystem": "root",
-        "group": {},
         "path": "/var/lib/iptables/rules-save",
         "user": {},
         "contents": {
@@ -101,9 +90,9 @@
         "name": "cert-blakeshome.service"
       },
       {
-        "contents": "[Unit]\nAfter=network-online.target\nDescription=Redirect journalctl sshd to /var/log/secure\n\n[Service]\nTimeoutStartSec=0\nExecStart=/bin/bash -c \"/usr/bin/journalctl -fn -l -t sshd \u003e\u003e /var/log/secure\"\nRestart=on-failure\nRestartSec=5s\n",
+        "contents": "[Unit]\nDescription=sshguard\nAfter=network-online.target iptables-restore.service docker.service\nRequires=network-online.target docker.service\n\n[Service]\nTimeoutStartSec=0\nExecStartPre=-/usr/bin/docker kill %n\nExecStartPre=-/usr/bin/docker rm %n\nExecStartPre=/usr/bin/docker pull pablocouto/coreos-sshguard\n\nExecStart=/bin/sh -c 'journalctl --no-pager -f -n0 -q -t sshd | /usr/bin/docker run -i --name=%n -v /dev/log:/dev/log --net=host --cap-add=NET_ADMIN --cap-add=NET_RAW pablocouto/coreos-sshguard \u003e/dev/null'\n\nExecStop=/usr/bin/docker stop %n\nExecStop=/usr/bin/docker rm %n\n\n[Install]\nWantedBy=multi-user.target\n",
         "enable": true,
-        "name": "sshd-logfile.service"
+        "name": "sshguard.service"
       }
     ]
   }

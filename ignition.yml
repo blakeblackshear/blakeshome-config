@@ -122,19 +122,28 @@ systemd:
 
         [Install]
         WantedBy=multi-user.target
-    # create sshd logfile for fail2ban
-    - name: sshd-logfile.service
+    # install sshguard
+    - name: sshguard.service
       enable: true
       contents: |
         [Unit]
-        After=network-online.target
-        Description=Redirect journalctl sshd to /var/log/secure
+        Description=sshguard
+        After=network-online.target iptables-restore.service docker.service
+        Requires=network-online.target docker.service
 
         [Service]
         TimeoutStartSec=0
-        ExecStart=/bin/bash -c "/usr/bin/journalctl -fn -l -t sshd >> /var/log/secure"
-        Restart=on-failure
-        RestartSec=5s
+        ExecStartPre=-/usr/bin/docker kill %n
+        ExecStartPre=-/usr/bin/docker rm %n
+        ExecStartPre=/usr/bin/docker pull pablocouto/coreos-sshguard
+
+        ExecStart=/bin/sh -c 'journalctl --no-pager -f -n0 -q -t sshd | /usr/bin/docker run -i --name=%n -v /dev/log:/dev/log --net=host --cap-add=NET_ADMIN --cap-add=NET_RAW pablocouto/coreos-sshguard >/dev/null'
+
+        ExecStop=/usr/bin/docker stop %n
+        ExecStop=/usr/bin/docker rm %n
+
+        [Install]
+        WantedBy=multi-user.target
 
 storage:
   files:
@@ -144,17 +153,6 @@ storage:
       mode: 420
       contents:
         inline: blakeshome1
-    # configure logrotate
-    - filesystem: root
-      path: /etc/logrotate.d/secure
-      mode: 644
-      contents:
-        inline: |
-          /var/log/secure {
-            rotate 4
-            size 10M
-            compress
-          }
     # set the iptables rules
     - filesystem: root
       path: /var/lib/iptables/rules-save

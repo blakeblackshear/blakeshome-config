@@ -3,6 +3,12 @@
 :FORWARD DROP [0:0]
 :OUTPUT ACCEPT [0:0]
 
+# Create chain for sshguard
+-N sshguard
+
+# Block sshguard ips
+-A INPUT -j sshguard
+
 # Accept all loopback (local) traffic:
 -A INPUT -i lo -j ACCEPT
 
