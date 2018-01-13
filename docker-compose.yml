@@ -64,10 +64,12 @@ services:
   nginx:
     container_name: nginx
     restart: unless-stopped
-    image: nginx:latest
+    image: rrusakov/nginx-naxsi-nginscript:latest
     volumes:
       - /srv/blakeshome/nginx/conf.d:/etc/nginx/conf.d:ro
+      - /srv/blakeshome/nginx/html:/etc/nginx/html:ro
       - /srv/blakeshome/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /srv/blakeshome/nginx/whitelist.rules:/etc/nginx/whitelist.rules:ro
       - ssl_certs:/etc/ssl/private:ro
     network_mode: host
   lets_encrypt:
