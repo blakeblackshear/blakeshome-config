@@ -3,6 +3,17 @@ passwd:
     - name: core
       ssh_authorized_keys:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrOJ0dRoMpSrSb9pQhd6bzFzoMpCKsBU2z1NlwEgR1zB5kQoE27fJ9csrncLod2lp5MhUWxGi8ar2HtNTjcGZUGV5vtt7DyR5F2nEgdhJF7MbJaSdThzjUPKQUW6xoQuo09+8KsHnjGwTsjV/hepg+WzkKOfrk2EuxDqhSxvM8X2meSyxPFN6yrAU8yc0WTbZ/IoLhgXuGfkQ8TK301XclFF3BWQSLKST1qZFkJEDfwV+H3E+TI4ec7ljj2uz+rgqLhPv5ia/Nv3GLDKFaSuWmaIpr/zn+U2eWv89BpvXp1AmIGJGbukgbRiGrHR4Sft7hKqx0fug/KXacck1gbczJ blake@Blakes-MacBook-Pro.local
+networkd:
+  units:
+    - name: 00-enp3s0.network
+      contents: |
+        [Match]
+        Name=enp3s0
+
+        [Network]
+        DNS=192.168.2.2
+        Address=192.168.2.2/24
+        Gateway=192.168.2.1
 systemd:
   units:
     - name: settimezone.service

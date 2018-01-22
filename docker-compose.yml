@@ -41,13 +41,20 @@ services:
       WEBPASSWORD: "${DOCKER_PIHOLE_PW}"
       ServerIP: 192.168.2.2
       VIRTUAL_HOST: pihole.blakeshome.com
+      INTERFACE: enp3s0
+      DNSMASQ_LISTENING: local
+      DHCP_ACTIVE: "true"
+      DHCP_START: 192.168.2.30
+      DHCP_END: 192.168.2.251
+      DHCP_ROUTER: 192.168.2.1
+      DHCP_LEASETIME: 24
+      PIHOLE_DOMAIN: local
     volumes:
       - pihole:/etc/pihole
       - /srv/blakeshome/dnsmasq.d:/etc/dnsmasq.d
-    ports:
-      - "80:80"
-      - "53:53/tcp"
-      - "53:53/udp"
+    cap_add:
+      - NET_ADMIN
+    network_mode: host
   oauth2_proxy:
     container_name: oauth2_proxy
     restart: unless-stopped

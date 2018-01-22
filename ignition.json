@@ -4,7 +4,14 @@
     "timeouts": {},
     "version": "2.1.0"
   },
-  "networkd": {},
+  "networkd": {
+    "units": [
+      {
+        "contents": "[Match]\nName=enp3s0\n\n[Network]\nDNS=192.168.2.2\nAddress=192.168.2.2/24\nGateway=192.168.2.1\n",
+        "name": "00-enp3s0.network"
+      }
+    ]
+  },
   "passwd": {
     "users": [
       {

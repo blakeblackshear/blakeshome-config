@@ -24,6 +24,12 @@
 # Unifi controller
 -A INPUT -p tcp -m tcp --dport 8080 -j ACCEPT
 
+# Pihole
+-A INPUT -p tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp --dport 53 -j ACCEPT
+-A INPUT -p udp --dport 53 -j ACCEPT
+-I INPUT -p udp --dport 67:68 --sport 67:68 -j ACCEPT
+
 # Allow multicast (for Xiaomi gateways)
 -I INPUT -p udp -j ACCEPT
 
