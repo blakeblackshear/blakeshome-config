@@ -1,0 +1,82 @@
+homeassistant:
+  customize:
+    light.gateway_light_286c07fa2266:
+      friendly_name: Status Light
+
+    sensor.illumination_286c07fa2266:
+      friendly_name: Ambient Light
+
+    binary_sensor.motion_sensor_158d0001a2ba1f:
+      friendly_name: Pantry Motion
+
+    binary_sensor.switch_158d00019de5ec:
+      friendly_name: Blake's Bedside Button
+
+    binary_sensor.switch_158d00016d7770:
+      friendly_name: Ali's Bedside Button
+
+    binary_sensor.door_window_sensor_158d0001b1b801:
+      friendly_name: Living Room Shutter 1
+
+    binary_sensor.door_window_sensor_158d0001dcc9bd:
+      friendly_name: Living Room Shutter 2
+
+    binary_sensor.door_window_sensor_158d0001ab59ab:
+      friendly_name: Living Room Shutter 3
+
+    binary_sensor.door_window_sensor_158d0001ab67c2:
+      friendly_name: Living Room Shutter 4
+
+    binary_sensor.door_window_sensor_158d0001b71164:
+      friendly_name: Living Room Shutter 5
+
+    binary_sensor.door_window_sensor_158d0001b1b8be:
+      friendly_name: Living Room Shutter 6
+
+    binary_sensor.door_window_sensor_158d0001dcba28:
+      friendly_name: Living Room Shutter 7
+
+    binary_sensor.door_window_sensor_158d0001dcba76:
+      friendly_name: Play Room Shutter 1
+
+    binary_sensor.door_window_sensor_158d0001b780f8:
+      friendly_name: Play Room Shutter 2
+
+    binary_sensor.motion_sensor_158d0001ad43f0:
+      friendly_name: Play Room Motion
+
+    binary_sensor.door_window_sensor_158d0001b7812e:
+      friendly_name: Dining Room Shutter 1
+
+    binary_sensor.door_window_sensor_158d0001b1b1a3:
+      friendly_name: Dining Room Shutter 2
+
+    binary_sensor.motion_sensor_158d0001215452:
+      friendly_name: Laundry Room Motion
+
+    binary_sensor.motion_sensor_158d0001d66c8d:
+      friendly_name: Hall Motion
+
+    sensor.humidity_158d0001ab4496:
+      friendly_name: Outside Humidity
+
+    sensor.pressure_158d0001ab4496:
+      friendly_name: Outside Pressure
+
+    sensor.temperature_158d0001ab4496:
+      friendly_name: Outside Temperature
+
+    binary_sensor.motion_sensor_158d0001d54b06:
+      friendly_name: Living Room Motion
+
+    sensor.temperature_158d0001c164af:
+      friendly_name: Master Bathroom Temperature
+
+    sensor.humidity_158d0001c164af:
+      friendly_name: Master Bathroom Humidity
+
+    sensor.temperature_158d0001c163e1:
+      friendly_name: Crawl Space Temperature
+
+    sensor.humidity_158d0001c163e1:
+      friendly_name: Crawl Space Humidity

@@ -63,271 +63,271 @@ mqtt:
 light:
   - platform: mqtt
     name: Foyer Back Light
-    state_topic: zway/foyer/backLight
+    state_topic: zway/ZWayVDev_zway_20-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/foyer/backLight/set
-    brightness_state_topic: zway/foyer/backLight
-    brightness_command_topic: zway/foyer/backLight/set
+    command_topic: zway/ZWayVDev_zway_20-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_20-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_20-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Foyer Front Light
-    state_topic: zway/foyer/frontLight
+    state_topic: zway/ZWayVDev_zway_21-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/foyer/frontLight/set
-    brightness_state_topic: zway/foyer/frontLight
-    brightness_command_topic: zway/foyer/frontLight/set
+    command_topic: zway/ZWayVDev_zway_21-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_21-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_21-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Living Room Front Lamp
-    state_topic: zway/livingRoom/frontLamp
+    state_topic: zway/ZWayVDev_zway_30-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/livingRoom/frontLamp/set
-    brightness_state_topic: zway/livingRoom/frontLamp
-    brightness_command_topic: zway/livingRoom/frontLamp/set
+    command_topic: zway/ZWayVDev_zway_30-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_30-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_30-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Living Room Back Lamp
-    state_topic: zway/livingRoom/backLamp
+    state_topic: zway/ZWayVDev_zway_31-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/livingRoom/backLamp/set
-    brightness_state_topic: zway/livingRoom/backLamp
-    brightness_command_topic: zway/livingRoom/backLamp/set
+    command_topic: zway/ZWayVDev_zway_31-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_31-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_31-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Living Room Chandelier Light
-    state_topic: zway/livingRoom/chandelierLight
+    state_topic: zway/ZWayVDev_zway_12-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/livingRoom/chandelierLight/set
-    brightness_state_topic: zway/livingRoom/chandelierLight
-    brightness_command_topic: zway/livingRoom/chandelierLight/set
+    command_topic: zway/ZWayVDev_zway_12-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_12-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_12-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Living Room Recessed Lights
-    state_topic: zway/livingRoom/recessedLights
+    state_topic: zway/ZWayVDev_zway_13-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/livingRoom/recessedLights/set
-    brightness_state_topic: zway/livingRoom/recessedLights
-    brightness_command_topic: zway/livingRoom/recessedLights/set
+    command_topic: zway/ZWayVDev_zway_13-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_13-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_13-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Butlers Pantry Light
-    state_topic: zway/butlersPantry/light
+    state_topic: zway/ZWayVDev_zway_2-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/butlersPantry/light/set
-    brightness_state_topic: zway/butlersPantry/light
-    brightness_command_topic: zway/butlersPantry/light/set
+    command_topic: zway/ZWayVDev_zway_2-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_2-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_2-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Deck Recessed Lights
-    state_topic: zway/deck/recessedLights
+    state_topic: zway/ZWayVDev_zway_18-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/deck/recessedLights/set
-    brightness_state_topic: zway/deck/recessedLights
-    brightness_command_topic: zway/deck/recessedLights/set
+    command_topic: zway/ZWayVDev_zway_18-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_18-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_18-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Deck String Lights
-    state_topic: zway/deck/stringLights
+    state_topic: zway/ZWayVDev_zway_29-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/deck/stringLights/set
-    brightness_state_topic: zway/deck/stringLights
-    brightness_command_topic: zway/deck/stringLights/set
+    command_topic: zway/ZWayVDev_zway_29-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_29-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_29-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Dining Room Light
-    state_topic: zway/diningRoom/light
+    state_topic: zway/ZWayVDev_zway_6-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/diningRoom/light/set
-    brightness_state_topic: zway/diningRoom/light
-    brightness_command_topic: zway/diningRoom/light/set
+    command_topic: zway/ZWayVDev_zway_6-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_6-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_6-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Driveway Lights
-    state_topic: zway/driveway/lights
+    state_topic: zway/ZWayVDev_zway_19-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/driveway/lights/set
-    brightness_state_topic: zway/driveway/lights
-    brightness_command_topic: zway/driveway/lights/set
+    command_topic: zway/ZWayVDev_zway_19-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_19-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_19-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Half Bath Bathroom Light
-    state_topic: zway/halfBath/bathroomLight
+    state_topic: zway/ZWayVDev_zway_3-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/halfBath/bathroomLight/set
-    brightness_state_topic: zway/halfBath/bathroomLight
-    brightness_command_topic: zway/halfBath/bathroomLight/set
+    command_topic: zway/ZWayVDev_zway_3-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_3-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_3-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Half Bath Hall Light
-    state_topic: zway/halfBath/hallLight
+    state_topic: zway/ZWayVDev_zway_4-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/halfBath/hallLight/set
-    brightness_state_topic: zway/halfBath/hallLight
-    brightness_command_topic: zway/halfBath/hallLight/set
+    command_topic: zway/ZWayVDev_zway_4-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_4-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_4-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Hall Lights
-    state_topic: zway/hall/lights
+    state_topic: zway/ZWayVDev_zway_27-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/hall/lights/set
-    brightness_state_topic: zway/hall/lights
-    brightness_command_topic: zway/hall/lights/set
+    command_topic: zway/ZWayVDev_zway_27-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_27-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_27-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Hall Stairs Light
-    state_topic: zway/hall/stairsLight
+    state_topic: zway/ZWayVDev_zway_23-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/hall/stairsLight/set
-    brightness_state_topic: zway/hall/stairsLight
-    brightness_command_topic: zway/hall/stairsLight/set
+    command_topic: zway/ZWayVDev_zway_23-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_23-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_23-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Kitchen Recessed Lights
-    state_topic: zway/kitchen/recessedLights
+    state_topic: zway/ZWayVDev_zway_15-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/kitchen/recessedLights/set
-    brightness_state_topic: zway/kitchen/recessedLights
-    brightness_command_topic: zway/kitchen/recessedLights/set
+    command_topic: zway/ZWayVDev_zway_15-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_15-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_15-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Kitchen Island Lights
-    state_topic: zway/kitchen/islandLights
+    state_topic: zway/ZWayVDev_zway_16-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/kitchen/islandLights/set
-    brightness_state_topic: zway/kitchen/islandLights
-    brightness_command_topic: zway/kitchen/islandLights/set
+    command_topic: zway/ZWayVDev_zway_16-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_16-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_16-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Kitchen Breakfast Lights
-    state_topic: zway/kitchen/breakfastLights
+    state_topic: zway/ZWayVDev_zway_17-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/kitchen/breakfastLights/set
-    brightness_state_topic: zway/kitchen/breakfastLights
-    brightness_command_topic: zway/kitchen/breakfastLights/set
+    command_topic: zway/ZWayVDev_zway_17-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_17-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_17-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Laundry Room Light
-    state_topic: zway/laundryRoom/light
+    state_topic: zway/ZWayVDev_zway_26-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/laundryRoom/light/set
-    brightness_state_topic: zway/laundryRoom/light
-    brightness_command_topic: zway/laundryRoom/light/set
+    command_topic: zway/ZWayVDev_zway_26-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_26-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_26-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Master Blake Lamp
-    state_topic: zway/master/blakeLamp
+    state_topic: zway/ZWayVDev_zway_32-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/master/blakeLamp/set
-    brightness_state_topic: zway/master/blakeLamp
-    brightness_command_topic: zway/master/blakeLamp/set
+    command_topic: zway/ZWayVDev_zway_32-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_32-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_32-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Master Ali Lamp
-    state_topic: zway/master/aliLamp
+    state_topic: zway/ZWayVDev_zway_33-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/master/aliLamp/set
-    brightness_state_topic: zway/master/aliLamp
-    brightness_command_topic: zway/master/aliLamp/set
+    command_topic: zway/ZWayVDev_zway_33-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_33-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_33-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Media Stairs Light
-    state_topic: zway/media/stairsLight
+    state_topic: zway/ZWayVDev_zway_28-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/media/stairsLight/set
-    brightness_state_topic: zway/media/stairsLight
-    brightness_command_topic: zway/media/stairsLight/set
+    command_topic: zway/ZWayVDev_zway_28-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_28-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_28-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Pantry Light
-    state_topic: zway/pantry/light
+    state_topic: zway/ZWayVDev_zway_8-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/pantry/light/set
-    brightness_state_topic: zway/pantry/light
-    brightness_command_topic: zway/pantry/light/set
+    command_topic: zway/ZWayVDev_zway_8-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_8-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_8-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Playroom Light
-    state_topic: zway/playroom/light
+    state_topic: zway/ZWayVDev_zway_5-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/playroom/light/set
-    brightness_state_topic: zway/playroom/light
-    brightness_command_topic: zway/playroom/light/set
+    command_topic: zway/ZWayVDev_zway_5-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_5-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_5-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Porch Lights
-    state_topic: zway/porch/lights
+    state_topic: zway/ZWayVDev_zway_22-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/porch/lights/set
-    brightness_state_topic: zway/porch/lights
-    brightness_command_topic: zway/porch/lights/set
+    command_topic: zway/ZWayVDev_zway_22-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_22-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_22-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Hall Right Lamp
-    state_topic: zway/hall/rightLamp
+    state_topic: zway/ZWayVDev_zway_43-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/hall/rightLamp/set
-    brightness_state_topic: zway/hall/rightLamp
-    brightness_command_topic: zway/hall/rightLamp/set
+    command_topic: zway/ZWayVDev_zway_43-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_43-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_43-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
   - platform: mqtt
     name: Hall Left Lamp
-    state_topic: zway/hall/leftLamp
+    state_topic: zway/ZWayVDev_zway_44-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zway/hall/leftLamp/set
-    brightness_state_topic: zway/hall/leftLamp
-    brightness_command_topic: zway/hall/leftLamp/set
+    command_topic: zway/ZWayVDev_zway_44-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_44-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_44-0-38/set
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
@@ -375,20 +375,3 @@ timer:
     duration: '00:05:00'
   playroom_lights:
     duration: '00:10:00'
-
-google_assistant:
-  project_id: blakeshome-assistant
-  client_id: !secret google_assist_client_id
-  access_token: !secret google_assist_access_token
-  agent_user_id: blake.blackshear@gmail.com
-  api_key: !secret google_assist_api_key
-  exposed_domains:
-    - switch
-    - light
-    - cover
-    - media_player
-    - group
-    - fan
-    - scene
-    - script
-    - vacuum

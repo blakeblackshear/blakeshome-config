@@ -35,7 +35,7 @@ services:
   pihole:
     container_name: pihole
     restart: unless-stopped
-    image: diginc/pi-hole:alpine
+    image: diginc/pi-hole:latest
     environment:
       TZ: "America/Chicago"
       WEBPASSWORD: "${DOCKER_PIHOLE_PW}"

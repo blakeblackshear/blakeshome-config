@@ -28,6 +28,8 @@ living_room:
   name: Living Room
   control: hidden
   entities:
+    - lock.back_door_lock
+    - binary_sensor.back_door
     - binary_sensor.motion_sensor_158d0001d54b06
     - light.living_room_back_lamp
     - light.living_room_chandelier_light
@@ -122,6 +124,8 @@ downstairs:
   name: Downstairs
   control: hidden
   entities:
+    - binary_sensor.front_door
+    - lock.front_door_lock
     - light.foyer_back_light
     - light.foyer_front_light
     - light.half_bath_bathroom_light
@@ -133,6 +137,7 @@ downstairs:
     - binary_sensor.door_window_sensor_158d0001b7812e
     - binary_sensor.door_window_sensor_158d0001b1b1a3
     - binary_sensor.motion_sensor_158d0001ad43f0
+    - switch.water_main_valve
 
 batteries:
   name: Batteries
@@ -159,3 +164,7 @@ batteries:
     - sensor.master_bathroom_temperature_battery
     - sensor.crawl_space_temperature_battery
     - sensor.pantry_motion_battery
+    - sensor.back_door_lock_battery
+    - sensor.front_door_lock_battery
+    - sensor.back_door_sensor_battery
+    - sensor.front_door_sensor_battery

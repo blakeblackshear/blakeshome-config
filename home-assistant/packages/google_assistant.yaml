@@ -1,0 +1,151 @@
+google_assistant:
+  project_id: blakeshome-assistant
+  client_id: !secret google_assist_client_id
+  access_token: !secret google_assist_access_token
+  agent_user_id: blake.blackshear@gmail.com
+  api_key: !secret google_assist_api_key
+  exposed_domains:
+    - switch
+    - light
+    - cover
+    - media_player
+    - group
+    - fan
+    - scene
+    - script
+    - vacuum
+  entity_config:
+    group.batteries:
+      expose: false
+
+    media_player.deck:
+      expose: false
+
+    media_player.media_room:
+      expose: false
+
+    media_player.theater_room:
+      expose: false
+
+    media_player.kitchen_home:
+      expose: false
+
+    group.deck:
+      expose: false
+
+    group.downstairs:
+      expose: false
+
+    group.outside:
+      expose: false
+
+    group.media_room:
+      expose: false
+
+    group.living_room:
+      expose: false
+
+    group.master:
+      expose: false
+
+    group.hall:
+      expose: false
+
+    group.jakes_room:
+      expose: false
+
+    group.kitchen:
+      expose: false
+
+    media_player.downstairs:
+      expose: false
+
+    media_player.living_room:
+      expose: false
+
+    cover.blakes_garage_door:
+      type: switch
+
+    cover.alis_garage_door:
+      type: switch
+
+    light.butlers_pantry_light:
+      name: Butler's Pantry Light
+
+    light.deck_recessed_lights:
+      name: Recessed Lights
+
+    light.deck_string_lights:
+      name: String Lights
+
+    light.dining_room_light:
+      name: Lights
+
+    light.foyer_front_light:
+      name: Front Light
+
+    light.foyer_back_light:
+      name: Back Light
+
+    light.half_bath_bathroom_light:
+      name: Bathroom Light
+
+    light.half_bath_hall_light:
+      name: Hall Light
+
+    light.hall_left_lamp:
+      name: Left Lamp
+
+    light.hall_right_light:
+      name: Right Lamp
+
+    light.hall_lights:
+      name: Lights
+
+    light.hall_stairs_light:
+      name: Stairs Light
+
+    light.kitchen_breakfast_lights:
+      name: Breakfast Lights
+
+    light.kitchen_island_lights:
+      name: Island Lights
+
+    light.kitchen_recessed_lights:
+      name: Recessed Lights
+
+    light.laundry_room_light:
+      name: Light
+
+    light.living_room_back_lamp:
+      name: Back Lamp
+
+    light.living_room_front_lamp:
+      name: Front Lamp
+
+    light.living_room_chandelier_light:
+      name: Chandelier
+
+    light.living_room_recessed_lights:
+      name: Recessed Lights
+
+    light.master_ali_lamp:
+      name: Ali's Lamp
+
+    light.master_blake_lamp:
+      name: Blake's Lamp
+
+    light.media_stairs_light:
+      name: Stairs Light
+
+    light.pantry_light:
+      name: Light
+
+    light.playroom_light:
+      name: Light
+
+    light.porch_lights:
+      name: Lights
+
+    light.gateway_light_286c07fa2266:
+      expose: false

@@ -1,0 +1,12 @@
+homeassistant:
+  customize:
+    switch.water_main_valve:
+      icon: mdi:water
+
+switch:
+  - platform: mqtt
+    name: "Water Main Valve"
+    state_topic: "zway/ZWayVDev_zway_47-0-37/status"
+    command_topic: "zway/ZWayVDev_zway_47-0-37/set"
+    payload_on: "on"
+    payload_off: "off"
