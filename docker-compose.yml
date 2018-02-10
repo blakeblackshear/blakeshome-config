@@ -15,6 +15,8 @@ services:
     volumes:
       - nodered_data:/data
     network_mode: host
+    environment:
+      TZ: "America/Chicago"
   unifi:
     container_name: unifi
     image: jacobalberty/unifi
