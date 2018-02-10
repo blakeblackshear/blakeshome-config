@@ -71,6 +71,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Foyer Front Light
     state_topic: zway/ZWayVDev_zway_21-0-38/status
@@ -81,6 +82,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Living Room Front Lamp
     state_topic: zway/ZWayVDev_zway_30-0-38/status
@@ -91,6 +93,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Living Room Back Lamp
     state_topic: zway/ZWayVDev_zway_31-0-38/status
@@ -101,6 +104,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Living Room Chandelier Light
     state_topic: zway/ZWayVDev_zway_12-0-38/status
@@ -111,6 +115,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Living Room Recessed Lights
     state_topic: zway/ZWayVDev_zway_13-0-38/status
@@ -121,6 +126,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Butlers Pantry Light
     state_topic: zway/ZWayVDev_zway_2-0-38/status
@@ -131,6 +137,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Deck Recessed Lights
     state_topic: zway/ZWayVDev_zway_18-0-38/status
@@ -141,6 +148,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Deck String Lights
     state_topic: zway/ZWayVDev_zway_29-0-38/status
@@ -151,6 +159,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Dining Room Light
     state_topic: zway/ZWayVDev_zway_6-0-38/status
@@ -161,6 +170,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Driveway Lights
     state_topic: zway/ZWayVDev_zway_19-0-38/status
@@ -171,6 +181,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Half Bath Bathroom Light
     state_topic: zway/ZWayVDev_zway_3-0-38/status
@@ -181,6 +192,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Half Bath Hall Light
     state_topic: zway/ZWayVDev_zway_4-0-38/status
@@ -191,6 +203,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Hall Lights
     state_topic: zway/ZWayVDev_zway_27-0-38/status
@@ -201,6 +214,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Hall Stairs Light
     state_topic: zway/ZWayVDev_zway_23-0-38/status
@@ -211,6 +225,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Kitchen Recessed Lights
     state_topic: zway/ZWayVDev_zway_15-0-38/status
@@ -221,6 +236,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Kitchen Island Lights
     state_topic: zway/ZWayVDev_zway_16-0-38/status
@@ -231,6 +247,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Kitchen Breakfast Lights
     state_topic: zway/ZWayVDev_zway_17-0-38/status
@@ -241,6 +258,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Laundry Room Light
     state_topic: zway/ZWayVDev_zway_26-0-38/status
@@ -251,6 +269,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Master Blake Lamp
     state_topic: zway/ZWayVDev_zway_32-0-38/status
@@ -261,6 +280,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Master Ali Lamp
     state_topic: zway/ZWayVDev_zway_33-0-38/status
@@ -271,6 +291,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Media Stairs Light
     state_topic: zway/ZWayVDev_zway_28-0-38/status
@@ -281,6 +302,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Pantry Light
     state_topic: zway/ZWayVDev_zway_8-0-38/status
@@ -291,6 +313,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Playroom Light
     state_topic: zway/ZWayVDev_zway_5-0-38/status
@@ -301,6 +324,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Porch Lights
     state_topic: zway/ZWayVDev_zway_22-0-38/status
@@ -311,6 +335,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Hall Right Lamp
     state_topic: zway/ZWayVDev_zway_43-0-38/status
@@ -321,6 +346,7 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
+    on_command_type: 'brightness'
   - platform: mqtt
     name: Hall Left Lamp
     state_topic: zway/ZWayVDev_zway_44-0-38/status
@@ -331,16 +357,13 @@ light:
     brightness_scale: 99
     payload_on: 255
     payload_off: 0
-  
+    on_command_type: 'brightness'
 
-# device tracking
 device_tracker:
-  - platform: nmap_tracker
-    hosts: 192.168.2.1/24
-    track_new_devices: no
-    interval_seconds: 30
-#  - platform: owntracks
-#  - platform: bluetooth_tracker
+  - platform: ping
+    hosts:
+      ali_phone_ping: 192.168.2.67
+      blake_phone_ping: 192.168.2.68
 
 vacuum:
   - platform: xiaomi_miio
@@ -375,3 +398,9 @@ timer:
     duration: '00:05:00'
   playroom_lights:
     duration: '00:10:00'
+
+notify:
+  - name: html5
+    platform: html5
+    gcm_api_key: !secret google_messaging_server_key
+    gcm_sender_id: !secret google_messaging_sender_id

@@ -1,18 +1,17 @@
-
-android6e7c9484bbb9a509:
+blake_phone_ping:
   hide_if_away: false
   icon:
   mac: AC:37:43:A2:09:FA
-  name: Blake's Phone (Nmap)
+  name: Blake's Phone
   picture:
   track: true
   vendor: HTC Corporation
 
-android891a4643e48d8ac4:
+ali_phone_ping:
   hide_if_away: false
   icon:
   mac: DC:0B:34:B1:B6:EA
-  name: Ali's Phone (Nmap)
+  name: Ali's Phone
   picture:
   track: true
   vendor: LG Electronics (Mobile Communications)
