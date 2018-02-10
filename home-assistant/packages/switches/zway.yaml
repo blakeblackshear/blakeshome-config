@@ -10,3 +10,15 @@ switch:
     command_topic: "zway/ZWayVDev_zway_47-0-37/set"
     payload_on: "on"
     payload_off: "off"
+  - platform: mqtt
+    name: "Back Panel Button 4"
+    state_topic: "zway/ZWayVDev_zway_Remote_14-0-0-4-S/status"
+    command_topic: "zway/ZWayVDev_zway_Remote_14-0-0-4-S/set"
+    payload_on: "on"
+    payload_off: "off"
+  - platform: mqtt
+    name: "Back Panel Button 5"
+    state_topic: "zway/ZWayVDev_zway_Remote_14-0-0-5-S/status"
+    command_topic: "zway/ZWayVDev_zway_Remote_14-0-0-5-S/set"
+    payload_on: "on"
+    payload_off: "off"
