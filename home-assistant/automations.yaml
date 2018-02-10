@@ -54,22 +54,6 @@
     service: light.turn_off
     entity_id: light.porch_lights
 
-- alias: Close blake garage at night
-  trigger:
-    platform: time
-    at: '22:00'
-  action:
-    service: cover.close_cover
-    entity_id: cover.blakes_garage_door
-
-- alias: Close ali garage at night
-  trigger:
-    platform: time
-    at: '22:00'
-  action:
-    service: cover.close_cover
-    entity_id: cover.alis_garage_door
-
 - alias: Turn on Living Room Lamps before it gets dark
   trigger:
     platform: sun
@@ -155,10 +139,11 @@
         before: sunrise
         before_offset: "01:00:00"
   action:
-    - service: light.turn_on
-      entity_id: light.hall_right_lamp
-      data:
-          brightness_pct: 1
+    service: light.turn_on
+    entity_id: 
+      - light.hall_right_lamp
+    data:
+        brightness_pct: 3
 
 - alias: Turn off hall lamps at night with no motion
   trigger:
