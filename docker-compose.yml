@@ -37,7 +37,8 @@ services:
   pihole:
     container_name: pihole
     restart: unless-stopped
-    image: diginc/pi-hole:latest
+    build:
+      context: pihole
     environment:
       TZ: "America/Chicago"
       WEBPASSWORD: "${DOCKER_PIHOLE_PW}"
@@ -53,7 +54,8 @@ services:
       PIHOLE_DOMAIN: local
     volumes:
       - pihole:/etc/pihole
-      - /srv/blakeshome/dnsmasq.d:/etc/dnsmasq.d
+      - /srv/blakeshome/pihole/dnsmasq.d:/etc/dnsmasq.d
+      - /srv/blakeshome/pihole/mqttpub.sh:/opt/mqttpub.sh:ro
     cap_add:
       - NET_ADMIN
     network_mode: host
