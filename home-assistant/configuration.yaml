@@ -364,6 +364,11 @@ device_tracker:
     hosts:
       ali_phone_ping: 192.168.2.67
       blake_phone_ping: 192.168.2.68
+  - platform: mqtt_json
+    devices:
+      blake_phone_mqtt: location/blake_blackshear
+
+map:
 
 vacuum:
   - platform: xiaomi_miio

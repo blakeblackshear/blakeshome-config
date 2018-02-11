@@ -5,9 +5,9 @@ mac="${2:-mac}"
 ip="${3:-ip}"
 hostname="${4}"
 
-tstamp="`date '+%Y-%m-%d %H:%M:%S'`"
+tstamp="`date '+%s'`"
 
 topic="network/dhcp/${mac}"
-payload="${ip}-${hostname}"
+payload="${tstamp}"
 
-mosquitto_pub -h mqtt.blakeshome.com -t "${topic}" -m "${payload}"
+mosquitto_pub -h mqtt.blakeshome.com -t "${topic}" -m "${payload}" -r

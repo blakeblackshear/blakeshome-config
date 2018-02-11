@@ -26,6 +26,18 @@ services:
     environment:
       TZ: "America/Chicago"
       RUNAS_UID0: "false"
+  googletracker:
+    container_name: google_tracker
+    restart: unless-stopped
+    build:
+      context: googletracker
+    environment:
+      TZ: "America/Chicago"
+      EMAIL: blakeshome.tracker@gmail.com
+      PASSWORD: "${GOOGLETRACKER_PASSWORD}"
+      POLL_INTERVAL: 300
+      MQTT_SERVER: mqtt.blakeshome.com
+    network_mode: host
   homeassistant:
     container_name: hass
     image: homeassistant/home-assistant
