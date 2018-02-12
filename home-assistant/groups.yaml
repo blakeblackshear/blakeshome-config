@@ -59,11 +59,13 @@ outside:
     - light.porch_lights
     - light.deck_recessed_lights
     - light.deck_string_lights
+    - timer.outside_lights_after_dark
     - sensor.humidity_158d0001ab4496
     - sensor.pressure_158d0001ab4496
     - sensor.temperature_158d0001ab4496
     - sensor.temperature_158d0001c163e1
     - sensor.humidity_158d0001c163e1
+    - sun.sun
 
 garage_doors:
   name: Garage Doors
@@ -85,6 +87,10 @@ master:
     - sensor.humidity_158d0001c164af
     - binary_sensor.switch_158d00016d7770
     - binary_sensor.switch_158d00019de5ec
+    - binary_sensor.motion_sensor_158d0001b15d45
+    - light.master_bath_lights
+    - light.master_closet_lights
+    - light.master_shower_light
 
 media_room:
   name: Media Room
@@ -130,7 +136,9 @@ downstairs:
     - light.foyer_front_light
     - light.half_bath_bathroom_light
     - light.half_bath_hall_light
+    - binary_sensor.motion_sensor_158d0001ad44f0
     - light.playroom_light
+    - timer.playroom_lights
     - light.dining_room_light
     - binary_sensor.door_window_sensor_158d0001dcba76
     - binary_sensor.door_window_sensor_158d0001b780f8
@@ -168,3 +176,5 @@ batteries:
     - sensor.front_door_lock_battery
     - sensor.back_door_sensor_battery
     - sensor.front_door_sensor_battery
+    - sensor.master_closet_motion_battery
+    - sensor.half_bath_motion_battery

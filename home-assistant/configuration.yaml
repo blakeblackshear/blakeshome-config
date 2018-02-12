@@ -358,15 +358,45 @@ light:
     payload_on: 255
     payload_off: 0
     on_command_type: 'brightness'
+  - platform: mqtt
+    name: Master Closet Lights
+    state_topic: zway/ZWayVDev_zway_51-0-38/status
+    state_value_template: '{{"0" if value == "0" else "255"}}'
+    command_topic: zway/ZWayVDev_zway_51-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_51-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_51-0-38/set
+    brightness_scale: 99
+    payload_on: 255
+    payload_off: 0
+    on_command_type: 'brightness'
+  - platform: mqtt
+    name: Master Bath Lights
+    state_topic: zway/ZWayVDev_zway_52-0-38/status
+    state_value_template: '{{"0" if value == "0" else "255"}}'
+    command_topic: zway/ZWayVDev_zway_52-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_52-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_52-0-38/set
+    brightness_scale: 99
+    payload_on: 255
+    payload_off: 0
+    on_command_type: 'brightness'
+  - platform: mqtt
+    name: Master Shower Light
+    state_topic: zway/ZWayVDev_zway_54-0-38/status
+    state_value_template: '{{"0" if value == "0" else "255"}}'
+    command_topic: zway/ZWayVDev_zway_54-0-38/set
+    brightness_state_topic: zway/ZWayVDev_zway_54-0-38/status
+    brightness_command_topic: zway/ZWayVDev_zway_54-0-38/set
+    brightness_scale: 99
+    payload_on: 255
+    payload_off: 0
+    on_command_type: 'brightness'
 
 device_tracker:
-  - platform: ping
-    hosts:
-      ali_phone_ping: 192.168.2.67
-      blake_phone_ping: 192.168.2.68
   - platform: mqtt_json
     devices:
       blake_phone_mqtt: location/blake_blackshear
+      ali_phone_mqtt: location/ali_blackshear
 
 map:
 
