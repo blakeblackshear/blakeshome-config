@@ -1,17 +1,13 @@
-blake_phone_ping:
+blake_phone_mqtt:
   hide_if_away: false
   icon:
-  mac: AC:37:43:A2:09:FA
-  name: Blake's Phone
-  picture:
+  name: Blake
+  picture: /local/blake.png
   track: true
-  vendor: HTC Corporation
 
-ali_phone_ping:
+ali_phone_mqtt:
   hide_if_away: false
   icon:
-  mac: DC:0B:34:B1:B6:EA
-  name: Ali's Phone
-  picture:
+  name: Ali
+  picture: /local/ali.png
   track: true
-  vendor: LG Electronics (Mobile Communications)
