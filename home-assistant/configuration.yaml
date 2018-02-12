@@ -26,7 +26,7 @@ http:
   # Uncomment this to add a password (recommended!)
   # api_password: !secret api_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  base_url: hass.blakeshome.com
+  base_url: https://hass.blakeshome.com
 
 # Checks for available updates
 # Note: This component will send some information about your system to
