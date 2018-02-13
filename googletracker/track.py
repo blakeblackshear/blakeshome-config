@@ -23,7 +23,7 @@ while True:
         mqtt_data = {
             "latitude": person.latitude,
             "longitude": person.longitude,
-            "datetime": int(time.time())
+            "datetime": int(person.datetime.timestamp())
         }
         
         print(mqtt_topic, mqtt_data)
