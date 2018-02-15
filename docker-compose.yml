@@ -37,6 +37,8 @@ services:
       PASSWORD: "${GOOGLETRACKER_PASSWORD}"
       POLL_INTERVAL: 300
       MQTT_SERVER: mqtt.blakeshome.com
+      HOME_LATITUDE: "${GOOGLETRACKER_HOME_LATITUDE}"
+      HOME_LONGITUDE: "${GOOGLETRACKER_HOME_LONGITUDE}"
     network_mode: host
   homeassistant:
     container_name: hass
