@@ -36,9 +36,9 @@ while True:
         }
 
         # if home is within the accuracy radius, assume home
-        if vincenty(home,(person.latitude, person.longitude)).meters < person._accuracy:
-            mqtt_data["latitude"] = home[0]
-            mqtt_data["longitude"] = home[1]
+        # if vincenty(home,(person.latitude, person.longitude)).meters < person._accuracy:
+        #     mqtt_data["latitude"] = home[0]
+        #     mqtt_data["longitude"] = home[1]
         
         print(mqtt_topic, mqtt_data)
         client.publish(mqtt_topic, json.dumps(mqtt_data), retain=True)
