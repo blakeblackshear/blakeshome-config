@@ -31,7 +31,7 @@ while True:
         mqtt_data = {
             "latitude": person.latitude,
             "longitude": person.longitude,
-            "datetime": int(person.timestamp),
+            "datetime": int(person.datetime.timestamp()),
             "accuracy": person._accuracy
         }
 
