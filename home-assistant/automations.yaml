@@ -142,6 +142,7 @@
     service: light.turn_on
     entity_id: 
       - light.hall_right_lamp
+      - light.hall_left_lamp
     data:
         brightness_pct: 3
 
