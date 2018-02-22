@@ -9,6 +9,15 @@ services:
     ports:
       - "1883:1883"
       - "9001:9001"
+  portainer:
+    container_name: portainer
+    restart: always
+    image: portainer/portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer:/data
+    ports:
+      - "127.0.0.1:9000:9000"
   nodered:
     container_name: nodered
     image: nodered/node-red-docker:latest
@@ -115,3 +124,4 @@ volumes:
   unifi:
   pihole:
   ssl_certs:
+  portainer:
