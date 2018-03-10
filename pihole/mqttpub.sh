@@ -6,7 +6,7 @@ ip="${3:-ip}"
 hostname="${4}"
 
 # dont report on deleted leases
-if [[ $op = "del" ]]
+if [ $op = "del" ]
 then
     exit 0
 fi
@@ -14,6 +14,10 @@ fi
 tstamp="`date '+%s'`"
 
 topic="network/dhcp/${mac}"
-payload="${tstamp}"
+
+payload=$(cat <<EOF
+{"op": "$op","timestamp": $tstamp}
+EOF
+)
 
 mosquitto_pub -h mqtt.blakeshome.com -t "${topic}" -m "${payload}" -r
