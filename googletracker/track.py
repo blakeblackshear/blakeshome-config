@@ -32,7 +32,7 @@ while True:
             "latitude": person.latitude,
             "longitude": person.longitude,
             "datetime": int(person.datetime.timestamp()),
-            "accuracy": person._accuracy
+            "gps_accuracy": person._accuracy
         }
 
         # if home is within the accuracy radius, assume home
