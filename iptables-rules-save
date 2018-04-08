@@ -30,6 +30,9 @@
 -A INPUT -p udp --dport 53 -j ACCEPT
 -I INPUT -p udp --dport 67:68 --sport 67:68 -j ACCEPT
 
+# Zway MQTT Bridge
+-A INPUT -p tcp --dport 9009 -j ACCEPT
+
 # Allow multicast (for Xiaomi gateways)
 -I INPUT -p udp -j ACCEPT
 

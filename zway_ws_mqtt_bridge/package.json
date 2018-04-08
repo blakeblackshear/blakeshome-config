@@ -1,0 +1,22 @@
+{
+  "name": "zway-ws-mqtt-bridge",
+  "version": "1.0.0",
+  "description": "Bridge Zway websockets to MQTT",
+  "main": "dist/server.js",
+  "dependencies": {
+    "@types/websocket": "0.0.35",
+    "mqtt": "^2.15.1",
+    "websocket": "^1.0.25"
+  },
+  "devDependencies": {
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
+  },
+  "scripts": {
+    "dev": "ts-node ./src/server.ts",
+    "compile": "tsc",
+    "start": "node ./dist/server.js"
+  },
+  "author": "Blake Blackshear",
+  "license": "ISC"
+}
