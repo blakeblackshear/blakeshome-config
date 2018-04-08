@@ -1,8 +1,8 @@
 lock:
   - platform: mqtt
     name: Back Door Lock
-    state_topic: "zway/ZWayVDev_zway_38-0-98/status"
-    command_topic: "zway/ZWayVDev_zway_38-0-98/set"
+    state_topic: "zway/ZWayVDev_zway_57-0-98/status"
+    command_topic: "zway/ZWayVDev_zway_57-0-98/set"
     payload_lock: "close"
     payload_unlock: "open"
     qos: 1

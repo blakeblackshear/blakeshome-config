@@ -236,24 +236,49 @@
 
 ## Garage
 
-- alias: Open the garage door at 8:45 MWF if Ali is home
+- alias: Turn off button when ali's garage door is closed
   trigger:
-    platform: time
-    at: '08:45'
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: device_tracker.android891a4643e48d8ac4
-        state: home
-      - condition: time
-        weekday:
-          - mon
-          - wed
-          - fri
+    - platform: state
+      entity_id: cover.alis_garage_door
+      from: 'open'
+      to: 'closed'
   action:
-    service: cover.open_cover
-    entity_id: cover.alis_garage_door
+    - service: switch.turn_off
+      entity_id:
+        - switch.back_panel_button_5
+
+- alias: Turn on button when ali's garage door is open
+  trigger:
+    - platform: state
+      entity_id: cover.alis_garage_door
+      from: 'closed'
+      to: 'open'
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.back_panel_button_5
+
+- alias: Turn off button when blake's garage door is closed
+  trigger:
+    - platform: state
+      entity_id: cover.blakes_garage_door
+      from: 'open'
+      to: 'closed'
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.back_panel_button_4
+
+- alias: Turn on button when blake's garage door is open
+  trigger:
+    - platform: state
+      entity_id: cover.blakes_garage_door
+      from: 'closed'
+      to: 'open'
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.back_panel_button_4
 
 - alias: Turn on the driveway lights if the garage opens at night
   trigger:
@@ -291,4 +316,60 @@
         - light.deck_string_lights
         - light.driveway_lights
         - light.deck_recessed_lights
-  
+
+- alias: Run vacuum at 9pm
+  trigger:
+    platform: time
+    at: '21:00'
+  action:
+    service: vacuum.turn_on
+    entity_id: 
+      - vacuum.xiaomi_vacuum_cleaner
+
+
+# Deck
+- alias: Turn off string lights when back button 3 turns off
+  trigger:
+    - platform: state
+      entity_id: switch.back_panel_button_3
+      from: 'on'
+      to: 'off'
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.deck_string_lights
+
+- alias: Turn on string lights when back button 3 turns on
+  trigger:
+    - platform: state
+      entity_id: switch.back_panel_button_3
+      from: 'off'
+      to: 'on'
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.deck_string_lights
+      data:
+        brightness_pct: 35
+
+- alias: Turn off back button 3 when lights turn off
+  trigger:
+    - platform: state
+      entity_id: light.deck_string_lights
+      from: 'on'
+      to: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.back_panel_button_3
+
+- alias: Turn on back button 3 when lights turn on
+  trigger:
+    - platform: state
+      entity_id: light.deck_string_lights
+      from: 'off'
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.back_panel_button_3

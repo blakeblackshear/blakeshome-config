@@ -5,7 +5,7 @@ sensor:
     unit_of_measurement: '%'
   - platform: mqtt
     name: Back Door Lock Battery
-    state_topic: "zway/ZWayVDev_zway_38-0-128/status"
+    state_topic: "zway/ZWayVDev_zway_57-0-128/status"
     unit_of_measurement: '%'
   - platform: mqtt
     name: Front Door Sensor Battery
