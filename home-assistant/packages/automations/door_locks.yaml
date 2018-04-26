@@ -1,0 +1,18 @@
+automation:
+  - alias: Unlock back door when someone arrives
+    trigger:
+      - platform: state
+        entity_id: device_tracker.blake_phone_mqtt
+        from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: device_tracker.ali_phone_mqtt
+        from: 'not_home'
+        to: 'home'
+    condition:
+      condition: time
+      after: '08:00:00'
+      before: '21:00:00'
+    action:
+      service: lock.unlock
+      entity_id: lock.back_door_lock
