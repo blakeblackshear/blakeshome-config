@@ -17,39 +17,50 @@ homeassistant:
 
     binary_sensor.door_window_sensor_158d0001b1b801:
       friendly_name: Living Room Shutter 1
+      device_class: window
 
     binary_sensor.door_window_sensor_158d0001dcc9bd:
       friendly_name: Living Room Shutter 2
+      device_class: window
 
     binary_sensor.door_window_sensor_158d0001ab59ab:
       friendly_name: Living Room Shutter 3
+      device_class: window
 
     binary_sensor.door_window_sensor_158d0001ab67c2:
       friendly_name: Living Room Shutter 4
+      device_class: window
 
     binary_sensor.door_window_sensor_158d0001b71164:
       friendly_name: Living Room Shutter 5
+      device_class: window
 
     binary_sensor.door_window_sensor_158d0001b1b8be:
       friendly_name: Living Room Shutter 6
+      device_class: window
 
     binary_sensor.door_window_sensor_158d0001dcba28:
       friendly_name: Living Room Shutter 7
+      device_class: window
 
     binary_sensor.door_window_sensor_158d0001dcba76:
       friendly_name: Play Room Shutter 1
+      device_class: window
 
     binary_sensor.door_window_sensor_158d0001b780f8:
       friendly_name: Play Room Shutter 2
+      device_class: window
 
     binary_sensor.motion_sensor_158d0001ad43f0:
       friendly_name: Play Room Motion
 
     binary_sensor.door_window_sensor_158d0001b7812e:
       friendly_name: Dining Room Shutter 1
+      device_class: window
 
     binary_sensor.door_window_sensor_158d0001b1b1a3:
       friendly_name: Dining Room Shutter 2
+      device_class: window
 
     binary_sensor.motion_sensor_158d0001215452:
       friendly_name: Laundry Room Motion
