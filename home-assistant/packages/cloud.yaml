@@ -1,0 +1,11 @@
+cloud:
+  google_actions:
+    filter:
+      exclude_domains:
+        - group
+        - media_player
+      exclude_entities:
+        - switch.back_panel_button_3
+        - switch.back_panel_button_4
+        - switch.back_panel_button_5
+        - switch.sonoff3491
