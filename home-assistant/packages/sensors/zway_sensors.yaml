@@ -2,13 +2,13 @@
 binary_sensor:
   - platform: mqtt
     name: "Back Door"
-    state_topic: "zway/ZWayVDev_zway_Remote_46-0-0-B/status"
+    state_topic: "zwave/downstairs/ZWayVDev_zway_Remote_46-0-0-B/status"
     payload_on: "on"
     payload_off: "off"
-    device_class: opening
+    device_class: door
   - platform: mqtt
     name: "Front Door"
-    state_topic: "zway/ZWayVDev_zway_Remote_45-0-0-B/status"
+    state_topic: "zwave/downstairs/ZWayVDev_zway_Remote_45-0-0-B/status"
     payload_on: "on"
     payload_off: "off"
-    device_class: opening
+    device_class: door

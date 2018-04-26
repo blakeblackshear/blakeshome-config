@@ -6,25 +6,25 @@ homeassistant:
 switch:
   - platform: mqtt
     name: "Water Main Valve"
-    state_topic: "zway/ZWayVDev_zway_47-0-37/status"
-    command_topic: "zway/ZWayVDev_zway_47-0-37/set"
+    state_topic: "zwave/downstairs/ZWayVDev_zway_47-0-37/status"
+    command_topic: "zwave/downstairs/ZWayVDev_zway_47-0-37/set"
     payload_on: "on"
     payload_off: "off"
   - platform: mqtt
     name: "Back Panel Button 3"
-    state_topic: "zway/ZWayVDev_zway_Remote_14-0-0-3-S/status"
-    command_topic: "zway/ZWayVDev_zway_Remote_14-0-0-3-S/set"
+    state_topic: "zwave/downstairs/ZWayVDev_zway_Remote_14-0-0-3-S/status"
+    command_topic: "zwave/downstairs/ZWayVDev_zway_Remote_14-0-0-3-S/set"
     payload_on: "on"
     payload_off: "off"
   - platform: mqtt
     name: "Back Panel Button 4"
-    state_topic: "zway/ZWayVDev_zway_Remote_14-0-0-4-S/status"
-    command_topic: "zway/ZWayVDev_zway_Remote_14-0-0-4-S/set"
+    state_topic: "zwave/downstairs/ZWayVDev_zway_Remote_14-0-0-4-S/status"
+    command_topic: "zwave/downstairs/ZWayVDev_zway_Remote_14-0-0-4-S/set"
     payload_on: "on"
     payload_off: "off"
   - platform: mqtt
     name: "Back Panel Button 5"
-    state_topic: "zway/ZWayVDev_zway_Remote_14-0-0-5-S/status"
-    command_topic: "zway/ZWayVDev_zway_Remote_14-0-0-5-S/set"
+    state_topic: "zwave/downstairs/ZWayVDev_zway_Remote_14-0-0-5-S/status"
+    command_topic: "zwave/downstairs/ZWayVDev_zway_Remote_14-0-0-5-S/set"
     payload_on: "on"
     payload_off: "off"

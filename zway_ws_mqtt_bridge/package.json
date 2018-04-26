@@ -4,9 +4,9 @@
   "description": "Bridge Zway websockets to MQTT",
   "main": "dist/server.js",
   "dependencies": {
-    "@types/websocket": "0.0.35",
+    "@types/ws": "^4.0.2",
     "mqtt": "^2.15.1",
-    "websocket": "^1.0.25"
+    "ws": "^5.1.1"
   },
   "devDependencies": {
     "ts-node": "^4.1.0",
