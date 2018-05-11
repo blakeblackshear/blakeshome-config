@@ -114,6 +114,7 @@ services:
       - /srv/blakeshome/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - /srv/blakeshome/nginx/whitelist.rules:/etc/nginx/whitelist.rules:ro
       - ssl_certs:/etc/ssl/private:ro
+      - camera_stream:/data/cameras
     network_mode: host
   lets_encrypt:
     container_name: acme.sh
@@ -126,6 +127,37 @@ services:
     environment:
       CF_Email: blakeb@blakeshome.com
       CF_Key: "${DOCKER_CF_KEY}"
+  camera_deck_hls:
+    container_name: camera_deck_hls
+    restart: unless-stopped
+    image: jrottenberg/ffmpeg:4.0-alpine
+    command: >-
+      -rtsp_transport tcp -xerror -r 25 -use_wallclock_as_timestamps 1 
+      -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/live"
+      -c copy -hls_list_size 2 -hls_init_time 1 -hls_time 1 -hls_flags delete_segments
+      /data/deck.m3u8
+    volumes:
+      - camera_stream:/data
+  camera_deck_nvr:
+    container_name: camera_deck_nvr
+    restart: unless-stopped
+    image: jrottenberg/ffmpeg:4.0-alpine
+    command: >-
+      -rtsp_transport tcp -use_wallclock_as_timestamps 1 -r 25
+      -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/live"
+      -f segment -segment_time 300 -segment_format mp4 -reset_timestamps 1
+      -strftime 1 -c copy -map 0 /data/deck-%Y%m%d-%H%M%S.mp4
+    volumes:
+      - /media/data/nvr:/data
+  nvr_cleaner:
+    container_name: nvr_cleaner
+    restart: unless-stopped
+    build:
+      context: nvr_cleaner
+    volumes:
+      - /media/data/nvr:/data
+    environment:
+      DAYS_TO_RETAIN: 14
 
 volumes:
   mosquitto_data:
@@ -134,3 +166,4 @@ volumes:
   pihole:
   ssl_certs:
   portainer:
+  camera_stream:

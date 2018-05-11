@@ -1,0 +1,3 @@
+#!/bin/sh
+
+find /data -type f -mtime +${DAYS_TO_RETAIN} -delete
