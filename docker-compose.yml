@@ -58,6 +58,14 @@ services:
       TZ: "America/Chicago"
       MQTT_SERVER: mqtt://mqtt.blakeshome.com
     network_mode: host
+  # mqttlogger:
+  #   container_name: mqttlogger
+  #   restart: unless-stopped
+  #   build:
+  #     context: mqttlogger
+  #   environment:
+  #     TZ: "America/Chicago"
+  #   network_mode: host
   homeassistant:
     container_name: hass
     image: homeassistant/home-assistant:0.67.0
@@ -157,7 +165,7 @@ services:
     volumes:
       - /media/data/nvr:/data
     environment:
-      DAYS_TO_RETAIN: 14
+      FIND_PARAMS: -mmin +20160 # 14*24*60
 
 volumes:
   mosquitto_data:
