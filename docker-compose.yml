@@ -123,6 +123,7 @@ services:
       - /srv/blakeshome/nginx/whitelist.rules:/etc/nginx/whitelist.rules:ro
       - ssl_certs:/etc/ssl/private:ro
       - camera_stream:/data/cameras
+      - /var/www/public:/var/www/public:ro
     network_mode: host
   lets_encrypt:
     container_name: acme.sh
