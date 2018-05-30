@@ -20,4 +20,4 @@ payload=$(cat <<EOF
 EOF
 )
 
-mosquitto_pub -h mqtt.blakeshome.com -t "${topic}" -m "${payload}" -r
+mosquitto_pub -h mqtt.blakeshome.com -t "${topic}" -m "${payload}"

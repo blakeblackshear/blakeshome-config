@@ -41,6 +41,6 @@ while True:
         #     mqtt_data["longitude"] = home[1]
         
         print(mqtt_topic, mqtt_data)
-        client.publish(mqtt_topic, json.dumps(mqtt_data), retain=True)
+        client.publish(mqtt_topic, json.dumps(mqtt_data), retain=False)
 
     time.sleep(float(poll_interval))

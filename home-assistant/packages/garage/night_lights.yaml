@@ -1,0 +1,55 @@
+timer:
+  outside_lights_after_dark:
+    duration: '00:05:00'
+
+automation:
+  - alias: Turn on the outside lights if the garage opens at night
+    trigger:
+      - platform: state
+        entity_id: cover.alis_garage_door
+        from: 'closed'
+        to: 'open'
+      - platform: state
+        entity_id: cover.blakes_garage_door
+        from: 'closed'
+        to: 'open'
+    condition:
+      condition: sun
+      after: sunset
+    action:
+      - service: light.turn_on
+        entity_id:
+          - light.deck_string_lights
+          - light.driveway_lights
+          - light.deck_recessed_lights
+        data:
+          brightness_pct: 75
+      - service: timer.start
+        entity_id: timer.outside_lights_after_dark
+
+  - alias: Turn off the outside lights after the timer expires at night
+    trigger: 
+      platform: event
+      event_type: timer.finished
+      event_data: 
+        entity_id: timer.outside_lights_after_dark
+    action:
+      - service: light.turn_off
+        entity_id:
+          - light.deck_string_lights
+          - light.driveway_lights
+          - light.deck_recessed_lights
+  
+  - alias: Turn off the outside lights if the door locks when the timer is running
+    trigger:
+      - platform: state
+        entity_id: lock.back_door_lock
+        from: 'unlocked'
+        to: 'locked'
+    condition:
+      - condition: state
+        entity_id: timer.outside_lights_after_dark
+        state: 'active'
+    action:
+      - service: timer.finish
+        entity_id: timer.outside_lights_after_dark

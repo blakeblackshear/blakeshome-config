@@ -1,9 +1,3 @@
-people:
-  name: People
-  entities:
-    - device_tracker.ali_phone_mqtt
-    - device_tracker.blake_phone_mqtt
-
 master_lamps:
   name: Master Lamps
   entities:

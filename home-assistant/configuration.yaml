@@ -392,12 +392,6 @@ light:
     payload_off: 0
     on_command_type: 'brightness'
 
-device_tracker:
-  - platform: mqtt_json
-    devices:
-      blake_phone_mqtt: location/blake_blackshear
-      ali_phone_mqtt: location/ali_blackshear
-
 map:
 
 vacuum:
@@ -436,8 +430,6 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 
 timer:
-  outside_lights_after_dark:
-    duration: '00:05:00'
   playroom_lights:
     duration: '00:10:00'
 

@@ -1,0 +1,91 @@
+device_tracker:
+  - platform: mqtt_json
+    devices:
+      blake_phone_mqtt: location/blake_blackshear
+      ali_phone_mqtt: location/ali_blackshear
+
+group:
+  people:
+    name: People
+    entities:
+      - device_tracker.ali_phone_mqtt
+      - input_datetime.ali_last_seen
+      - device_tracker.blake_phone_mqtt
+      - input_datetime.blake_last_seen
+
+input_datetime:
+  blake_last_seen:
+    name: Blake last seen
+    has_date: true
+    has_time: true
+  ali_last_seen:
+    name: Ali last seen
+    has_date: true
+    has_time: true
+
+automation:
+  - alias: Simulate a home message when blake's phone gets a dhcp lease
+    trigger:
+      platform: mqtt
+      topic: network/dhcp/ac:37:43:a2:09:fa
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: location/blake_blackshear
+          payload: '{"latitude": 35.916943, "longitude": -86.776212, "gps_accuracy": 10}'
+      - service: input_datetime.set_datetime
+        entity_id: input_datetime.blake_last_seen
+        data_template:
+          time: '{{ trigger.payload_json.timestamp | timestamp_custom("%H:%M:%S", true) }}'
+          date: '{{ trigger.payload_json.timestamp | timestamp_custom("%Y-%m-%d", true) }}'
+
+  - alias: Filter out blake's location updates that are old and republish
+    trigger:
+      platform: mqtt
+      topic: google/location/blake_blackshear
+    condition:
+      - condition: template
+        value_template: '{{ trigger.payload_json.datetime > states.input_datetime.blake_last_seen.attributes.timestamp }}'
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: location/blake_blackshear
+          payload: '{{ trigger.payload }}'
+      - service: input_datetime.set_datetime
+        entity_id: input_datetime.blake_last_seen
+        data_template:
+          time: '{{ trigger.payload_json.datetime | timestamp_custom("%H:%M:%S", true) }}'
+          date: '{{ trigger.payload_json.datetime | timestamp_custom("%Y-%m-%d", true) }}'
+
+  - alias: Simulate a home message when ali's phone gets a dhcp lease
+    trigger:
+      platform: mqtt
+      topic: network/dhcp/dc:0b:34:b1:b6:ea
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: location/ali_blackshear
+          payload: '{"latitude": 35.916943, "longitude": -86.776212, "gps_accuracy": 10}'
+      - service: input_datetime.set_datetime
+        entity_id: input_datetime.ali_last_seen
+        data_template:
+          time: '{{ trigger.payload_json.timestamp | timestamp_custom("%H:%M:%S", true) }}'
+          date: '{{ trigger.payload_json.timestamp | timestamp_custom("%Y-%m-%d", true) }}'
+
+  - alias: Filter out ali's location updates that are old and republish
+    trigger:
+      platform: mqtt
+      topic: google/location/ali_blackshear
+    condition:
+      - condition: template
+        value_template: '{{ trigger.payload_json.datetime > states.input_datetime.ali_last_seen.attributes.timestamp }}'
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: location/ali_blackshear
+          payload: '{{ trigger.payload }}'
+      - service: input_datetime.set_datetime
+        entity_id: input_datetime.ali_last_seen
+        data_template:
+          time: '{{ trigger.payload_json.datetime | timestamp_custom("%H:%M:%S", true) }}'
+          date: '{{ trigger.payload_json.datetime | timestamp_custom("%Y-%m-%d", true) }}'

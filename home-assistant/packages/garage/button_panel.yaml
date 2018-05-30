@@ -1,0 +1,88 @@
+automation:
+  - alias: Turn off button when ali's garage door is closed
+    trigger:
+      - platform: state
+        entity_id: cover.alis_garage_door
+        from: 'open'
+        to: 'closed'
+    action:
+      - service: switch.turn_off
+        entity_id:
+          - switch.back_panel_button_5
+
+  - alias: Turn on button when ali's garage door is open
+    trigger:
+      - platform: state
+        entity_id: cover.alis_garage_door
+        from: 'closed'
+        to: 'open'
+    action:
+      - service: switch.turn_on
+        entity_id:
+          - switch.back_panel_button_5
+
+  - alias: Turn off button when blake's garage door is closed
+    trigger:
+      - platform: state
+        entity_id: cover.blakes_garage_door
+        from: 'open'
+        to: 'closed'
+    action:
+      - service: switch.turn_off
+        entity_id:
+          - switch.back_panel_button_4
+
+  - alias: Turn on button when blake's garage door is open
+    trigger:
+      - platform: state
+        entity_id: cover.blakes_garage_door
+        from: 'closed'
+        to: 'open'
+    action:
+      - service: switch.turn_on
+        entity_id:
+          - switch.back_panel_button_4
+
+  - alias: Close blake's garage door when button turns off
+    trigger:
+      - platform: state
+        entity_id: switch.back_panel_button_4
+        from: 'on'
+        to: 'off'
+    action:
+      - service: cover.close_cover
+        entity_id:
+          - cover.blakes_garage_door
+
+  - alias: Open blake's garage door when button turns on
+    trigger:
+      - platform: state
+        entity_id: switch.back_panel_button_4
+        from: 'off'
+        to: 'on'
+    action:
+      - service: cover.open_cover
+        entity_id:
+          - cover.blakes_garage_door
+
+  - alias: Close ali's garage door when button turns off
+    trigger:
+      - platform: state
+        entity_id: switch.back_panel_button_5
+        from: 'on'
+        to: 'off'
+    action:
+      - service: cover.close_cover
+        entity_id:
+          - cover.alis_garage_door
+
+  - alias: Open ali's garage door when button turns on
+    trigger:
+      - platform: state
+        entity_id: switch.back_panel_button_5
+        from: 'off'
+        to: 'on'
+    action:
+      - service: cover.open_cover
+        entity_id:
+          - cover.alis_garage_door
