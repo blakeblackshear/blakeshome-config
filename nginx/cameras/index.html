@@ -1,0 +1,60 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blakeshome Cameras</title>
+  <style type="text/css">
+    .videos {
+        width: 100%;
+        text-align: center;
+    }
+    .video-player {
+        width: 100%;
+        max-width: 600px;
+    }
+  </style>
+</head>
+
+<body>
+    <section class="videos">
+        <video id="back" poster="/nvr/back.jpg" class="video-player" controls preload="none"></video>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        ['back'].forEach(function(video_stream){
+            var video = document.getElementById(video_stream);
+            if(Hls.isSupported()) {
+                var hls = new Hls({
+                    autoStartLoad: false,
+                    capLevelToPlayerSize: true,
+                    liveSyncDuration: 15,
+                    liveDurationInfinity: true
+                });
+                hls.loadSource('/streams/'+video_stream+'.m3u8');
+                hls.attachMedia(video);
+                hls.on(Hls.Events.LEVEL_LOADED,function(event,data) {
+                    var level_duration = data.details.totalduration;
+                });
+                video.addEventListener('play', function() { 
+                    hls.startLoad(startPosition=-1);
+                    video.play();
+                }, false);
+                video.addEventListener('pause', function() { 
+                    hls.stopLoad();
+                    video.pause();
+                }, false);
+            }
+            // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
+            // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
+            // This is using the built-in support of the plain video element, without using hls.js.
+            // Note: it would be more normal to wait on the 'canplay' event below however on Safari (where you are most likely to find built-in HLS support) the video.src URL must be on the user-driven
+            // white-list before a 'canplay' event will be emitted; the last video event that can be reliably listened-for when the URL is not on the white-list is 'loadedmetadata'.
+            else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = '/streams/'+video_stream+'.m3u8';
+            }
+        });
+    </script> 
+</body>
+</html>

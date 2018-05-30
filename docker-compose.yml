@@ -117,12 +117,14 @@ services:
     restart: unless-stopped
     image: rrusakov/nginx-naxsi-nginscript:latest
     volumes:
-      - /srv/blakeshome/nginx/conf.d:/etc/nginx/conf.d:ro
-      - /srv/blakeshome/nginx/html:/etc/nginx/html:ro
-      - /srv/blakeshome/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - /srv/blakeshome/nginx/whitelist.rules:/etc/nginx/whitelist.rules:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/html:/etc/nginx/html:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/whitelist.rules:/etc/nginx/whitelist.rules:ro
       - ssl_certs:/etc/ssl/private:ro
+      - ./nginx/cameras:/var/www/cameras:ro
       - camera_stream:/data/cameras
+      - camera_nvr:/data/nvr
       - /var/www/public:/var/www/public:ro
     network_mode: host
   lets_encrypt:
@@ -136,35 +138,61 @@ services:
     environment:
       CF_Email: blakeb@blakeshome.com
       CF_Key: "${DOCKER_CF_KEY}"
-  camera_deck_hls:
-    container_name: camera_deck_hls
+  camera_back_hls_med:
+    container_name: camera_back_hls_med
     restart: unless-stopped
     image: jrottenberg/ffmpeg:4.0-alpine
     command: >-
-      -rtsp_transport tcp -xerror -r 25 -use_wallclock_as_timestamps 1 
-      -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/live"
-      -c copy -hls_list_size 2 -hls_init_time 1 -hls_time 1 -hls_flags delete_segments
-      /data/deck.m3u8
+      -loglevel error -hide_banner -y
+      -rtsp_transport tcp -stimeout 5000000 -xerror -r 25 -use_wallclock_as_timestamps 1
+      -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/cam/realmonitor?channel=1&subtype=1" -c copy
+      -hls_list_size 10 -hls_init_time 1 -hls_time 1 -hls_flags delete_segments
+      /stream/back-med.m3u8
     volumes:
-      - camera_stream:/data
-  camera_deck_nvr:
-    container_name: camera_deck_nvr
+      - camera_stream:/stream
+  camera_back_hls_low:
+    container_name: camera_back_hls_low
     restart: unless-stopped
     image: jrottenberg/ffmpeg:4.0-alpine
     command: >-
-      -rtsp_transport tcp -use_wallclock_as_timestamps 1 -r 25
-      -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/live"
-      -f segment -segment_time 300 -segment_format mp4 -reset_timestamps 1
-      -strftime 1 -c copy -map 0 /data/deck-%Y%m%d-%H%M%S.mp4
+      -loglevel error -hide_banner -y
+      -rtsp_transport tcp -stimeout 5000000 -xerror -r 25 -use_wallclock_as_timestamps 1
+      -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/cam/realmonitor?channel=1&subtype=2" -c copy
+      -hls_list_size 10 -hls_init_time 1 -hls_time 1 -hls_flags delete_segments
+      /stream/back-low.m3u8
     volumes:
-      - /media/data/nvr:/data
+      - camera_stream:/stream
+  camera_back_nvr:
+    container_name: camera_back_nvr
+    restart: unless-stopped
+    image: jrottenberg/ffmpeg:4.0-alpine
+    command: >-
+      -loglevel error -hide_banner -y
+      -rtsp_transport tcp -stimeout 5000000 -use_wallclock_as_timestamps 1 -r 25
+      -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/live"
+      -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1
+      -strftime 1 -c copy -map 0 /nvr/back-%Y%m%d%H%M%S.mp4
+      -c copy -hls_list_size 10 -hls_init_time 1 -hls_time 1 -hls_flags
+      delete_segments /stream/back.m3u8
+    volumes:
+      - camera_nvr:/nvr
+      - camera_stream:/stream
+  nvr_snapshot:
+    container_name: nvr_snapshot
+    restart: unless-stopped
+    build:
+      context: nvr_snapshot
+    environment:
+      MONITORDIR: /nvr
+    volumes:
+      - camera_nvr:/nvr
   nvr_cleaner:
     container_name: nvr_cleaner
     restart: unless-stopped
     build:
       context: nvr_cleaner
     volumes:
-      - /media/data/nvr:/data
+      - camera_nvr:/data
     environment:
       FIND_PARAMS: -mmin +20160 # 14*24*60
 
@@ -176,3 +204,9 @@ volumes:
   ssl_certs:
   portainer:
   camera_stream:
+  camera_nvr:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/mnt/data/nvr'
