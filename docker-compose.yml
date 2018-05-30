@@ -20,6 +20,7 @@ services:
       - "127.0.0.1:9000:9000"
   unifi:
     container_name: unifi
+    restart: unless-stopped
     image: jacobalberty/unifi
     volumes:
       - unifi:/unifi
@@ -27,6 +28,17 @@ services:
     environment:
       TZ: "America/Chicago"
       RUNAS_UID0: "false"
+  unifi_backup:
+    container_name: unifi_backup
+    restart: unless-stopped
+    build:
+      context: unifi_backup
+    environment:
+      TZ: "America/Chicago"
+      ENCRYPTION_KEY: "${UNIFI_BACKUP_ENCRYPTION_KEY}"
+      AWS_ACCESS_KEY_ID: AKIAIUDDE7N2WIGEYOPA
+      AWS_SECRET_ACCESS_KEY: "${UNIFI_AWS_SECRET}"
+      AWS_DEFAULT_REGION: us-east-2
   googletracker:
     container_name: google_tracker
     restart: unless-stopped

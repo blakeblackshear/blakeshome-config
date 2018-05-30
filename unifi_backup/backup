@@ -1,0 +1,12 @@
+#!/bin/bash
+
+mkdir -p /backup
+
+encrypt_and_move (){
+    /usr/bin/openssl enc -aes-256-cbc -salt -in "/unifi/backup/autobackup/$1" -out "/backup/$1.enc" -pass env:ENCRYPTION_KEY
+    rm "$1"
+    aws s3 cp "/backup/$1.enc" "s3://blakeshome-unifi-backups/$1.enc"
+}
+
+# Loop over backups and encrypt
+find /unifi/backup/autobackup -maxdepth 1 -type f -name "*.unf" | while read file; do encrypt_and_move "$file"; done
