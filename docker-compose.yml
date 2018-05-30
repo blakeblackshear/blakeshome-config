@@ -18,14 +18,6 @@ services:
       - portainer:/data
     ports:
       - "127.0.0.1:9000:9000"
-  nodered:
-    container_name: nodered
-    image: nodered/node-red-docker:latest
-    volumes:
-      - nodered_data:/data
-    network_mode: host
-    environment:
-      TZ: "America/Chicago"
   unifi:
     container_name: unifi
     image: jacobalberty/unifi
