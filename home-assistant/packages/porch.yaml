@@ -1,0 +1,18 @@
+automation:
+  - alias: Turn on Porch Light at Sunset
+    trigger:
+      platform: sun
+      event: sunset
+    action:
+      service: light.turn_on
+      entity_id: light.porch_lights
+      data:
+        brightness_pct: 40
+
+  - alias: Turn off Porch Light at Sunrise
+    trigger:
+      platform: sun
+      event: sunrise
+    action:
+      service: light.turn_off
+      entity_id: light.porch_lights

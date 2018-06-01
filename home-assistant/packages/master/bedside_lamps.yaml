@@ -1,0 +1,38 @@
+automation:
+  - alias: Toggle Blake lamp
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00019de5ec
+        click_type: single
+    action:
+      service: light.toggle
+      entity_id: light.master_blake_lamp
+
+  - alias: Toggle Master lamps
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d00019de5ec
+          click_type: double
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d00016d7770
+          click_type: double
+    action:
+      service: light.toggle
+      entity_id: group.master_lamps
+
+  - alias: Toggle Ali lamp
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00016d7770
+        click_type: single
+    action:
+      service: light.toggle
+      entity_id: light.master_ali_lamp

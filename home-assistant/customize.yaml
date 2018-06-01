@@ -12,6 +12,9 @@ group.garage_doors:
 group.master_lamps:
   hidden: true
 
+group.all_automations:
+    hidden: true
+
 vacuum.xiaomi_vacuum_cleaner:
   friendly_name: Downstairs Vacuum
 

@@ -419,12 +419,9 @@ ecobee:
   api_key: !secret ecobee_api_key
 
 group: !include groups.yaml
-automation: !include automations.yaml
 script: !include scripts.yaml
 
-timer:
-  playroom_lights:
-    duration: '00:10:00'
+
 
 notify:
   - name: html5

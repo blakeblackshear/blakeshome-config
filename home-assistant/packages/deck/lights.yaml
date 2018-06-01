@@ -1,0 +1,46 @@
+automation:
+  - alias: Turn off string lights when back button 3 turns off
+    trigger:
+      - platform: state
+        entity_id: switch.back_panel_button_3
+        from: 'on'
+        to: 'off'
+    action:
+      - service: light.turn_off
+        entity_id:
+          - light.deck_string_lights
+
+  - alias: Turn on string lights when back button 3 turns on
+    trigger:
+      - platform: state
+        entity_id: switch.back_panel_button_3
+        from: 'off'
+        to: 'on'
+    action:
+      - service: light.turn_on
+        entity_id:
+          - light.deck_string_lights
+        data:
+          brightness_pct: 35
+
+  - alias: Turn off back button 3 when lights turn off
+    trigger:
+      - platform: state
+        entity_id: light.deck_string_lights
+        from: 'on'
+        to: 'off'
+    action:
+      - service: switch.turn_off
+        entity_id:
+          - switch.back_panel_button_3
+
+  - alias: Turn on back button 3 when lights turn on
+    trigger:
+      - platform: state
+        entity_id: light.deck_string_lights
+        from: 'off'
+        to: 'on'
+    action:
+      - service: switch.turn_on
+        entity_id:
+          - switch.back_panel_button_3

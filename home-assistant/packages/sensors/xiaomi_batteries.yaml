@@ -276,3 +276,16 @@ sensor:
                         {% else %}
                           mdi:battery-{{(states.binary_sensor.motion_sensor_158d0001ad44f0.attributes.battery_level/10)|int*10}}
                         {% endif %}'
+
+      kitchen_sink_water_leak_battery:
+        friendly_name: "Kitchen Sink Water Leak Battery"
+        unit_of_measurement: '%'
+        value_template: "{{ states.binary_sensor.water_leak_sensor_158d0001d78a51.attributes.battery_level|default(-1)|int }}"
+        icon_template: '{% if states.binary_sensor.water_leak_sensor_158d0001d78a51.attributes.battery_level == 100 %}
+                           mdi:battery
+                        {% elif states.binary_sensor.water_leak_sensor_158d0001d78a51.attributes.battery_level < 10 %}
+                           battery-outline
+                        {% else %}
+                          mdi:battery-{{(states.binary_sensor.water_leak_sensor_158d0001d78a51.attributes.battery_level/10)|int*10}}
+                        {% endif %}'
+        

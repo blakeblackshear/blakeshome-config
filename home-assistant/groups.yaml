@@ -1,8 +1,49 @@
-master_lamps:
-  name: Master Lamps
+downstairs:
+  name: Downstairs
+  view: yes
   entities:
-    - light.master_blake_lamp
-    - light.master_ali_lamp
+    - group.kitchen
+    - group.living_room
+    - group.foyer
+    - group.half_bath
+    - group.play_room
+    - group.dining_room
+
+foyer:
+  name: Foyer
+  control: hidden
+  entities:
+    - binary_sensor.front_door
+    - lock.front_door_lock
+    - light.foyer_back_light
+    - light.foyer_front_light
+
+half_bath:
+  name: Half Bath
+  control: hidden
+  entities:
+    - light.half_bath_bathroom_light
+    - light.half_bath_hall_light
+    - timer.half_bath_lights
+    - binary_sensor.motion_sensor_158d0001ad44f0
+
+play_room:
+  name: Playroom
+  control: hidden
+  entities:
+    - light.playroom_light
+    - timer.playroom_lights
+    - binary_sensor.motion_sensor_158d0001ad43f0
+    - binary_sensor.door_window_sensor_158d0001dcba76
+    - binary_sensor.door_window_sensor_158d0001b780f8
+
+dining_room:
+  name: Dining Room
+  control: hidden
+  entities:
+    - light.dining_room_light
+    - binary_sensor.door_window_sensor_158d0001b7812e
+    - binary_sensor.door_window_sensor_158d0001b1b1a3
 
 kitchen:
   name: Kitchen
@@ -15,14 +56,7 @@ kitchen:
     - light.kitchen_recessed_lights
     - light.pantry_light
     - media_player.kitchen_home
-
-deck:
-  name: Deck
-  control: hidden
-  entities:
-    - light.deck_recessed_lights
-    - light.deck_string_lights
-    - media_player.deck
+    - binary_sensor.water_leak_sensor_158d0001d78a51
 
 living_room:
   name: Living Room
@@ -35,7 +69,6 @@ living_room:
     - light.living_room_chandelier_light
     - light.living_room_front_lamp
     - light.living_room_recessed_lights
-    - media_player.living_room
     - remote.living_room
     - switch.downstairs_tv
     - switch.downstairs_shield
@@ -51,29 +84,18 @@ living_room:
     - binary_sensor.door_window_sensor_158d0001b1b8be
     - binary_sensor.door_window_sensor_158d0001dcba28
 
-outside:
-  name: Outside
-  control: hidden
+upstairs:
+  name: Upstairs
+  view: yes
   entities:
-    - cover.alis_garage_door
-    - cover.blakes_garage_door
-    - light.driveway_lights
-    - light.porch_lights
-    - light.deck_recessed_lights
-    - light.deck_string_lights
-    - timer.outside_lights_after_dark
-    - sensor.humidity_158d0001ab4496
-    - sensor.pressure_158d0001ab4496
-    - sensor.temperature_158d0001ab4496
-    - sensor.temperature_158d0001c163e1
-    - sensor.humidity_158d0001c163e1
-    - sun.sun
+    - group.master
+    - group.master_bath
 
-garage_doors:
-  name: Garage Doors
+master_lamps:
+  name: Master Lamps
   entities:
-    - cover.alis_garage_door
-    - cover.blakes_garage_door
+    - light.master_blake_lamp
+    - light.master_ali_lamp
 
 master:
   name: Master Bedroom
@@ -81,18 +103,67 @@ master:
   entities:
     - binary_sensor.master_occupancy
     - light.master_blake_lamp
+    - binary_sensor.motion_sensor_158d0001b15d41
     - light.master_ali_lamp
+    - binary_sensor.motion_sensor_158d0001e1845a
     - light.gateway_light_286c07fa2266
     - sensor.illumination_286c07fa2266
     - sensor.master_temperature
-    - sensor.temperature_158d0001c164af
-    - sensor.humidity_158d0001c164af
     - binary_sensor.switch_158d00016d7770
     - binary_sensor.switch_158d00019de5ec
+
+master_bath:
+  name: Master Bathroom
+  control: hidden
+  entities:
+    - sensor.temperature_158d0001c164af
+    - sensor.humidity_158d0001c164af
     - binary_sensor.motion_sensor_158d0001b15d45
     - light.master_bath_lights
     - light.master_closet_lights
+    - timer.master_closet_lights
     - light.master_shower_light
+ 
+deck:
+  name: Deck
+  control: hidden
+  entities:
+    - light.deck_recessed_lights
+    - light.deck_string_lights
+    - media_player.deck
+
+crawl_space:
+  name: Crawl Space
+  control: hidden
+  entities:
+    - sensor.temperature_158d0001c163e1
+    - sensor.humidity_158d0001c163e1
+    - sensor.dehumidifier_current
+    - sensor.dehumidifier_energy
+    - sensor.dehumidifier_power
+    - sensor.dehumidifier_voltage
+    - sensor.water_heater_current
+    - sensor.water_heater_energy
+    - sensor.water_heater_power
+    - sensor.water_heater_voltage
+
+outside:
+  name: Outside
+  control: hidden
+  entities:
+    - light.driveway_lights
+    - light.porch_lights
+    - timer.outside_lights_after_dark
+    - sensor.humidity_158d0001ab4496
+    - sensor.pressure_158d0001ab4496
+    - sensor.temperature_158d0001ab4496
+    - sun.sun
+
+garage_doors:
+  name: Garage Doors
+  entities:
+    - cover.alis_garage_door
+    - cover.blakes_garage_door
 
 media_room:
   name: Media Room
@@ -128,26 +199,14 @@ hall:
     - binary_sensor.motion_sensor_158d0001215452
     - binary_sensor.motion_sensor_158d0001d66c8d
 
-downstairs:
-  name: Downstairs
+people:
+  name: People
   control: hidden
   entities:
-    - binary_sensor.front_door
-    - lock.front_door_lock
-    - light.foyer_back_light
-    - light.foyer_front_light
-    - light.half_bath_bathroom_light
-    - light.half_bath_hall_light
-    - binary_sensor.motion_sensor_158d0001ad44f0
-    - light.playroom_light
-    - timer.playroom_lights
-    - light.dining_room_light
-    - binary_sensor.door_window_sensor_158d0001dcba76
-    - binary_sensor.door_window_sensor_158d0001b780f8
-    - binary_sensor.door_window_sensor_158d0001b7812e
-    - binary_sensor.door_window_sensor_158d0001b1b1a3
-    - binary_sensor.motion_sensor_158d0001ad43f0
-    - switch.water_main_valve
+    - device_tracker.ali_phone_mqtt
+    - input_datetime.ali_last_seen
+    - device_tracker.blake_phone_mqtt
+    - input_datetime.blake_last_seen    
 
 batteries:
   name: Batteries
@@ -180,3 +239,4 @@ batteries:
     - sensor.front_door_sensor_battery
     - sensor.master_closet_motion_battery
     - sensor.half_bath_motion_battery
+    - sensor.kitchen_sink_water_leak_battery

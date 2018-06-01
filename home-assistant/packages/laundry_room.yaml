@@ -1,0 +1,18 @@
+automation:
+  - alias: Turn on laundry light with motion
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001215452
+      to: 'on'
+    action:
+      service: light.turn_on
+      entity_id: light.laundry_room_light
+
+  - alias: Turn off laundry light with no motion
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001215452
+      to: 'off'
+    action:
+      service: light.turn_off
+      entity_id: light.laundry_room_light

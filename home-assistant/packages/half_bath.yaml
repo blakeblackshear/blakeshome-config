@@ -31,4 +31,4 @@ automation:
         entity_id: timer.half_bath_lights
     action:
       service: light.turn_off
-      entity_id: light.half_bath_lights
+      entity_id: light.half_bath_bathroom_light

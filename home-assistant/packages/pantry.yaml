@@ -1,0 +1,18 @@
+automation:
+  - alias: Turn on pantry light with motion
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001a2ba1f
+      to: 'on'
+    action:
+      service: light.turn_on
+      entity_id: light.pantry_light
+
+  - alias: Turn off pantry light with no motion
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001a2ba1f
+      to: 'off'
+    action:
+      service: light.turn_off
+      entity_id: light.pantry_light

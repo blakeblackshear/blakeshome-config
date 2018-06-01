@@ -1,0 +1,76 @@
+automation:
+  - alias: Turn on hall lamps one hour after sunrise
+    trigger:
+      platform: sun
+      event: sunrise
+      offset: "01:00:00"
+    action:
+      service: light.turn_on
+      entity_id: 
+        - light.hall_right_lamp
+        - light.hall_left_lamp
+      data:
+          brightness_pct: 100
+
+  - alias: Dim hall lamps one hour before sunset
+    trigger:
+      platform: sun
+      event: sunset
+      offset: "-01:00:00"
+    action:
+      service: light.turn_on
+      entity_id: 
+        - light.hall_right_lamp
+        - light.hall_left_lamp
+      data:
+          brightness_pct: 50
+
+  - alias: Turn off hall lamps at 10
+    trigger:
+      platform: time
+      at: '22:00'
+    action:
+      service: light.turn_off
+      entity_id: 
+        - light.hall_right_lamp
+        - light.hall_left_lamp
+
+  - alias: Turn on hall lamps at night with motion
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001d66c8d
+      to: 'on'
+    condition:
+      condition: or
+      conditions:
+        - condition: time
+          after: '22:00:00'
+        - condition: sun
+          before: sunrise
+          before_offset: "01:00:00"
+    action:
+      service: light.turn_on
+      entity_id: 
+        - light.hall_right_lamp
+        - light.hall_left_lamp
+      data:
+          brightness_pct: 3
+
+  - alias: Turn off hall lamps at night with no motion
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001d66c8d
+      to: 'off'
+    condition:
+      condition: or
+      conditions:
+        - condition: time
+          after: '22:00:00'
+        - condition: sun
+          before: sunrise
+          before_offset: "01:00:00"
+    action:
+      - service: light.turn_off
+        entity_id: 
+          - light.hall_right_lamp
+          - light.hall_left_lamp
