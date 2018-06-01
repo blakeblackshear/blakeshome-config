@@ -1,0 +1,34 @@
+timer:
+  master_closet_lights:
+    duration: '00:02:00'
+
+automation:
+  - alias: Turn on master closet lights with motion
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001b15d45
+      to: 'on'
+    action:
+      - service: timer.cancel
+        entity_id: timer.master_closet_lights
+      - service: light.turn_on
+        entity_id: light.master_closet_lights
+
+  - alias: Start master closet lights timer with no motion
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001b15d45
+      to: 'off'
+    action:
+      service: timer.start
+      entity_id: timer.master_closet_lights
+
+  - alias: Turn off the master closet lights after the timer expires
+    trigger: 
+      platform: event
+      event_type: timer.finished
+      event_data: 
+        entity_id: timer.master_closet_lights
+    action:
+      service: light.turn_off
+      entity_id: light.master_closet_lights
