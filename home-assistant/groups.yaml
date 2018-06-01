@@ -37,6 +37,8 @@ living_room:
     - light.living_room_recessed_lights
     - media_player.living_room
     - remote.living_room
+    - switch.downstairs_tv
+    - switch.downstairs_shield
     - sensor.downstairs_humidity
     - sensor.downstairs_temperature
     - vacuum.xiaomi_vacuum_cleaner

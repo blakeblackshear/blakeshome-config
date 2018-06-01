@@ -418,13 +418,6 @@ cover:
 ecobee:
   api_key: !secret ecobee_api_key
 
-media_player:
-  - platform: samsungtv
-    host: 192.168.2.121
-    port: 8001
-    name: Downstairs TV
-    mac: e4:7d:bd:47:84:6a
-
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml

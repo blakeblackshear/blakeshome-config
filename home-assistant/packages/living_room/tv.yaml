@@ -1,9 +1,16 @@
-media_player:
-  - platform: samsungtv
-    host: 192.168.2.121
-    port: 8001
+switch:
+  - platform: rest
     name: Downstairs TV
-    mac: e4:7d:bd:47:84:6a
+    resource: http://192.168.2.223:5000/device/0/power
+    body_on: '{"state":"on"}'
+    body_off: '{"state":"off"}'
+    is_on_template: '{{ value_json.state == "starting" or value_json.state == "on" }}'
+  - platform: rest
+    name: Downstairs Shield
+    resource: http://192.168.2.223:5000/device/4/power
+    body_on: '{"state":"on"}'
+    body_off: '{"state":"off"}'
+    is_on_template: '{{ value_json.state == "starting" or value_json.state == "on" }}'
 
 automation:
   - alias: Turn off the tv when the harmony turns off
@@ -13,22 +20,35 @@ automation:
         from: 'on'
         to: 'off'
     action:
-      - service: media_player.turn_off
+      - service: switch.turn_off
         entity_id:
-          - media_player.downstairs_tv
+          - switch.downstairs_tv
   - alias: Turn off the tv when switching to Listen to Music
     trigger: 
       - platform: template
         value_template: '{{ is_state_attr("remote.living_room", "current_activity", "Listen to Music") }}'
     action:
-      - service: media_player.turn_off
+      - service: switch.turn_off
         entity_id:
-          - media_player.downstairs_tv
+          - switch.downstairs_tv
   - alias: Turn on the tv when switching to Play a Game
     trigger: 
       - platform: template
         value_template: '{{ is_state_attr("remote.living_room", "current_activity", "Play a Game") }}'
     action:
-      - service: media_player.turn_on
+      - service: switch.turn_on
         entity_id:
-          - media_player.downstairs_tv
+          - switch.downstairs_tv
+  - alias: Turn off the harmony remote when the shield goes to sleep if in Play a Game mode
+    trigger: 
+      - platform: state
+        entity_id: switch.downstairs_shield
+        from: 'on'
+        to: 'off'
+    condition:
+      condition: template
+      value_template: '{{ is_state_attr("remote.living_room", "current_activity", "Play a Game") }}'
+    action:
+      - service: remote.turn_off
+        entity_id:
+          - remote.living_room
