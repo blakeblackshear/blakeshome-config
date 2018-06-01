@@ -13,7 +13,11 @@ automation:
         entity_id: timer.master_closet_lights
       - service: light.turn_on
         entity_id: light.master_closet_lights
-
+        data:
+          brightness_pct: >
+            {% if now().hour < 7 or now().hour > 22 %}25
+            {% else %}100
+            {% endif %}
   - alias: Start master closet lights timer with no motion
     trigger:
       platform: state
