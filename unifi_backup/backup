@@ -1,12 +1,16 @@
 #!/bin/bash
+set -e
 
 mkdir -p /backup
 
 encrypt_and_move (){
-    /usr/bin/openssl enc -aes-256-cbc -salt -in "/unifi/backup/autobackup/$1" -out "/backup/$1.enc" -pass env:ENCRYPTION_KEY
+    filename=$(basename "$1")
+    /usr/bin/openssl enc -aes-256-cbc -salt -in "$1" -out "/backup/$filename.enc" -pass env:ENCRYPTION_KEY
     rm "$1"
-    aws s3 cp "/backup/$1.enc" "s3://blakeshome-unifi-backups/$1.enc"
+    aws s3 cp "/backup/$filename.enc" "s3://blakeshome-unifi-backups/$filename.enc"
 }
 
 # Loop over backups and encrypt
-find /unifi/backup/autobackup -maxdepth 1 -type f -name "*.unf" | while read file; do encrypt_and_move "$file"; done
+find /unifi/data/backup/autobackup -maxdepth 1 -type f -name "*.unf" | while read file; do encrypt_and_move "$file"; done
+
+rm /unifi/data/backup/autobackup/*.json
