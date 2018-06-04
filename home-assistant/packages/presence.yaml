@@ -9,9 +9,7 @@ group:
     name: People
     entities:
       - device_tracker.ali_phone_mqtt
-      - input_datetime.ali_last_seen
       - device_tracker.blake_phone_mqtt
-      - input_datetime.blake_last_seen
 
 input_datetime:
   blake_last_seen:

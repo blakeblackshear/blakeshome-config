@@ -199,15 +199,6 @@ hall:
     - binary_sensor.motion_sensor_158d0001215452
     - binary_sensor.motion_sensor_158d0001d66c8d
 
-people:
-  name: People
-  control: hidden
-  entities:
-    - device_tracker.ali_phone_mqtt
-    - input_datetime.ali_last_seen
-    - device_tracker.blake_phone_mqtt
-    - input_datetime.blake_last_seen    
-
 batteries:
   name: Batteries
   entities:
