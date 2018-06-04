@@ -1,0 +1,46 @@
+automation:
+  - alias: Prompt for cooling off the media room
+    trigger:
+      platform: time
+      at: '19:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.people
+          state: 'home'
+        - condition: numeric_state
+          entity_id: sensor.media_temperature
+          above: '74'
+        - condition: state
+          entity_id: climate.media
+          state: 'off'
+    action:
+      service: notify.html5_blake_phone
+      #target: ['specific device to notify']
+      data:
+        message: "Should I cool down the media room?"
+        data:
+          actions:
+            - action: 'cool_media'
+              title: 'Yes'
+
+  - alias: Cool media action clicked
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: cool_media
+    condition:
+      condition: and
+      conditions:
+        - condition: numeric_state
+          entity_id: sensor.media_temperature
+          above: '74'
+        - condition: state
+          entity_id: climate.media
+          state: 'off'
+    action:
+      service: climate.turn_on
+      entity_id: climate.media
+    
