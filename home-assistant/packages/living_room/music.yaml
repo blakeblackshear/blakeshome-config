@@ -1,0 +1,51 @@
+automation:
+  - alias: Set the harmony to listen to music when the living room chromecast starts playing
+    trigger: 
+      - platform: state
+        entity_id: media_player.living_room_2
+        to: 'playing'
+      - platform: state
+        entity_id: media_player.living_room_and_deck
+        to: 'playing'
+    condition:
+      condition: template
+      value_template: '{{ not is_state_attr("remote.living_room", "current_activity", "Listen to Music") }}'
+    action:
+      - service: remote.turn_on
+        data:
+          entity_id: remote.living_room
+          activity: 'Listen to Music'
+  - alias: Turn off the harmony if on Listen to Music and the audio stops playing
+    trigger: 
+      - platform: state
+        entity_id: media_player.living_room_2
+        to: 'off'
+      - platform: state
+        entity_id: media_player.living_room_and_deck
+        to: 'off'
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: '{{ is_state_attr("remote.living_room", "current_activity", "Listen to Music") }}'
+        - condition: state
+          entity_id: media_player.living_room_2
+          state: 'off'
+        - condition: state
+          entity_id: media_player.living_room_and_deck
+          state: 'off'
+    action:
+      - service: remote.turn_off
+        data:
+          entity_id: remote.living_room
+  - alias: Turn off the music if the harmony remote switches away from Listen to Music
+    trigger: 
+      - platform: state
+        entity_id: remote.living_room
+        from: 'on'
+        to: 'off'
+      - platform: template
+        value_template: '{{ is_state_attr("remote.living_room", "current_activity", "Play a Game") }}'
+    action:
+      - service: media_player.turn_off
+        entity_id: media_player.living_room_2
