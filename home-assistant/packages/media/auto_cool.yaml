@@ -1,14 +1,14 @@
 automation:
-  - alias: Prompt for cooling off the media room
+  - alias: Prompt for cooling off the media room if its hot and we are in town
     trigger:
       platform: time
       at: '19:00'
     condition:
       condition: and
       conditions:
-        - condition: state
-          entity_id: group.people
-          state: 'home'
+        - condition: numeric_state
+          entity_id: proximity.blake_home
+          below: '32000'
         - condition: numeric_state
           entity_id: sensor.media_temperature
           above: '74'
@@ -41,6 +41,18 @@ automation:
           entity_id: climate.media
           state: 'off'
     action:
-      service: climate.turn_on
-      entity_id: climate.media
+      service: climate.set_operation_mode
+      data:
+        entity_id: climate.media
+        operation_mode: 'cool'
+
+  - alias: Turn off media thermostat at 10pm
+    trigger:
+      platform: time
+      at: '22:00'
+    action:
+      service: climate.set_operation_mode
+      data:
+        entity_id: climate.media
+        operation_mode: 'off'
     
