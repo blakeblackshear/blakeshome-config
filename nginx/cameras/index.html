@@ -5,56 +5,99 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blakeshome Cameras</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.6/mediaelementplayer.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement-plugins/2.5.0/chromecast/chromecast.css" rel="stylesheet">
   <style type="text/css">
+    body {
+        background: #20262e;
+    }
     .videos {
         width: 100%;
         text-align: center;
     }
     .video-player {
         width: 100%;
-        max-width: 600px;
+        max-width: 640px;
+        display: inline-block;
+    }
+    video {
+        width: 100%;
+        display: inline-block;
+    }
+    .mejs__overlay-play {
+        display: none;
     }
   </style>
 </head>
 
 <body>
     <section class="videos">
-        <video id="back" poster="/nvr/back.jpg" class="video-player" controls preload="none"></video>
+        <div class="video-player">
+            <video poster="/nvr/back.jpg" controls 
+                    data-cast-title="Backyard" data-cast-description="Security camera">
+                <source src="https://cameras.blakeshome.com/streams/back.m3u8" type="application/x-mpegURL"/>
+            </video>
+        </div>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.6/mediaelement-and-player.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement-plugins/2.5.0/chromecast/chromecast.js"></script>
     <script>
-        ['back'].forEach(function(video_stream){
-            var video = document.getElementById(video_stream);
-            if(Hls.isSupported()) {
-                var hls = new Hls({
-                    autoStartLoad: false,
-                    capLevelToPlayerSize: true,
-                    liveSyncDuration: 15,
-                    liveDurationInfinity: true
-                });
-                hls.loadSource('/streams/'+video_stream+'.m3u8');
-                hls.attachMedia(video);
-                hls.on(Hls.Events.LEVEL_LOADED,function(event,data) {
-                    var level_duration = data.details.totalduration;
-                });
-                video.addEventListener('play', function() { 
-                    hls.startLoad(startPosition=-1);
-                    video.play();
-                }, false);
-                video.addEventListener('pause', function() { 
-                    hls.stopLoad();
-                    video.pause();
-                }, false);
-            }
-            // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
-            // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
-            // This is using the built-in support of the plain video element, without using hls.js.
-            // Note: it would be more normal to wait on the 'canplay' event below however on Safari (where you are most likely to find built-in HLS support) the video.src URL must be on the user-driven
-            // white-list before a 'canplay' event will be emitted; the last video event that can be reliably listened-for when the URL is not on the white-list is 'loadedmetadata'.
-            else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                video.src = '/streams/'+video_stream+'.m3u8';
-            }
-        });
-    </script> 
+	    var mediaElements = document.querySelectorAll('video, audio');
+        var desiredPlayStatus = {};
+	    for (var i = 0, total = mediaElements.length; i < total; i++) {
+
+		    var features = ['playpause', 'volume', 'progress', 'fullscreen', 'chromecast'];
+		    new MediaElementPlayer(mediaElements[i], {
+                hls: {},
+			    pluginPath: 'https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.6/',
+			    shimScriptAccess: 'always',
+			    autoRewind: false,
+			    features: features,
+                stretching: 'responsive',
+                pauseOtherPlayers: false,
+                clickToPlayPause: false,
+                forceLive: true,
+                success: function (mediaElement, domObject) {
+                    mediaElement.addEventListener('pause', function () {
+                        // resets the hls stream so it starts from the current time when playing again
+                        mediaElement.setSrc(domObject.src);
+                        mediaElement.load();
+                    }, false);
+
+                    // keep track of the desired playback state so we known if we should start playback again on error
+                    desiredPlayStatus[mediaElement.id] = 'pause';
+                    $('#'+mediaElement.id).closest('.mejs__container').on("click", ".mejs__play", function(){
+                        desiredPlayStatus[mediaElement.id] = 'play';
+                    });
+                    $('#'+mediaElement.id).closest('.mejs__container').on("click", ".mejs__pause", function(){
+                        desiredPlayStatus[mediaElement.id] = 'pause';
+                    });
+
+                    // update the poster about every 60s
+                    setInterval(function(){
+                        // get a fresh poster url
+                        var poster = $(mediaElement).children('video')[0].poster.split("?")[0]+'?'+Date.now();
+
+                        // update the poster on the actual videos
+                        $('#'+mediaElement.id).find('video').attr('poster',poster);
+
+                        // update the poster image on the overlay
+                        $('#'+mediaElement.id).closest('.mejs__container').find('.mejs__poster-img').attr('src', poster);
+                        $('#'+mediaElement.id).closest('.mejs__container').find('.mejs__poster').css('background-image', 'url("'+poster+'")');
+                    }, 60000+Math.floor(Math.random() * 10000));
+                },
+                error: function (error, mediaElement, domObject) {
+                    mediaElement.setSrc(domObject.src);
+                    mediaElement.load();
+                    // if the video was supposed to be playing, try and play it after load
+                    if(desiredPlayStatus[mediaElement.id] == "play"){
+                        mediaElement.play();
+                    }
+                },
+                castIsLive: true
+		    });
+	    }
+    </script>
 </body>
 </html>
