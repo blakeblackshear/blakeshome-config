@@ -1,3 +1,49 @@
+zone:
+  - name: Work
+    latitude: !secret work_latitude
+    longitude: !secret work_longitude
+    radius: 100
+    icon: mdi:briefcase
+
+  - name: Gym
+    latitude: !secret gym_latitude
+    longitude: !secret gym_longitude
+    radius: 100
+    icon: mdi:dumbbell
+
+  # This will override the default home zone
+  - name: Home
+    latitude: !secret blakeshome_latitude
+    longitude: !secret blakeshome_longitude
+    radius: 75
+    icon: mdi:home
+
+  - name: Blackshear House
+    latitude: !secret blackshear_latitude
+    longitude: !secret blackshear_longitude
+    radius: 100
+    icon: mdi:castle
+
+  - name: Lake
+    latitude: !secret lake_latitude
+    longitude: !secret lake_longitude
+    radius: 5000
+    icon: mdi:ferry
+
+proximity:
+  ali_home: 
+    zone: Home
+    devices:
+      - device_tracker.ali_phone_mqtt
+    tolerance: 50
+    unit_of_measurement: m
+  blake_home: 
+    zone: Home
+    devices:
+      - device_tracker.blake_phone_mqtt
+    tolerance: 50
+    unit_of_measurement: m
+
 device_tracker:
   - platform: mqtt_json
     devices:
