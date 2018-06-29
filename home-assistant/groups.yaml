@@ -151,6 +151,7 @@ outside:
   name: Outside
   control: hidden
   entities:
+    - binary_sensor.backyard_camera_motion
     - light.driveway_lights
     - light.porch_lights
     - timer.outside_lights_after_dark

@@ -149,10 +149,13 @@ services:
     restart: unless-stopped
     image: jrottenberg/ffmpeg:4.0-alpine
     command: >-
-      -loglevel error -hide_banner -y
-      -rtsp_transport tcp -stimeout 5000000 -xerror -r 25 -use_wallclock_as_timestamps 1
-      -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/cam/realmonitor?channel=1&subtype=1" -c copy
-      -hls_list_size 10 -hls_init_time 1 -hls_time 1 -hls_flags delete_segments
+      -hide_banner -y
+      -rtsp_transport tcp -stimeout 5000000 -xerror -use_wallclock_as_timestamps 1 -r 25
+      -fflags +genpts -avoid_negative_ts make_zero
+      -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/cam/realmonitor?channel=1&subtype=1"
+      -f lavfi -i anullsrc=channel_layout=mono:sample_rate=16000 
+      -map 0:0 -map 1:0 -c:v copy -c:a aac -shortest
+      -hls_list_size 5 -hls_init_time 1 -hls_time 1 -hls_flags delete_segments
       /stream/back-med.m3u8
     volumes:
       - camera_stream:/stream
@@ -161,10 +164,13 @@ services:
     restart: unless-stopped
     image: jrottenberg/ffmpeg:4.0-alpine
     command: >-
-      -loglevel error -hide_banner -y
-      -rtsp_transport tcp -stimeout 5000000 -xerror -r 25 -use_wallclock_as_timestamps 1
-      -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/cam/realmonitor?channel=1&subtype=2" -c copy
-      -hls_list_size 10 -hls_init_time 1 -hls_time 1 -hls_flags delete_segments
+      -hide_banner -y
+      -rtsp_transport tcp -stimeout 5000000 -xerror -use_wallclock_as_timestamps 1 -r 25
+      -fflags +genpts -avoid_negative_ts make_zero
+      -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/cam/realmonitor?channel=1&subtype=2"
+      -f lavfi -i anullsrc=channel_layout=mono:sample_rate=16000 
+      -map 0:0 -map 1:0 -c:v copy -c:a aac -shortest
+      -hls_list_size 5 -hls_init_time 1 -hls_time 1 -hls_flags delete_segments
       /stream/back-low.m3u8
     volumes:
       - camera_stream:/stream
@@ -173,16 +179,29 @@ services:
     restart: unless-stopped
     image: jrottenberg/ffmpeg:4.0-alpine
     command: >-
-      -loglevel error -hide_banner -y
-      -rtsp_transport tcp -stimeout 5000000 -use_wallclock_as_timestamps 1 -r 25
+      -hide_banner -y
+      -rtsp_transport tcp -stimeout 5000000 -xerror -use_wallclock_as_timestamps 1 -r 25
+      -fflags +genpts -avoid_negative_ts make_zero
       -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/live"
+      -f lavfi -i anullsrc=channel_layout=mono:sample_rate=16000
       -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1
-      -strftime 1 -c copy -map 0 /nvr/back-%Y%m%d%H%M%S.mp4
-      -c copy -hls_list_size 10 -hls_init_time 1 -hls_time 1 -hls_flags
-      delete_segments /stream/back.m3u8
+      -strftime 1 -c copy -an -map 0 /nvr/back-%Y%m%d%H%M%S.mp4
+      -map 0:0 -map 1:0 -c:v copy -c:a aac -shortest
+      -hls_list_size 5 -hls_init_time 1 -hls_time 1 -hls_flags delete_segments
+      /stream/back.m3u8
     volumes:
       - camera_nvr:/nvr
       - camera_stream:/stream
+  motion:
+    container_name: motion
+    restart: unless-stopped
+    build:
+      context: motion
+    volumes:
+      - ./motion/motion.conf:/etc/motion/motion.conf:ro
+      - ./motion/mask.pgm:/etc/motion/mask.pgm:ro
+      - ./motion/conf.d:/etc/motion/conf.d:ro
+      - camera_nvr:/nvr
   nvr_snapshot:
     container_name: nvr_snapshot
     restart: unless-stopped

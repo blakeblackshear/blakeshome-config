@@ -1,0 +1,133 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blakeshome Cameras</title>
+  <style type="text/css">
+    .videos {
+        width: 100%;
+        text-align: center;
+    }
+    .video-player {
+        width: 100%;
+        max-width: 600px;
+    }
+    .events img {
+        width: 300px;
+        height: 168px;
+    }
+  </style>
+</head>
+
+<body>
+    <section class="videos">
+        <video id="one" class="video-player">
+        </video>
+        <video id="two" class="video-player" style="display: none;">
+        </video>
+    </section>
+    <section class="events">
+        <ul>
+        </ul>
+    </section>
+    <div id="current"></div>
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script>
+    var videoOne = document.getElementById("one");
+    var videoTwo = document.getElementById("two");
+    var currentVideo = 0;
+    var videoQueue = [];
+    var startSeconds = 0;
+
+    videoOne.addEventListener('ended',function(){
+        videoTwo.playbackRate=5;
+        videoTwo.play();
+        currentVideo++;
+        $(videoOne).hide();
+        $(videoTwo).show();
+        videoOne.src = videoQueue[currentVideo+1];
+        videoOne.load();
+    },false);
+
+    videoTwo.addEventListener('ended',function(){
+        videoOne.playbackRate=5;
+        videoOne.play();
+        currentVideo++;
+        $(videoTwo).hide();
+        $(videoOne).show();
+        videoTwo.src = videoQueue[currentVideo+1];
+        videoTwo.load();
+    },false);
+
+    function startPlayback(){
+        currentVideo = 0;
+        $(videoOne).show();
+        $(videoTwo).hide();
+        videoOne.src = videoQueue[0];
+        videoOne.load();
+        videoOne.currentTime=startSeconds;
+        videoOne.playbackRate=5;
+        videoOne.play();
+
+        videoTwo.src = videoQueue[1];
+        videoTwo.load();
+    }
+    function buildVideoQueue(d){
+        videoQueue=[];
+        console.log("Building a video queue from this time: "+d);
+        // build the date-based path to the designated time
+        var datePath = d.getUTCFullYear() + "/" + ("0"+(d.getUTCMonth()+1)).slice(-2) + "/" + ("0" + d.getUTCDate()).slice(-2) + "/" + 
+        ("0" + d.getUTCHours()).slice(-2);
+        var videoPath = "/nvr/"+datePath+"/";
+
+        // parses the filename to get the start time of the video file
+        function parseDate(fileName){
+            var d = fileName.split("-")[1].split(".")[0];
+            return new Date(d.substring(0,4)+"-"+d.substring(4,6)+"-"+d.substring(6,8)+" "+d.substring(8,10)+":"+d.substring(10,12)+":"+d.substring(12,14)+" UTC");
+        }
+
+        // fetch videos from the video path
+        $.getJSON(videoPath, function(videos) {
+            // reverse the list of videos and work backwards until you find the first one
+            // that starts before the designated time
+            videos.reverse();
+            videos.some(function(video, index){
+                videoQueue.unshift(videoPath+video.name);
+
+                var videoDate = parseDate(video.name);
+                if(videoDate <= d){
+                    console.log("Starting at video: "+videoDate);
+                    startSeconds = Math.abs(videoDate - d)/1000;
+                    console.log("Seeking to: "+startSeconds);
+                    return true;
+                }
+                return false;
+            });
+            startPlayback();
+        });
+    }
+
+    $(".events ul").on('click', 'li', function(){
+        var d = new Date(($(this).data("timestamp")-5)*1000);
+        $("#current").text(d);
+        buildVideoQueue(d);
+    });
+
+    $.getJSON("/nvr/motion/events/0/", function(events){
+        var eventList = $(".events ul");
+        events.forEach(function(event){
+            var timestamp = parseInt(event.name.split(".")[0]);
+            var listItem = $("<li></li>").data("timestamp",timestamp);
+            listItem.append("<p>"+new Date(timestamp*1000)+"</p>");
+            listItem.append("<img src='/nvr/motion/preview/0/"+timestamp+".jpg'/>");
+            eventList.prepend(listItem);
+        });
+    });
+</script>
+</html>
