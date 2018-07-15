@@ -1,8 +1,8 @@
 scene:
   - name: Lockup
     entities:
-      lock.back_door_lock: on
-      lock.front_door_lock: on
+      lock.back_door_lock: locked
+      lock.front_door_lock: locked
       cover.blakes_garage_door: closed
       cover.alis_garage_door: closed
 
@@ -12,8 +12,8 @@ sensor:
     locked_up:
       friendly_name: "Doors and Garage"
       value_template: >-
-        {% if is_state('lock.back_door_lock', 'off') or 
-              is_state('lock.front_door_lock','off') or
+        {% if is_state('lock.back_door_lock', 'unlocked') or 
+              is_state('lock.front_door_lock','unlocked') or
               is_state('cover.blakes_garage_door', 'open') or
               is_state('cover.alis_garage_door', 'open')  %}
           Not Secured
