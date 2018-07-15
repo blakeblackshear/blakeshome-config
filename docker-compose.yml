@@ -220,6 +220,14 @@ services:
       - camera_nvr:/data
     environment:
       FIND_PARAMS: -mmin +20160 # 14*24*60
+  samba:
+    container_name: samba
+    restart: unless-stopped
+    image: dperson/samba:latest
+    command: -S -n -s "movies;/movies" -w "WORKGROUP" -g "netbios name = FILESERVER"
+    network_mode: host
+    volumes:
+      - movies:/movies
 
 volumes:
   mosquitto_data:
@@ -235,3 +243,9 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/mnt/data/nvr'
+  movies:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/mnt/movies'
