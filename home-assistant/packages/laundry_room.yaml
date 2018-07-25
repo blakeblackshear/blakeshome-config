@@ -48,3 +48,4 @@ sensor:
           {% else %}
             Idle
           {% endif %}
+        icon_template: 'mdi:washing-machine'
