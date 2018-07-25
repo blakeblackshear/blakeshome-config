@@ -1,0 +1,26 @@
+automation:
+  - alias: Run the vacuum if Ali is at the gym
+    trigger:
+      - platform: state
+        entity_id: device_tracker.ali_phone_mqtt
+        to: 'Gym'
+        for:
+          minutes: 10
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          after: '14:30:00'
+          before: '17:00:00'
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+        - condition: template
+          value_template: "{{ not is_state('device_tracker.blake_phone_mqtt', 'home') }}"
+    action:
+      service: vacuum.turn_on
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
