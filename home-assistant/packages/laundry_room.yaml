@@ -16,3 +16,35 @@ automation:
     action:
       service: light.turn_off
       entity_id: light.laundry_room_light
+
+sensor:
+  - platform: mqtt
+    name: "Clothes Washer Energy"
+    state_topic: "tasmota/tele/7D1D93/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Today"] }}'
+    unit_of_measurement: "kWh"
+  - platform: mqtt
+    name: "Clothes Washer Power"
+    state_topic: "tasmota/tele/7D1D93/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Clothes Washer Voltage"
+    state_topic: "tasmota/tele/7D1D93/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Voltage"] }}'
+    unit_of_measurement: "V"
+  - platform: mqtt
+    name: "Clothes Washer Current"
+    state_topic: "tasmota/tele/7D1D93/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Current"] }}'
+    unit_of_measurement: "A"
+  - platform: template
+    sensors:
+      clothes_washer_status:
+        friendly_name: "Clothes Washer Status"
+        value_template: >-
+          {% if states.sensor.clothes_washer_current.state|int > 0  %}
+            Washing
+          {% else %}
+            Idle
+          {% endif %}
