@@ -74,7 +74,7 @@ services:
   #   network_mode: host
   homeassistant:
     container_name: hass
-    image: homeassistant/home-assistant:0.73.1
+    image: homeassistant/home-assistant:0.73.2
     volumes:
       - /srv/blakeshome/home-assistant:/config
     network_mode: host
