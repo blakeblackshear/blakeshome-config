@@ -46,10 +46,10 @@ automation:
         entity_id: climate.media
         operation_mode: 'cool'
 
-  - alias: Turn off media thermostat at 10pm
+  - alias: Turn off media thermostat at 9:30pm
     trigger:
       platform: time
-      at: '22:00'
+      at: '21:30'
     action:
       service: climate.set_operation_mode
       data:
