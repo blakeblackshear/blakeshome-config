@@ -1,0 +1,115 @@
+alarm_control_panel:
+  - platform: manual
+    name: Home Alarm
+    code: !secret alarm_code
+    pending_time: 30
+    delay_time: 20
+    trigger_time: 4
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      pending_time: 0
+      delay_time: 0
+
+automation:
+  - alias: 'Trigger alarm while armed away'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001b1b801
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001dcc9bd
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001ab59ab
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001ab67c2
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001b71164
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001b1b8be
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001dcba28
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001dcba76
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001b780f8
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001b7812e
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001b1b1a3
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d0001215452
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d0001d66c8d
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d0001b15d45
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d0001b15d41
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d0001e1845a
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d0001ad44f0
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.back_door
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.front_door
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: armed_away
+    action:
+      service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.home_alarm
+
+  - alias: 'Send notification when alarm triggered'
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.home_alarm
+        to: 'triggered'
+    action:
+      service: notify.html5_blake_phone
+      data_template:
+        message: "{{ trigger.to_state.attributes.friendly_name }} has triggered the alarm!"
+
+  - alias: Disarm when we arrive
+    trigger:
+      - platform: state
+        entity_id: device_tracker.blake_phone_mqtt
+        to: 'home'
+      - platform: state
+        entity_id: device_tracker.ali_phone_mqtt
+        to: 'home'
+    action:
+      - service: alarm_control_panel.alarm_disarm
+        data:
+          entity_id: alarm_control_panel.home_alarm
+          code: !secret alarm_code
+
+  - alias: Arm when we are away
+    trigger:
+      - platform: state
+        entity_id: group.people
+        to: 'not_home'
+    action:
+      - service: alarm_control_panel.alarm_arm_away
+        data:
+          entity_id: alarm_control_panel.home_alarm
+          code: !secret alarm_code
