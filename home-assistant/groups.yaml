@@ -24,7 +24,6 @@ half_bath:
   entities:
     - light.half_bath_bathroom_light
     - light.half_bath_hall_light
-    - timer.half_bath_lights
     - binary_sensor.motion_sensor_158d0001ad44f0
 
 play_room:

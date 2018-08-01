@@ -1,7 +1,3 @@
-timer:
-  half_bath_lights:
-    duration: '00:05:00'
-
 automation:
   - alias: Turn on half bath light with motion
     trigger:
@@ -19,16 +15,8 @@ automation:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0001ad44f0
       to: 'off'
-    action:
-      service: timer.start
-      entity_id: timer.half_bath_lights
-
-  - alias: Turn off the half bath lights after the timer expires
-    trigger: 
-      platform: event
-      event_type: timer.finished
-      event_data: 
-        entity_id: timer.half_bath_lights
+      for:
+        minutes: 10
     action:
       service: light.turn_off
       entity_id: light.half_bath_bathroom_light
