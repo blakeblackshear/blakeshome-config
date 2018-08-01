@@ -50,10 +50,13 @@ kitchen:
   control: hidden
   entities:
     - binary_sensor.motion_sensor_158d0001a2ba1f
+    - light.kitchen_lights
     - light.butlers_pantry_light
     - light.kitchen_breakfast_lights
     - light.kitchen_island_lights
     - light.kitchen_recessed_lights
+    - light.under_cabinet
+    - light.over_cabinet
     - light.pantry_light
     - media_player.kitchen_home
     - binary_sensor.water_leak_sensor_158d0001d78a51

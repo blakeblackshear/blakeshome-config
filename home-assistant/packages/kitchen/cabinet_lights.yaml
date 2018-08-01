@@ -1,0 +1,123 @@
+light:
+  - platform: group
+    name: Kitchen Lights
+    entities:
+      - light.kitchen_recessed_lights
+      - light.kitchen_island_lights
+      - light.kitchen_breakfast_lights
+  - platform: mqtt
+    name: Under Cabinet
+    state_topic: "tasmota/stat/4BD5AF/RESULT"
+    command_topic: "tasmota/cmnd/4BD5AF/POWER"
+    state_value_template: "{{ value_json.POWER }}"
+    brightness_state_topic: "tasmota/stat/4BD5AF/RESULT"
+    brightness_command_topic: "tasmota/cmnd/4BD5AF/Dimmer"
+    brightness_scale: 100
+    brightness_value_template: "{{ value_json.Dimmer }}"
+    white_value_state_topic: "tasmota/stat/4BD5AF/RESULT"
+    white_value_command_topic: "tasmota/cmnd/4BD5AF/Channel5"
+    white_value_scale: 100
+    white_value_template: "{{ value_json.Channel[4] }}"
+    rgb_command_topic: "tasmota/cmnd/4BD5AF/Color"
+    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+    rgb_state_topic: "tasmota/stat/4BD5AF/RESULT"
+    rgb_value_template: "{{(value_json.Channel[0]*2.55)|int}},{{(value_json.Channel[1]*2.55)|int}},{{(value_json.Channel[2]*2.55)|int}}"
+    effect_state_topic: "tasmota/stat/4BD5AF/RESULT"
+    effect_command_topic: "tasmota/cmnd/4BD5AF/Scheme"
+    effect_list:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+    retain: false
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+  - platform: mqtt
+    name: Over Cabinet
+    state_topic: "tasmota/stat/4BD985/RESULT"
+    command_topic: "tasmota/cmnd/4BD985/POWER"
+    state_value_template: "{{ value_json.POWER }}"
+    brightness_state_topic: "tasmota/stat/4BD985/RESULT"
+    brightness_command_topic: "tasmota/cmnd/4BD985/Dimmer"
+    brightness_scale: 100
+    brightness_value_template: "{{ value_json.Dimmer }}"
+    white_value_state_topic: "tasmota/stat/4BD985/RESULT"
+    white_value_command_topic: "tasmota/cmnd/4BD985/Channel5"
+    white_value_scale: 100
+    white_value_template: "{{ value_json.Channel[4] }}"
+    rgb_command_topic: "tasmota/cmnd/4BD985/Color"
+    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+    rgb_state_topic: "tasmota/stat/4BD985/RESULT"
+    rgb_value_template: "{{(value_json.Channel[0]*2.55)|int}},{{(value_json.Channel[1]*2.55)|int}},{{(value_json.Channel[2]*2.55)|int}}"
+    effect_state_topic: "tasmota/stat/4BD985/RESULT"
+    effect_command_topic: "tasmota/cmnd/4BD985/Scheme"
+    effect_list:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+    retain: false
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+
+automation:
+  - alias: Dim the under cabinet lights when all kitchen lights are off when sun is down
+    trigger:
+      - platform: sun
+        event: sunset
+      - platform: state
+        entity_id: light.kitchen_lights
+        to: 'off'
+    condition:
+      condition: and
+      conditions:
+        - condition: or
+          conditions:
+            - condition: sun
+              before: sunrise
+              before_offset: "01:00:00"
+            - condition: sun
+              after: sunset
+        - condition: state
+          entity_id: light.kitchen_lights
+          state: 'off'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.under_cabinet
+          brightness_pct: 3
+  - alias: Dim the cabinet lights when the lights are off during the day
+    trigger:
+      - platform: sun
+        event: sunrise
+        offset: "01:00:00"
+      - platform: state
+        entity_id: light.kitchen_lights
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: light.kitchen_lights
+        state: 'off'
+      - condition: sun
+        after: sunrise
+        after_offset: "01:00:00"
+        before: sunset
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.under_cabinet
+          brightness_pct: 25
+  - alias: Brighten the under cabinet lights when kitchen lights are on
+    trigger:
+      - platform: state
+        entity_id: light.kitchen_lights
+        to: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.under_cabinet
+          brightness_pct: 50
