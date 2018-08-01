@@ -66,6 +66,9 @@ automation:
         entity_id: binary_sensor.motion_sensor_158d0001ad44f0
         to: 'on'
       - platform: state
+        entity_id: binary_sensor.motion_sensor_158d0001a2ba1f
+        to: 'on'
+      - platform: state
         entity_id: binary_sensor.back_door
         to: 'on'
       - platform: state
@@ -76,18 +79,44 @@ automation:
         entity_id: alarm_control_panel.home_alarm
         state: armed_away
     action:
-      service: alarm_control_panel.alarm_trigger
-      entity_id: alarm_control_panel.home_alarm
+      - service: alarm_control_panel.alarm_trigger
+        entity_id: alarm_control_panel.home_alarm
+      - service: notify.html5_blake_phone
+        data_template:
+          message: "{{ trigger.to_state.attributes.friendly_name }} has triggered the alarm!"
+    
+  - alias: Garage doors set off alarm
+    trigger:
+      - platform: state
+        entity_id: cover.alis_garage_door
+        to: 'open'
+        for:
+          minutes: 2
+      - platform: state
+        entity_id: cover.blakes_garage_door
+        to: 'open'
+        for:
+          minutes: 2
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: armed_away
+    action:
+      - service: alarm_control_panel.alarm_trigger
+        entity_id: alarm_control_panel.home_alarm
+      - service: notify.html5_blake_phone
+        data_template:
+          message: "{{ trigger.to_state.attributes.friendly_name }} has triggered the alarm!"
 
-  - alias: 'Send notification when alarm triggered'
+  - alias: Send notification when alarm triggered
     trigger:
       - platform: state
         entity_id: alarm_control_panel.home_alarm
         to: 'triggered'
     action:
       service: notify.html5_blake_phone
-      data_template:
-        message: "{{ trigger.to_state.attributes.friendly_name }} has triggered the alarm!"
+      data:
+        message: "The alarm is going off!"
 
   - alias: Disarm when we arrive
     trigger:
@@ -113,3 +142,46 @@ automation:
         data:
           entity_id: alarm_control_panel.home_alarm
           code: !secret alarm_code
+
+  - alias: Lock the doors when we are away
+    trigger:
+      - platform: state
+        entity_id: group.people
+        to: 'not_home'
+        for:
+          minutes: 5
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: lock.back_door_lock
+          state: 'unlocked'
+        - condition: state
+          entity_id: lock.front_door_lock
+          state: 'unlocked'
+    action:
+      - service: lock.lock
+        entity_id: lock.back_door_lock
+      - service: lock.lock
+        entity_id: lock.front_door_lock
+
+  - alias: Alert me if the doors cant lock after we leave
+    trigger:
+      - platform: state
+        entity_id: group.people
+        to: 'not_home'
+        for:
+          minutes: 6
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: lock.back_door_lock
+          state: 'unlocked'
+        - condition: state
+          entity_id: lock.front_door_lock
+          state: 'unlocked'
+    action:
+      service: notify.html5_blake_phone
+      data:
+        message: "Uh oh. I wasn't able to lock the doors automatically."
