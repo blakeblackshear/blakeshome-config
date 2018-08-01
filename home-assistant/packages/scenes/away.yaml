@@ -1,0 +1,75 @@
+scene:
+  - name: Daytime Away
+    entities:
+      light.over_cabinet: off
+      light.under_cabinet: off
+      light.kitchen_lights: off
+      light.butlers_pantry_light: off
+      light.pantry_light: off
+      light.foyer_back_light: off
+      light.foyer_front_light: off
+      light.half_bath_bathroom_light: off
+      light.half_bath_hall_light: off
+      light.playroom_light: off
+      light.dining_room_light: off
+      light.living_room_chandelier_light: off
+      light.living_room_recessed_lights: off
+      remote.living_room: off
+      media_player.living_room: off
+      media_player.living_room_2: off
+      media_player.living_room_and_deck: off
+      light.master_bath_lights: off
+      light.master_closet_lights: off
+      light.master_shower_light: off
+      light.hall_lights: off
+      light.hall_stairs_light: off
+      light.laundry_room_light: off
+      light.driveway_lights: off
+      light.deck_recessed_lights: off
+      light.deck_string_lights: off
+      light.media_stairs_light: off
+  - name: Daytime Arrived
+    entities:
+      light.over_cabinet:
+        state: on
+        brightness: 130
+      light.kitchen_island_lights:
+        state: on
+        brightness: 100
+      light.kitchen_recessed_lights:
+        state: on
+        brightness: 100
+      light.hall_stairs_light:
+        state: on
+        brightness: 100
+  - name: Nightime Away
+    entities:
+      light.over_cabinet: off
+      light.under_cabinet: off
+      light.kitchen_lights: off
+      light.butlers_pantry_light: off
+      light.pantry_light: off
+      light.foyer_back_light: off
+      light.foyer_front_light: 
+        state: on
+        brightness: 100
+      light.half_bath_bathroom_light: off
+      light.half_bath_hall_light: off
+      light.playroom_light: off
+      light.dining_room_light: off
+      light.living_room_chandelier_light: off
+      light.living_room_recessed_lights: off
+      remote.living_room: off
+      media_player.living_room: off
+      media_player.living_room_2: off
+      media_player.living_room_and_deck: off
+      light.master_bath_lights: off
+      light.master_closet_lights: off
+      light.master_shower_light: off
+      light.hall_lights: off
+      light.hall_stairs_light: off
+      light.laundry_room_light: off
+      light.driveway_lights: off
+      light.deck_recessed_lights: off
+      light.deck_string_lights: off
+      light.media_stairs_light: off
