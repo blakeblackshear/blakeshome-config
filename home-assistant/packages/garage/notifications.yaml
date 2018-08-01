@@ -1,0 +1,32 @@
+automation:
+  - alias: Notify if the garage doors are open
+    trigger:
+      - platform: state
+        entity_id: group.people
+        to: 'not_home'
+        for:
+          minutes: 5
+    condition:
+      - condition: state
+        entity_id: group.garage_doors
+        state: open
+    action:
+      - service: notify.html5_blake_phone
+        data:
+          message: "The garage is open, but nobody is home!"
+          data:
+            actions:
+              - action: 'close_garage'
+                title: 'Close Garage'
+
+  - alias: Close garage from notification
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: close_garage
+    action:
+      - service: cover.close_cover
+        entity_id:
+          - cover.blakes_garage_door
+          - cover.alis_garage_door
