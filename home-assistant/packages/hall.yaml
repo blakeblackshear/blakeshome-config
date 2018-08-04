@@ -1,3 +1,16 @@
+binary_sensor:
+  - platform: "mqtt"
+    name: Boys Doors Motion
+    state_topic: "zigbee/0x00158d0001b15d3d"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
 automation:
   - alias: Turn on hall lamps one hour after sunrise
     trigger:
@@ -37,9 +50,12 @@ automation:
 
   - alias: Turn on hall lamps at night with motion
     trigger:
-      platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001d66c8d
-      to: 'on'
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d0001d66c8d
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.boys_doors_motion
+        to: 'on'
     condition:
       condition: or
       conditions:
@@ -58,17 +74,27 @@ automation:
 
   - alias: Turn off hall lamps at night with no motion
     trigger:
-      platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001d66c8d
-      to: 'off'
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d0001d66c8d
+        to: 'off'
+      - platform: state
+        entity_id: binary_sensor.boys_doors_motion
+        to: 'off'
     condition:
-      condition: or
-      conditions:
-        - condition: time
-          after: '22:00:00'
-        - condition: sun
-          before: sunrise
-          before_offset: "01:00:00"
+      - condition: or
+        conditions:
+          - condition: time
+            after: '22:00:00'
+          - condition: sun
+            before: sunrise
+            before_offset: "01:00:00"
+      - condition: state
+        entity_id: binary_sensor.motion_sensor_158d0001d66c8d
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.boys_doors_motion
+        state: 'off'
+      
     action:
       - service: light.turn_off
         entity_id: 

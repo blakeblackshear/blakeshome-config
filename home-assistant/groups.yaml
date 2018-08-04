@@ -166,6 +166,7 @@ hall:
     - sensor.clothes_washer_voltage
     - binary_sensor.motion_sensor_158d0001215452
     - binary_sensor.motion_sensor_158d0001d66c8d
+    - binary_sensor.boys_doors_motion
 
 outside:
   name: Outside
@@ -259,6 +260,8 @@ security:
     - lock.front_door_lock
     - binary_sensor.motion_sensor_158d0001ad44f0
     - group.garage_doors
+    - input_boolean.baby_monitor
+    - binary_sensor.boys_doors_motion
 
 
 system:
