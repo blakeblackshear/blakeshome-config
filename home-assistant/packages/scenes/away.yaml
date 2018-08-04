@@ -35,14 +35,17 @@ scene:
         brightness: 130
       light.kitchen_island_lights:
         state: on
-        brightness: 100
+        brightness: 130
       light.kitchen_recessed_lights:
         state: on
-        brightness: 100
+        brightness: 130
       light.hall_stairs_light:
         state: on
-        brightness: 100
-  - name: Nightime Away
+        brightness: 130
+      light.foyer_front_light:
+        state: on
+        brightness: 130
+  - name: Nighttime Away
     entities:
       light.over_cabinet: off
       light.under_cabinet: off
@@ -52,7 +55,7 @@ scene:
       light.foyer_back_light: off
       light.foyer_front_light: 
         state: on
-        brightness: 100
+        brightness: 130
       light.half_bath_bathroom_light: off
       light.half_bath_hall_light: off
       light.playroom_light: off
@@ -73,3 +76,91 @@ scene:
       light.deck_recessed_lights: off
       light.deck_string_lights: off
       light.media_stairs_light: off
+  - name: Nighttime Arrived
+    entities:
+      light.over_cabinet:
+        state: on
+        brightness: 130
+      light.kitchen_island_lights:
+        state: on
+        brightness: 50
+      light.kitchen_recessed_lights:
+        state: on
+        brightness: 50
+      light.hall_stairs_light:
+        state: on
+        brightness: 50
+      light.foyer_front_light:
+        state: on
+        brightness: 50
+
+
+automation:
+  - alias: Activate scene when we arrive during the day
+    trigger:
+      - platform: state
+        entity_id: group.people
+        to: 'home'
+    condition:
+      - condition: sun
+        after: sunrise
+        before: sunset
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: scene.daytime_arrived
+  - alias: Activate scene when we arrive at night
+    trigger:
+      - platform: state
+        entity_id: group.people
+        to: 'home'
+    condition:
+      - condition: or
+        conditions:
+          - condition: sun
+            before: sunrise
+          - condition: sun
+            after: sunset
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: scene.nighttime_arrived
+  - alias: Activate scene when we are away during the day
+    trigger:
+      - platform: state
+        entity_id: group.people
+        to: 'not_home'
+      - platform: sun
+        event: sunrise
+    condition:
+      - condition: sun
+        after: sunrise
+        before: sunset
+      - condition: state
+        entity_id: group.people
+        state: 'not_home'
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: scene.daytime_away
+  - alias: Activate night away scene
+    trigger:
+      - platform: sun
+        event: sunset
+      - platform: state
+        entity_id: group.people
+        to: 'not_home'
+    condition:
+      - condition: or
+        conditions:
+          - condition: sun
+            before: sunrise
+          - condition: sun
+            after: sunset
+      - condition: state
+        entity_id: group.people
+        state: 'not_home'
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: scene.nighttime_away
