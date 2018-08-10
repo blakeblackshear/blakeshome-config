@@ -164,6 +164,9 @@ hall:
     - sensor.clothes_washer_energy
     - sensor.clothes_washer_power
     - sensor.clothes_washer_voltage
+    - input_datetime.washer_finish_time
+    - input_datetime.laundry_last_motion
+    - sensor.laundry_needs_changeover
     - binary_sensor.motion_sensor_158d0001215452
     - binary_sensor.motion_sensor_158d0001d66c8d
     - binary_sensor.boys_doors_motion

@@ -5,8 +5,13 @@ automation:
       entity_id: binary_sensor.motion_sensor_158d0001215452
       to: 'on'
     action:
-      service: light.turn_on
-      entity_id: light.laundry_room_light
+      - service: light.turn_on
+        entity_id: light.laundry_room_light
+      - service: input_datetime.set_datetime
+        entity_id: input_datetime.laundry_last_motion
+        data_template:
+          time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+          date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
 
   - alias: Turn off laundry light with no motion
     trigger:
@@ -14,8 +19,60 @@ automation:
       entity_id: binary_sensor.motion_sensor_158d0001215452
       to: 'off'
     action:
-      service: light.turn_off
-      entity_id: light.laundry_room_light
+      - service: light.turn_off
+        entity_id: light.laundry_room_light
+      - service: input_datetime.set_datetime
+        entity_id: input_datetime.laundry_last_motion
+        data_template:
+          time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+          date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
+  
+  - alias: Mark laundry finished when washer idle for 3 minutes
+    trigger:
+      platform: state
+      entity_id: sensor.clothes_washer_status
+      from: 'Washing'
+      to: 'Idle'
+      for:
+        minutes: 3
+    action:
+      - service: input_datetime.set_datetime
+        entity_id: input_datetime.washer_finish_time
+        data_template:
+          time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+          date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
+  
+  - alias: Remind Ali to switch laundry over if needed when arriving home
+    trigger:
+      - platform: state
+        entity_id: device_tracker.ali_phone_mqtt
+        to: 'home'
+        for:
+          minutes: 5
+    condition:
+      condition: state
+      entity_id: sensor.laundry_needs_changeover
+      state: 'True'
+    action:
+      - service: notify.html5_ali_phone
+        data:
+          message: "Don't forget to change the laundry over."
+  
+  - alias: Remind Ali to switch laundry over when home
+    trigger:
+      - platform: state
+        entity_id: sensor.laundry_needs_changeover
+        to: 'True'
+        for:
+          minutes: 10
+    condition:
+      condition: state
+      entity_id: device_tracker.ali_phone_mqtt
+      state: 'home'
+    action:
+      - service: notify.html5_ali_phone
+        data:
+          message: "Don't forget to change the laundry over."
 
 sensor:
   - platform: mqtt
@@ -49,3 +106,17 @@ sensor:
             Idle
           {% endif %}
         icon_template: 'mdi:washing-machine'
+      laundry_needs_changeover:
+        friendly_name: "Laundry Needs Changeover"
+        value_template: '{{ states.input_datetime.washer_finish_time.attributes.timestamp > states.input_datetime.laundry_last_motion.attributes.timestamp }}'
+
+input_datetime:
+  washer_finish_time:
+    name: Washer finish time
+    has_date: true
+    has_time: true
+  laundry_last_motion:
+    name: Laundry last motion
+    has_date: true
+    has_time: true
+
