@@ -33,6 +33,9 @@ scene:
       light.over_cabinet:
         state: on
         brightness: 130
+      light.under_cabinet:
+        state: on
+        brightness: 130
       light.kitchen_island_lights:
         state: on
         brightness: 130
@@ -81,6 +84,9 @@ scene:
       light.over_cabinet:
         state: on
         brightness: 130
+      light.under_cabinet:
+        state: on
+        brightness: 75
       light.kitchen_island_lights:
         state: on
         brightness: 50
