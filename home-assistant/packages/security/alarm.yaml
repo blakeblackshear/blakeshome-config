@@ -63,7 +63,7 @@ automation:
         entity_id: binary_sensor.motion_sensor_158d0001e1845a
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.motion_sensor_158d0001ad44f0
+        entity_id: binary_sensor.half_bath_motion
         to: 'on'
       - platform: state
         entity_id: binary_sensor.motion_sensor_158d0001a2ba1f

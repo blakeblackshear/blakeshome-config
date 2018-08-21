@@ -24,7 +24,7 @@ half_bath:
   entities:
     - light.half_bath_bathroom_light
     - light.half_bath_hall_light
-    - binary_sensor.motion_sensor_158d0001ad44f0
+    - binary_sensor.half_bath_motion
 
 play_room:
   name: Playroom
@@ -261,7 +261,7 @@ security:
     - binary_sensor.motion_sensor_158d0001d54b06
     - binary_sensor.front_door
     - lock.front_door_lock
-    - binary_sensor.motion_sensor_158d0001ad44f0
+    - binary_sensor.half_bath_motion
     - group.garage_doors
     - input_boolean.baby_monitor
     - binary_sensor.boys_doors_motion
@@ -303,5 +303,4 @@ batteries:
     - sensor.back_door_sensor_battery
     - sensor.front_door_sensor_battery
     - sensor.master_closet_motion_battery
-    - sensor.half_bath_motion_battery
     - sensor.kitchen_sink_water_leak_battery

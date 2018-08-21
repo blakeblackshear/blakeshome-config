@@ -1,8 +1,21 @@
+binary_sensor:
+  - platform: "mqtt"
+    name: Half Bath Motion
+    state_topic: "zigbee/0x00158d0001ad44f0"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
 automation:
   - alias: Turn on half bath light with motion
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001ad44f0
+      entity_id: binary_sensor.half_bath_motion
       to: 'on'
     action:
       - service: timer.cancel
@@ -13,7 +26,7 @@ automation:
   - alias: Start half bath light timer with no motion
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001ad44f0
+      entity_id: binary_sensor.half_bath_motion
       to: 'off'
       for:
         minutes: 10

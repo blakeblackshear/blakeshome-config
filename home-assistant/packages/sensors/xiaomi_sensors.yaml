@@ -94,9 +94,6 @@ homeassistant:
 
     binary_sensor.motion_sensor_158d0001b15d45:
       friendly_name: Master Closet Motion
-
-    binary_sensor.motion_sensor_158d0001ad44f0:
-      friendly_name: Half Bath Motion
     
     binary_sensor.motion_sensor_158d0001b15d41:
       friendly_name: Blake Bedside Motion
