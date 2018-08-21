@@ -77,9 +77,6 @@ homeassistant:
     sensor.temperature_158d0001ab4496:
       friendly_name: Outside Temperature
 
-    binary_sensor.motion_sensor_158d0001d54b06:
-      friendly_name: Living Room Motion
-
     sensor.temperature_158d0001c164af:
       friendly_name: Master Bathroom Temperature
 

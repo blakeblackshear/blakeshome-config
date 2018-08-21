@@ -66,7 +66,7 @@ living_room:
   entities:
     - lock.back_door_lock
     - binary_sensor.back_door
-    - binary_sensor.motion_sensor_158d0001d54b06
+    - binary_sensor.living_room_motion
     - light.living_room_back_lamp
     - light.living_room_chandelier_light
     - light.living_room_front_lamp
@@ -258,7 +258,7 @@ security:
     - binary_sensor.motion_sensor_158d0001e1845a
     - lock.back_door_lock
     - binary_sensor.back_door
-    - binary_sensor.motion_sensor_158d0001d54b06
+    - binary_sensor.living_room_motion
     - binary_sensor.front_door
     - lock.front_door_lock
     - binary_sensor.half_bath_motion
@@ -294,7 +294,6 @@ batteries:
     - sensor.laundry_room_motion_battery
     - sensor.hall_motion_battery
     - sensor.outside_temperature_battery
-    - sensor.living_room_motion_battery
     - sensor.master_bathroom_temperature_battery
     - sensor.crawl_space_temperature_battery
     - sensor.pantry_motion_battery
