@@ -100,7 +100,7 @@ sensor:
       clothes_washer_status:
         friendly_name: "Clothes Washer Status"
         value_template: >-
-          {% if states.sensor.clothes_washer_current.state|int > 0  %}
+          {% if states.sensor.clothes_washer_current.state|float > 0.02  %}
             Washing
           {% else %}
             Idle
