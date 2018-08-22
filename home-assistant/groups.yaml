@@ -32,7 +32,7 @@ play_room:
   entities:
     - light.playroom_light
     - timer.playroom_lights
-    - binary_sensor.motion_sensor_158d0001ad43f0
+    - binary_sensor.playroom_motion
     - binary_sensor.door_window_sensor_158d0001dcba76
     - binary_sensor.door_window_sensor_158d0001b780f8
 
@@ -246,7 +246,7 @@ security:
     - binary_sensor.door_window_sensor_158d0001b71164
     - binary_sensor.door_window_sensor_158d0001b1b8be
     - binary_sensor.door_window_sensor_158d0001dcba28
-    - binary_sensor.motion_sensor_158d0001ad43f0
+    - binary_sensor.playroom_motion
     - binary_sensor.door_window_sensor_158d0001dcba76
     - binary_sensor.door_window_sensor_158d0001b780f8
     - binary_sensor.door_window_sensor_158d0001b7812e
@@ -289,7 +289,6 @@ batteries:
     - sensor.living_room_shutter_7_battery
     - sensor.play_room_shutter_1_battery
     - sensor.play_room_shutter_2_battery
-    - sensor.play_room_motion_battery
     - sensor.dining_room_shutter_1_battery
     - sensor.dining_room_shutter_2_battery
     - sensor.laundry_room_motion_battery
