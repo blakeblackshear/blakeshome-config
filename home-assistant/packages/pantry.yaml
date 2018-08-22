@@ -1,8 +1,21 @@
+binary_sensor:
+  - platform: "mqtt"
+    name: Pantry Motion
+    state_topic: "zigbee/0x00158d0001a2ba1f"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
 automation:
   - alias: Turn on pantry light with motion
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001a2ba1f
+      entity_id: binary_sensor.pantry_motion
       to: 'on'
     action:
       service: light.turn_on
@@ -11,7 +24,7 @@ automation:
   - alias: Turn off pantry light with no motion
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001a2ba1f
+      entity_id: binary_sensor.pantry_motion
       to: 'off'
     action:
       service: light.turn_off

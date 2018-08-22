@@ -6,9 +6,6 @@ homeassistant:
     sensor.illumination_286c07fa2266:
       friendly_name: Ambient Light
 
-    binary_sensor.motion_sensor_158d0001a2ba1f:
-      friendly_name: Pantry Motion
-
     binary_sensor.switch_158d00019de5ec:
       friendly_name: Blake's Bedside Button
 

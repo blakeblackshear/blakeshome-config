@@ -48,7 +48,7 @@ kitchen:
   name: Kitchen
   control: hidden
   entities:
-    - binary_sensor.motion_sensor_158d0001a2ba1f
+    - binary_sensor.pantry_motion
     - light.kitchen_lights
     - light.butlers_pantry_light
     - light.kitchen_breakfast_lights
@@ -256,6 +256,7 @@ security:
     - binary_sensor.motion_sensor_158d0001b15d45
     - binary_sensor.motion_sensor_158d0001b15d41
     - binary_sensor.motion_sensor_158d0001e1845a
+    - binary_sensor.pantry_motion
     - lock.back_door_lock
     - binary_sensor.back_door
     - binary_sensor.living_room_motion
@@ -296,7 +297,6 @@ batteries:
     - sensor.outside_temperature_battery
     - sensor.master_bathroom_temperature_battery
     - sensor.crawl_space_temperature_battery
-    - sensor.pantry_motion_battery
     - sensor.back_door_lock_battery
     - sensor.front_door_lock_battery
     - sensor.back_door_sensor_battery

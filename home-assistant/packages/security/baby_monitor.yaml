@@ -26,7 +26,7 @@ automation:
         entity_id: binary_sensor.half_bath_motion
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.motion_sensor_158d0001a2ba1f
+        entity_id: binary_sensor.pantry_motion
         to: 'on'
       - platform: state
         entity_id: binary_sensor.back_door
