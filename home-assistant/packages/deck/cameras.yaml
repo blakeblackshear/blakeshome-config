@@ -7,5 +7,5 @@
 binary_sensor:
   - name: Backyard Camera Motion
     platform: mqtt
-    state_topic: "cameras/0/motion"
+    state_topic: "cameras/back/motion"
     device_class: motion
