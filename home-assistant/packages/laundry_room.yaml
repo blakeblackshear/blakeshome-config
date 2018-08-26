@@ -1,8 +1,21 @@
+binary_sensor:
+  - platform: "mqtt"
+    name: Laundry Room Motion
+    state_topic: "zigbee/0x00158d0001215452"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      
 automation:
   - alias: Turn on laundry light with motion
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001215452
+      entity_id: binary_sensor.laundry_room_motion
       to: 'on'
     action:
       - service: light.turn_on
@@ -16,7 +29,7 @@ automation:
   - alias: Turn off laundry light with no motion
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001215452
+      entity_id: binary_sensor.laundry_room_motion
       to: 'off'
     action:
       - service: light.turn_off

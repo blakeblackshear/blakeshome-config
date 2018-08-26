@@ -25,90 +25,6 @@ sensor:
                           mdi:battery-{{(states.binary_sensor.switch_158d00016d7770.attributes.battery_level/10)|int*10}}
                         {% endif %}'
 
-      living_room_shutter_1_battery:
-        friendly_name: "Living Room Shutter 1 Battery"
-        unit_of_measurement: '%'
-        value_template: "{{ states.binary_sensor.door_window_sensor_158d0001b1b801.attributes.battery_level|default(-1)|int }}"
-        icon_template: '{% if states.binary_sensor.door_window_sensor_158d0001b1b801.attributes.battery_level == 100 %}
-                           mdi:battery
-                        {% elif states.binary_sensor.door_window_sensor_158d0001b1b801.attributes.battery_level < 10 %}
-                           battery-outline
-                        {% else %}
-                          mdi:battery-{{(states.binary_sensor.door_window_sensor_158d0001b1b801.attributes.battery_level/10)|int*10}}
-                        {% endif %}'
-        
-      living_room_shutter_2_battery:
-        friendly_name: "Living Room Shutter 2 Battery"
-        unit_of_measurement: '%'
-        value_template: "{{ states.binary_sensor.door_window_sensor_158d0001dcc9bd.attributes.battery_level|default(-1)|int }}"
-        icon_template: '{% if states.binary_sensor.door_window_sensor_158d0001dcc9bd.attributes.battery_level == 100 %}
-                           mdi:battery
-                        {% elif states.binary_sensor.door_window_sensor_158d0001dcc9bd.attributes.battery_level < 10 %}
-                           battery-outline
-                        {% else %}
-                          mdi:battery-{{(states.binary_sensor.door_window_sensor_158d0001dcc9bd.attributes.battery_level/10)|int*10}}
-                        {% endif %}'
-
-      living_room_shutter_3_battery:
-        friendly_name: "Living Room Shutter 3 Battery"
-        unit_of_measurement: '%'
-        value_template: "{{ states.binary_sensor.door_window_sensor_158d0001ab59ab.attributes.battery_level|default(-1)|int }}"
-        icon_template: '{% if states.binary_sensor.door_window_sensor_158d0001ab59ab.attributes.battery_level == 100 %}
-                           mdi:battery
-                        {% elif states.binary_sensor.door_window_sensor_158d0001ab59ab.attributes.battery_level < 10 %}
-                           battery-outline
-                        {% else %}
-                          mdi:battery-{{(states.binary_sensor.door_window_sensor_158d0001ab59ab.attributes.battery_level/10)|int*10}}
-                        {% endif %}'
-
-      living_room_shutter_4_battery:
-        friendly_name: "Living Room Shutter 4 Battery"
-        unit_of_measurement: '%'
-        value_template: "{{ states.binary_sensor.door_window_sensor_158d0001ab67c2.attributes.battery_level|default(-1)|int }}"
-        icon_template: '{% if states.binary_sensor.door_window_sensor_158d0001ab67c2.attributes.battery_level == 100 %}
-                           mdi:battery
-                        {% elif states.binary_sensor.door_window_sensor_158d0001ab67c2.attributes.battery_level < 10 %}
-                           battery-outline
-                        {% else %}
-                          mdi:battery-{{(states.binary_sensor.door_window_sensor_158d0001ab67c2.attributes.battery_level/10)|int*10}}
-                        {% endif %}'
-
-      living_room_shutter_5_battery:
-        friendly_name: "Living Room Shutter 5 Battery"
-        unit_of_measurement: '%'
-        value_template: "{{ states.binary_sensor.door_window_sensor_158d0001b71164.attributes.battery_level|default(-1)|int }}"
-        icon_template: '{% if states.binary_sensor.door_window_sensor_158d0001b71164.attributes.battery_level == 100 %}
-                           mdi:battery
-                        {% elif states.binary_sensor.door_window_sensor_158d0001b71164.attributes.battery_level < 10 %}
-                           battery-outline
-                        {% else %}
-                          mdi:battery-{{(states.binary_sensor.door_window_sensor_158d0001b71164.attributes.battery_level/10)|int*10}}
-                        {% endif %}'
-
-      living_room_shutter_6_battery:
-        friendly_name: "Living Room Shutter 6 Battery"
-        unit_of_measurement: '%'
-        value_template: "{{ states.binary_sensor.door_window_sensor_158d0001b1b8be.attributes.battery_level|default(-1)|int }}"
-        icon_template: '{% if states.binary_sensor.door_window_sensor_158d0001b1b8be.attributes.battery_level == 100 %}
-                           mdi:battery
-                        {% elif states.binary_sensor.door_window_sensor_158d0001b1b8be.attributes.battery_level < 10 %}
-                           battery-outline
-                        {% else %}
-                          mdi:battery-{{(states.binary_sensor.door_window_sensor_158d0001b1b8be.attributes.battery_level/10)|int*10}}
-                        {% endif %}'
-
-      living_room_shutter_7_battery:
-        friendly_name: "Living Room Shutter 7 Battery"
-        unit_of_measurement: '%'
-        value_template: "{{ states.binary_sensor.door_window_sensor_158d0001dcba28.attributes.battery_level|default(-1)|int }}"
-        icon_template: '{% if states.binary_sensor.door_window_sensor_158d0001dcba28.attributes.battery_level == 100 %}
-                           mdi:battery
-                        {% elif states.binary_sensor.door_window_sensor_158d0001dcba28.attributes.battery_level < 10 %}
-                           battery-outline
-                        {% else %}
-                          mdi:battery-{{(states.binary_sensor.door_window_sensor_158d0001dcba28.attributes.battery_level/10)|int*10}}
-                        {% endif %}'
-
       play_room_shutter_1_battery:
         friendly_name: "Play Room Shutter 1 Battery"
         unit_of_measurement: '%'
@@ -157,30 +73,6 @@ sensor:
                           mdi:battery-{{(states.binary_sensor.door_window_sensor_158d0001b1b1a3.attributes.battery_level/10)|int*10}}
                         {% endif %}'
 
-      laundry_room_motion_battery:
-        friendly_name: "Laundry Room Motion Battery"
-        unit_of_measurement: '%'
-        value_template: "{{ states.binary_sensor.motion_sensor_158d0001215452.attributes.battery_level|default(-1)|int }}"
-        icon_template: '{% if states.binary_sensor.motion_sensor_158d0001215452.attributes.battery_level == 100 %}
-                           mdi:battery
-                        {% elif states.binary_sensor.motion_sensor_158d0001215452.attributes.battery_level < 10 %}
-                           battery-outline
-                        {% else %}
-                          mdi:battery-{{(states.binary_sensor.motion_sensor_158d0001215452.attributes.battery_level/10)|int*10}}
-                        {% endif %}'
-
-      hall_motion_battery:
-        friendly_name: "Hall Motion Battery"
-        unit_of_measurement: '%'
-        value_template: "{{ states.binary_sensor.motion_sensor_158d0001d66c8d.attributes.battery_level|default(-1)|int }}"
-        icon_template: '{% if states.binary_sensor.motion_sensor_158d0001d66c8d.attributes.battery_level == 100 %}
-                           mdi:battery
-                        {% elif states.binary_sensor.motion_sensor_158d0001d66c8d.attributes.battery_level < 10 %}
-                           battery-outline
-                        {% else %}
-                          mdi:battery-{{(states.binary_sensor.motion_sensor_158d0001d66c8d.attributes.battery_level/10)|int*10}}
-                        {% endif %}'
-
       outside_temperature_battery:
         friendly_name: "Outside Temperature Battery"
         unit_of_measurement: '%'
@@ -215,18 +107,6 @@ sensor:
                            battery-outline
                         {% else %}
                           mdi:battery-{{(states.sensor.temperature_158d0001c163e1.attributes.battery_level/10)|int*10}}
-                        {% endif %}'
-      
-      master_closet_motion_battery:
-        friendly_name: "Master Closet Motion Battery"
-        unit_of_measurement: '%'
-        value_template: "{{ states.binary_sensor.motion_sensor_158d0001b15d45.attributes.battery_level|default(-1)|int }}"
-        icon_template: '{% if states.binary_sensor.motion_sensor_158d0001b15d45.attributes.battery_level == 100 %}
-                           mdi:battery
-                        {% elif states.binary_sensor.motion_sensor_158d0001b15d45.attributes.battery_level < 10 %}
-                           battery-outline
-                        {% else %}
-                          mdi:battery-{{(states.binary_sensor.motion_sensor_158d0001b15d45.attributes.battery_level/10)|int*10}}
                         {% endif %}'
 
       kitchen_sink_water_leak_battery:

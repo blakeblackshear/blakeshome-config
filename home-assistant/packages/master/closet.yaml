@@ -1,3 +1,16 @@
+binary_sensor:
+  - platform: "mqtt"
+    name: Master Closet Motion
+    state_topic: "zigbee/0x00158d0001b15d45"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
 timer:
   master_closet_lights:
     duration: '00:02:00'
@@ -6,7 +19,7 @@ automation:
   - alias: Turn on master closet lights with motion
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001b15d45
+      entity_id: binary_sensor.master_closet_motion
       to: 'on'
     action:
       - service: timer.cancel
@@ -21,7 +34,7 @@ automation:
   - alias: Start master closet lights timer with no motion
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001b15d45
+      entity_id: binary_sensor.master_closet_motion
       to: 'off'
     action:
       service: timer.start

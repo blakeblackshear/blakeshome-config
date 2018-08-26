@@ -12,10 +12,6 @@ homeassistant:
     binary_sensor.switch_158d00016d7770:
       friendly_name: Ali's Bedside Button
 
-    binary_sensor.door_window_sensor_158d0001b1b801:
-      friendly_name: Living Room Shutter 1
-      device_class: window
-
     binary_sensor.door_window_sensor_158d0001dcc9bd:
       friendly_name: Living Room Shutter 2
       device_class: window
@@ -56,12 +52,6 @@ homeassistant:
       friendly_name: Dining Room Shutter 2
       device_class: window
 
-    binary_sensor.motion_sensor_158d0001215452:
-      friendly_name: Laundry Room Motion
-
-    binary_sensor.motion_sensor_158d0001d66c8d:
-      friendly_name: Hall Motion
-
     sensor.humidity_158d0001ab4496:
       friendly_name: Outside Humidity
 
@@ -82,9 +72,6 @@ homeassistant:
 
     sensor.humidity_158d0001c163e1:
       friendly_name: Crawl Space Humidity
-
-    binary_sensor.motion_sensor_158d0001b15d45:
-      friendly_name: Master Closet Motion
     
     binary_sensor.motion_sensor_158d0001b15d41:
       friendly_name: Blake Bedside Motion

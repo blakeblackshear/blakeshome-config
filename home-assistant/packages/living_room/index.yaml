@@ -10,3 +10,86 @@ binary_sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      
+  - platform: "mqtt"
+    name: Living Room Shutter 1
+    state_topic: "zigbee/0x00158d0001b1b801"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "window"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+  - platform: "mqtt"
+    name: Living Room Shutter 2
+    state_topic: "zigbee/0x00158d0001dcc9bd"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "window"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: Living Room Shutter 3
+    state_topic: "zigbee/0x00158d0001ab59ab"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "window"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: Living Room Shutter 4
+    state_topic: "zigbee/0x00158d0001ab67c2"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "window"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: Living Room Shutter 5
+    state_topic: "zigbee/0x00158d0001b71164"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "window"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: Living Room Shutter 6
+    state_topic: "zigbee/0x00158d0001b1b8be"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "window"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: Living Room Shutter 7
+    state_topic: "zigbee/0x00158d0001dcba28"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "window"
+    json_attributes: 
+      - "battery"
+      - "voltage"

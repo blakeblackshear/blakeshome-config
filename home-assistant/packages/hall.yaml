@@ -10,6 +10,17 @@ binary_sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+  - platform: "mqtt"
+    name: Hall Motion
+    state_topic: "zigbee/0x00158d0001d66c8d"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+    json_attributes: 
+      - "battery"
+      - "voltage"
 
 automation:
   - alias: Turn on hall lamps one hour after sunrise
@@ -51,7 +62,7 @@ automation:
   - alias: Turn on hall lamps at night with motion
     trigger:
       - platform: state
-        entity_id: binary_sensor.motion_sensor_158d0001d66c8d
+        entity_id: binary_sensor.hall_motion
         to: 'on'
       - platform: state
         entity_id: binary_sensor.boys_doors_motion
@@ -75,7 +86,7 @@ automation:
   - alias: Turn off hall lamps at night with no motion
     trigger:
       - platform: state
-        entity_id: binary_sensor.motion_sensor_158d0001d66c8d
+        entity_id: binary_sensor.hall_motion
         to: 'off'
       - platform: state
         entity_id: binary_sensor.boys_doors_motion
@@ -89,7 +100,7 @@ automation:
             before: sunrise
             before_offset: "01:00:00"
       - condition: state
-        entity_id: binary_sensor.motion_sensor_158d0001d66c8d
+        entity_id: binary_sensor.hall_motion
         state: 'off'
       - condition: state
         entity_id: binary_sensor.boys_doors_motion

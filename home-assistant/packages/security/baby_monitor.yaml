@@ -8,13 +8,13 @@ automation:
   - alias: 'Motion detected in the house'
     trigger:
       - platform: state
-        entity_id: binary_sensor.motion_sensor_158d0001215452
+        entity_id: binary_sensor.laundry_room_motion
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.motion_sensor_158d0001d66c8d
+        entity_id: binary_sensor.hall_motion
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.motion_sensor_158d0001b15d45
+        entity_id: binary_sensor.master_closet_motion
         to: 'on'
       - platform: state
         entity_id: binary_sensor.motion_sensor_158d0001b15d41

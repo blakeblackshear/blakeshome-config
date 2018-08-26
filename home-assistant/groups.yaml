@@ -82,7 +82,7 @@ living_room:
     - sensor.downstairs_temperature
     - vacuum.xiaomi_vacuum_cleaner
     - climate.downstairs
-    - binary_sensor.door_window_sensor_158d0001b1b801
+    - binary_sensor.living_room_shutter_1
     - binary_sensor.door_window_sensor_158d0001dcc9bd
     - binary_sensor.door_window_sensor_158d0001ab59ab
     - binary_sensor.door_window_sensor_158d0001ab67c2
@@ -127,7 +127,7 @@ master_bath:
   entities:
     - sensor.temperature_158d0001c164af
     - sensor.humidity_158d0001c164af
-    - binary_sensor.motion_sensor_158d0001b15d45
+    - binary_sensor.master_closet_motion
     - light.master_bath_lights
     - light.master_closet_lights
     - timer.master_closet_lights
@@ -167,8 +167,8 @@ hall:
     - input_datetime.washer_finish_time
     - input_datetime.laundry_last_motion
     - sensor.laundry_needs_changeover
-    - binary_sensor.motion_sensor_158d0001215452
-    - binary_sensor.motion_sensor_158d0001d66c8d
+    - binary_sensor.laundry_room_motion
+    - binary_sensor.hall_motion
     - binary_sensor.boys_doors_motion
 
 outside:
@@ -239,7 +239,7 @@ security:
     - scene.lockup
     - sensor.locked_up
     - binary_sensor.backyard_camera_motion
-    - binary_sensor.door_window_sensor_158d0001b1b801
+    - binary_sensor.living_room_shutter_1
     - binary_sensor.door_window_sensor_158d0001dcc9bd
     - binary_sensor.door_window_sensor_158d0001ab59ab
     - binary_sensor.door_window_sensor_158d0001ab67c2
@@ -251,9 +251,9 @@ security:
     - binary_sensor.door_window_sensor_158d0001b780f8
     - binary_sensor.door_window_sensor_158d0001b7812e
     - binary_sensor.door_window_sensor_158d0001b1b1a3
-    - binary_sensor.motion_sensor_158d0001215452
-    - binary_sensor.motion_sensor_158d0001d66c8d
-    - binary_sensor.motion_sensor_158d0001b15d45
+    - binary_sensor.laundry_room_motion
+    - binary_sensor.hall_motion
+    - binary_sensor.master_closet_motion
     - binary_sensor.motion_sensor_158d0001b15d41
     - binary_sensor.motion_sensor_158d0001e1845a
     - binary_sensor.pantry_motion
@@ -277,10 +277,8 @@ system:
 batteries:
   name: Batteries
   entities:
-    - sensor.pantry_motion_battery
     - sensor.blake_bedside_button_battery
     - sensor.ali_bedside_button_battery
-    - sensor.living_room_shutter_1_battery
     - sensor.living_room_shutter_2_battery
     - sensor.living_room_shutter_3_battery
     - sensor.living_room_shutter_4_battery
@@ -291,8 +289,6 @@ batteries:
     - sensor.play_room_shutter_2_battery
     - sensor.dining_room_shutter_1_battery
     - sensor.dining_room_shutter_2_battery
-    - sensor.laundry_room_motion_battery
-    - sensor.hall_motion_battery
     - sensor.outside_temperature_battery
     - sensor.master_bathroom_temperature_battery
     - sensor.crawl_space_temperature_battery
@@ -300,5 +296,4 @@ batteries:
     - sensor.front_door_lock_battery
     - sensor.back_door_sensor_battery
     - sensor.front_door_sensor_battery
-    - sensor.master_closet_motion_battery
     - sensor.kitchen_sink_water_leak_battery
