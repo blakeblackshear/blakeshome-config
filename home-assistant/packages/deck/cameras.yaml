@@ -9,3 +9,13 @@ binary_sensor:
     platform: mqtt
     state_topic: "cameras/back/motion"
     device_class: motion
+
+script:
+  play_backyard_camera:
+    alias: Stream backyard camera
+    sequence:
+      - service: media_player.play_media
+        data:
+          entity_id: media_player.living_room
+          media_content_id: https://cameras.blakeshome.com/cameras/back.m3u8
+          media_content_type: application/vnd.apple.mpegurl
