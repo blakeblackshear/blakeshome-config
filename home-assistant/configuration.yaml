@@ -339,28 +339,6 @@ light:
     payload_off: 0
     on_command_type: 'brightness'
   - platform: mqtt
-    name: Hall Right Lamp
-    state_topic: zwave/downstairs/ZWayVDev_zway_43-0-38/status
-    state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zwave/downstairs/ZWayVDev_zway_43-0-38/set
-    brightness_state_topic: zwave/downstairs/ZWayVDev_zway_43-0-38/status
-    brightness_command_topic: zwave/downstairs/ZWayVDev_zway_43-0-38/set
-    brightness_scale: 99
-    payload_on: 255
-    payload_off: 0
-    on_command_type: 'brightness'
-  - platform: mqtt
-    name: Hall Left Lamp
-    state_topic: zwave/downstairs/ZWayVDev_zway_55-0-38/status
-    state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zwave/downstairs/ZWayVDev_zway_55-0-38/set
-    brightness_state_topic: zwave/downstairs/ZWayVDev_zway_55-0-38/status
-    brightness_command_topic: zwave/downstairs/ZWayVDev_zway_55-0-38/set
-    brightness_scale: 99
-    payload_on: 255
-    payload_off: 0
-    on_command_type: 'brightness'
-  - platform: mqtt
     name: Master Closet Lights
     state_topic: zwave/downstairs/ZWayVDev_zway_51-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'

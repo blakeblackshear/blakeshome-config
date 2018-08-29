@@ -1,7 +1,7 @@
 sensor:
   - platform: "mqtt"
-    name: Guest Room Temperature
-    state_topic: "zigbee/0x00158d0001c1647d"
+    name: Master Bath Temperature
+    state_topic: "zigbee/0x00158d0001c164af"
     availability_topic: "zigbee/bridge/state"
     unit_of_measurement: "°F"
     icon: "mdi:temperature-fahrenheit"
@@ -11,8 +11,8 @@ sensor:
       - "voltage"
       - "linkquality"
   - platform: "mqtt"
-    name: Guest Room Humidity
-    state_topic: "zigbee/0x00158d0001c1647d"
+    name: Master Bath Humidity
+    state_topic: "zigbee/0x00158d0001c164af"
     availability_topic: "zigbee/bridge/state"
     unit_of_measurement: "%"
     icon: "mdi:water-percent"

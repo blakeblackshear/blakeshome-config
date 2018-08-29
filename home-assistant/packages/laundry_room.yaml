@@ -10,6 +10,7 @@ binary_sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
       
 automation:
   - alias: Turn on laundry light with motion
@@ -31,6 +32,8 @@ automation:
       platform: state
       entity_id: binary_sensor.laundry_room_motion
       to: 'off'
+      for:
+        minutes: 1
     action:
       - service: light.turn_off
         entity_id: light.laundry_room_light

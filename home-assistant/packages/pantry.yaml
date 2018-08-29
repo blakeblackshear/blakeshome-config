@@ -10,6 +10,7 @@ binary_sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
 automation:
   - alias: Turn on pantry light with motion
@@ -26,6 +27,8 @@ automation:
       platform: state
       entity_id: binary_sensor.pantry_motion
       to: 'off'
+      for:
+        minutes: 1
     action:
       service: light.turn_off
       entity_id: light.pantry_light

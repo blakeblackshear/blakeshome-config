@@ -33,16 +33,16 @@ play_room:
     - light.playroom_light
     - timer.playroom_lights
     - binary_sensor.playroom_motion
-    - binary_sensor.door_window_sensor_158d0001dcba76
-    - binary_sensor.door_window_sensor_158d0001b780f8
+    - binary_sensor.play_room_shutter_1
+    - binary_sensor.play_room_shutter_2
 
 dining_room:
   name: Dining Room
   control: hidden
   entities:
     - light.dining_room_light
-    - binary_sensor.door_window_sensor_158d0001b7812e
-    - binary_sensor.door_window_sensor_158d0001b1b1a3
+    - binary_sensor.dining_room_shutter_1
+    - binary_sensor.dining_room_shutter_2
 
 kitchen:
   name: Kitchen
@@ -83,12 +83,12 @@ living_room:
     - vacuum.xiaomi_vacuum_cleaner
     - climate.downstairs
     - binary_sensor.living_room_shutter_1
-    - binary_sensor.door_window_sensor_158d0001dcc9bd
-    - binary_sensor.door_window_sensor_158d0001ab59ab
-    - binary_sensor.door_window_sensor_158d0001ab67c2
-    - binary_sensor.door_window_sensor_158d0001b71164
-    - binary_sensor.door_window_sensor_158d0001b1b8be
-    - binary_sensor.door_window_sensor_158d0001dcba28
+    - binary_sensor.living_room_shutter_2
+    - binary_sensor.living_room_shutter_3
+    - binary_sensor.living_room_shutter_4
+    - binary_sensor.living_room_shutter_5
+    - binary_sensor.living_room_shutter_6
+    - binary_sensor.living_room_shutter_7
 
 upstairs:
   name: Upstairs
@@ -112,9 +112,9 @@ master:
   entities:
     - binary_sensor.master_occupancy
     - light.master_blake_lamp
-    - binary_sensor.motion_sensor_158d0001b15d41
+    - binary_sensor.blake_bedside_motion
     - light.master_ali_lamp
-    - binary_sensor.motion_sensor_158d0001e1845a
+    - binary_sensor.ali_bedside_motion
     - light.gateway_light_286c07fa2266
     - sensor.illumination_286c07fa2266
     - sensor.master_temperature
@@ -125,8 +125,8 @@ master_bath:
   name: Master Bathroom
   control: hidden
   entities:
-    - sensor.temperature_158d0001c164af
-    - sensor.humidity_158d0001c164af
+    - sensor.master_bath_temperature
+    - sensor.master_bath_humidity
     - binary_sensor.master_closet_motion
     - light.master_bath_lights
     - light.master_closet_lights
@@ -192,9 +192,9 @@ deck:
     - timer.outside_lights_after_dark
     - media_player.deck
     - media_player.living_room_and_deck
-    - sensor.humidity_158d0001ab4496
-    - sensor.pressure_158d0001ab4496
-    - sensor.temperature_158d0001ab4496
+    - sensor.outside_humidity
+    - sensor.outside_pressure
+    - sensor.outside_temperature
 
 crawl_space:
   name: Crawl Space
@@ -240,22 +240,22 @@ security:
     - sensor.locked_up
     - binary_sensor.backyard_camera_motion
     - binary_sensor.living_room_shutter_1
-    - binary_sensor.door_window_sensor_158d0001dcc9bd
-    - binary_sensor.door_window_sensor_158d0001ab59ab
-    - binary_sensor.door_window_sensor_158d0001ab67c2
-    - binary_sensor.door_window_sensor_158d0001b71164
-    - binary_sensor.door_window_sensor_158d0001b1b8be
-    - binary_sensor.door_window_sensor_158d0001dcba28
+    - binary_sensor.living_room_shutter_2
+    - binary_sensor.living_room_shutter_3
+    - binary_sensor.living_room_shutter_4
+    - binary_sensor.living_room_shutter_5
+    - binary_sensor.living_room_shutter_6
+    - binary_sensor.living_room_shutter_7
     - binary_sensor.playroom_motion
-    - binary_sensor.door_window_sensor_158d0001dcba76
-    - binary_sensor.door_window_sensor_158d0001b780f8
-    - binary_sensor.door_window_sensor_158d0001b7812e
-    - binary_sensor.door_window_sensor_158d0001b1b1a3
+    - binary_sensor.dining_room_shutter_1
+    - binary_sensor.dining_room_shutter_2
+    - binary_sensor.play_room_shutter_1
+    - binary_sensor.play_room_shutter_2
     - binary_sensor.laundry_room_motion
     - binary_sensor.hall_motion
     - binary_sensor.master_closet_motion
-    - binary_sensor.motion_sensor_158d0001b15d41
-    - binary_sensor.motion_sensor_158d0001e1845a
+    - binary_sensor.blake_bedside_motion
+    - binary_sensor.ali_bedside_motion
     - binary_sensor.pantry_motion
     - lock.back_door_lock
     - binary_sensor.back_door
@@ -277,20 +277,6 @@ system:
 batteries:
   name: Batteries
   entities:
-    - sensor.blake_bedside_button_battery
-    - sensor.ali_bedside_button_battery
-    - sensor.living_room_shutter_2_battery
-    - sensor.living_room_shutter_3_battery
-    - sensor.living_room_shutter_4_battery
-    - sensor.living_room_shutter_5_battery
-    - sensor.living_room_shutter_6_battery
-    - sensor.living_room_shutter_7_battery
-    - sensor.play_room_shutter_1_battery
-    - sensor.play_room_shutter_2_battery
-    - sensor.dining_room_shutter_1_battery
-    - sensor.dining_room_shutter_2_battery
-    - sensor.outside_temperature_battery
-    - sensor.master_bathroom_temperature_battery
     - sensor.crawl_space_temperature_battery
     - sensor.back_door_lock_battery
     - sensor.front_door_lock_battery

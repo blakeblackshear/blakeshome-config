@@ -12,60 +12,36 @@ homeassistant:
     binary_sensor.switch_158d00016d7770:
       friendly_name: Ali's Bedside Button
 
-    binary_sensor.door_window_sensor_158d0001dcc9bd:
-      friendly_name: Living Room Shutter 2
-      device_class: window
+    # binary_sensor.door_window_sensor_158d0001dcba76:
+    #   friendly_name: Play Room Shutter 1
+    #   device_class: window
 
-    binary_sensor.door_window_sensor_158d0001ab59ab:
-      friendly_name: Living Room Shutter 3
-      device_class: window
+    # binary_sensor.door_window_sensor_158d0001b780f8:
+    #   friendly_name: Play Room Shutter 2
+    #   device_class: window
 
-    binary_sensor.door_window_sensor_158d0001ab67c2:
-      friendly_name: Living Room Shutter 4
-      device_class: window
+    # binary_sensor.door_window_sensor_158d0001b7812e:
+    #   friendly_name: Dining Room Shutter 1
+    #   device_class: window
 
-    binary_sensor.door_window_sensor_158d0001b71164:
-      friendly_name: Living Room Shutter 5
-      device_class: window
+    # binary_sensor.door_window_sensor_158d0001b1b1a3:
+    #   friendly_name: Dining Room Shutter 2
+    #   device_class: window
 
-    binary_sensor.door_window_sensor_158d0001b1b8be:
-      friendly_name: Living Room Shutter 6
-      device_class: window
+    # sensor.humidity_158d0001ab4496:
+    #   friendly_name: Outside Humidity
 
-    binary_sensor.door_window_sensor_158d0001dcba28:
-      friendly_name: Living Room Shutter 7
-      device_class: window
+    # sensor.pressure_158d0001ab4496:
+    #   friendly_name: Outside Pressure
 
-    binary_sensor.door_window_sensor_158d0001dcba76:
-      friendly_name: Play Room Shutter 1
-      device_class: window
+    # sensor.temperature_158d0001ab4496:
+    #   friendly_name: Outside Temperature
 
-    binary_sensor.door_window_sensor_158d0001b780f8:
-      friendly_name: Play Room Shutter 2
-      device_class: window
+    # sensor.temperature_158d0001c164af:
+    #   friendly_name: Master Bathroom Temperature
 
-    binary_sensor.door_window_sensor_158d0001b7812e:
-      friendly_name: Dining Room Shutter 1
-      device_class: window
-
-    binary_sensor.door_window_sensor_158d0001b1b1a3:
-      friendly_name: Dining Room Shutter 2
-      device_class: window
-
-    sensor.humidity_158d0001ab4496:
-      friendly_name: Outside Humidity
-
-    sensor.pressure_158d0001ab4496:
-      friendly_name: Outside Pressure
-
-    sensor.temperature_158d0001ab4496:
-      friendly_name: Outside Temperature
-
-    sensor.temperature_158d0001c164af:
-      friendly_name: Master Bathroom Temperature
-
-    sensor.humidity_158d0001c164af:
-      friendly_name: Master Bathroom Humidity
+    # sensor.humidity_158d0001c164af:
+    #   friendly_name: Master Bathroom Humidity
 
     sensor.temperature_158d0001c163e1:
       friendly_name: Crawl Space Temperature
@@ -73,11 +49,11 @@ homeassistant:
     sensor.humidity_158d0001c163e1:
       friendly_name: Crawl Space Humidity
     
-    binary_sensor.motion_sensor_158d0001b15d41:
-      friendly_name: Blake Bedside Motion
+    # binary_sensor.motion_sensor_158d0001b15d41:
+    #   friendly_name: Blake Bedside Motion
     
-    binary_sensor.motion_sensor_158d0001e1845a:
-      friendly_name: Ali Bedside Motion
+    # binary_sensor.motion_sensor_158d0001e1845a:
+    #   friendly_name: Ali Bedside Motion
     
     binary_sensor.water_leak_sensor_158d0001d78a51:
       friendly_name: Kitchen Sink Water

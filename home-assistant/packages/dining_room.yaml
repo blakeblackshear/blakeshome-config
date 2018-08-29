@@ -1,0 +1,25 @@
+binary_sensor:
+  - platform: "mqtt"
+    name: Dining Room Shutter 1
+    state_topic: "zigbee/0x00158d0001b1b1a3"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "window"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "linkquality"
+  - platform: "mqtt"
+    name: Dining Room Shutter 2
+    state_topic: "zigbee/0x00158d0001b7812e"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "window"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "linkquality"

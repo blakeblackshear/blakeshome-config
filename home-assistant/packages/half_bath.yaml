@@ -10,6 +10,7 @@ binary_sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
 automation:
   - alias: Turn on half bath light with motion
