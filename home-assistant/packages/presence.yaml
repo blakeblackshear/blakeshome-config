@@ -133,3 +133,16 @@ automation:
         data_template:
           time: '{{ trigger.payload_json.datetime | timestamp_custom("%H:%M:%S", true) }}'
           date: '{{ trigger.payload_json.datetime | timestamp_custom("%Y-%m-%d", true) }}'
+
+  - alias: Notify if our location stops updating
+    trigger:
+      - platform: template
+        value_template: "{{ (as_timestamp(now())-states.input_datetime.blake_last_seen.attributes.timestamp) > 3600 }}"
+      - platform: template
+        value_template: "{{ (as_timestamp(now())-states.input_datetime.ali_last_seen.attributes.timestamp) > 3600 }}"
+    action:
+      service: notify.html5_blake_phone
+      data:
+        message: "Uh oh. I haven't gotten a location update in over an hour."
+    
+

@@ -1,3 +1,11 @@
+light:
+  - platform: group
+    name:  All Master Bath Lights
+    entities:
+      - light.master_bath_lights
+      - light.master_closet_lights
+      - light.master_shower_light
+
 sensor:
   - platform: "mqtt"
     name: Master Bath Temperature

@@ -24,3 +24,45 @@ automation:
       service: vacuum.turn_on
       data:
         entity_id: vacuum.xiaomi_vacuum_cleaner
+
+  - alias: Ask about running the vacuum if we are gone on the weekend
+    trigger:
+      - platform: state
+        entity_id: group.people
+        to: 'not_home'
+        for:
+          minutes: 7
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          state: 'off'
+        - condition: time
+          weekday:
+            - sat
+            - sun
+    action:
+      service: notify.html5_blake_phone
+      #target: ['specific device to notify']
+      data:
+        message: "Should I vacuum while you are gone?"
+        data:
+          actions:
+            - action: 'run_vacuum'
+              title: 'Yes'
+
+  - alias: Run vacuum action clicked
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: run_vacuum
+    condition:
+      - condition: state
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        state: 'off'
+    action:
+      service: vacuum.turn_on
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner

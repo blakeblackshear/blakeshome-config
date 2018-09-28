@@ -1,0 +1,13 @@
+binary_sensor:
+  - platform: "mqtt"
+    name: Kitchen Sink Water Leak Detector
+    state_topic: "zigbee/0x00158d0001d78a51"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.water_leak }}"
+    device_class: "moisture"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "linkquality"

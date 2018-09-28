@@ -86,28 +86,6 @@ light:
     payload_off: 0
     on_command_type: 'brightness'
   - platform: mqtt
-    name: Living Room Front Lamp
-    state_topic: zwave/downstairs/ZWayVDev_zway_30-0-38/status
-    state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zwave/downstairs/ZWayVDev_zway_30-0-38/set
-    brightness_state_topic: zwave/downstairs/ZWayVDev_zway_30-0-38/status
-    brightness_command_topic: zwave/downstairs/ZWayVDev_zway_30-0-38/set
-    brightness_scale: 99
-    payload_on: 255
-    payload_off: 0
-    on_command_type: 'brightness'
-  - platform: mqtt
-    name: Living Room Back Lamp
-    state_topic: zwave/downstairs/ZWayVDev_zway_31-0-38/status
-    state_value_template: '{{"0" if value == "0" else "255"}}'
-    command_topic: zwave/downstairs/ZWayVDev_zway_31-0-38/set
-    brightness_state_topic: zwave/downstairs/ZWayVDev_zway_31-0-38/status
-    brightness_command_topic: zwave/downstairs/ZWayVDev_zway_31-0-38/set
-    brightness_scale: 99
-    payload_on: 255
-    payload_off: 0
-    on_command_type: 'brightness'
-  - platform: mqtt
     name: Living Room Chandelier Light
     state_topic: zwave/downstairs/ZWayVDev_zway_12-0-38/status
     state_value_template: '{{"0" if value == "0" else "255"}}'

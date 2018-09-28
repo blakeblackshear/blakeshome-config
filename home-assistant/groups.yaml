@@ -58,7 +58,7 @@ kitchen:
     - light.over_cabinet
     - light.pantry_light
     - media_player.kitchen_home
-    - binary_sensor.water_leak_sensor_158d0001d78a51
+    - binary_sensor.kitchen_sink_water_leak_detector
 
 living_room:
   name: Living Room
@@ -111,6 +111,7 @@ master:
   control: hidden
   entities:
     - binary_sensor.master_occupancy
+    - light.master_lamps
     - light.master_blake_lamp
     - binary_sensor.blake_bedside_motion
     - light.master_ali_lamp
@@ -128,9 +129,9 @@ master_bath:
     - sensor.master_bath_temperature
     - sensor.master_bath_humidity
     - binary_sensor.master_closet_motion
+    - light.all_master_bath_lights
     - light.master_bath_lights
     - light.master_closet_lights
-    - timer.master_closet_lights
     - light.master_shower_light
 
 jakes_room:

@@ -1,30 +1,6 @@
 sensor:
   - platform: template
     sensors:
-      blake_bedside_button_battery:
-        friendly_name: "Blake's Bedside Button Battery"
-        unit_of_measurement: '%'
-        value_template: "{{ states.binary_sensor.switch_158d00019de5ec.attributes.battery_level|default(-1)|int }}"
-        icon_template: '{% if states.binary_sensor.switch_158d00019de5ec.attributes.battery_level == 100 %}
-                           mdi:battery
-                        {% elif states.binary_sensor.switch_158d00019de5ec.attributes.battery_level < 10 %}
-                           battery-outline
-                        {% else %}
-                          mdi:battery-{{(states.binary_sensor.switch_158d00019de5ec.attributes.battery_level/10)|int*10}}
-                        {% endif %}'
-
-      ali_bedside_button_battery:
-        friendly_name: "Ali's Bedside Button Battery"
-        unit_of_measurement: '%'
-        value_template: "{{ states.binary_sensor.switch_158d00016d7770.attributes.battery_level|default(-1)|int }}"
-        icon_template: '{% if states.binary_sensor.switch_158d00016d7770.attributes.battery_level == 100 %}
-                           mdi:battery
-                        {% elif states.binary_sensor.switch_158d00016d7770.attributes.battery_level < 10 %}
-                           battery-outline
-                        {% else %}
-                          mdi:battery-{{(states.binary_sensor.switch_158d00016d7770.attributes.battery_level/10)|int*10}}
-                        {% endif %}'
-
       crawl_space_temperature_battery:
         friendly_name: "Crawl Space Temperature Battery"
         unit_of_measurement: '%'
@@ -35,17 +11,5 @@ sensor:
                            battery-outline
                         {% else %}
                           mdi:battery-{{(states.sensor.temperature_158d0001c163e1.attributes.battery_level/10)|int*10}}
-                        {% endif %}'
-
-      kitchen_sink_water_leak_battery:
-        friendly_name: "Kitchen Sink Water Leak Battery"
-        unit_of_measurement: '%'
-        value_template: "{{ states.binary_sensor.water_leak_sensor_158d0001d78a51.attributes.battery_level|default(-1)|int }}"
-        icon_template: '{% if states.binary_sensor.water_leak_sensor_158d0001d78a51.attributes.battery_level == 100 %}
-                           mdi:battery
-                        {% elif states.binary_sensor.water_leak_sensor_158d0001d78a51.attributes.battery_level < 10 %}
-                           battery-outline
-                        {% else %}
-                          mdi:battery-{{(states.binary_sensor.water_leak_sensor_158d0001d78a51.attributes.battery_level/10)|int*10}}
                         {% endif %}'
         
