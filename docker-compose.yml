@@ -152,7 +152,7 @@ services:
       -hide_banner -y
       -rtsp_transport tcp -stimeout 5000000 -xerror -use_wallclock_as_timestamps 1 -r 25
       -fflags +genpts -avoid_negative_ts make_zero
-      -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/cam/realmonitor?channel=1&subtype=1"
+      -i "rtsp://viewer:${CAMERA_PASS}@10.0.10.10:554/cam/realmonitor?channel=1&subtype=1"
       -f lavfi -i anullsrc=channel_layout=mono:sample_rate=16000 
       -map 0:0 -map 1:0 -c:v copy -c:a aac -shortest
       -hls_list_size 5 -hls_init_time 1 -hls_time 1 -hls_flags delete_segments+append_list+discont_start+omit_endlist
@@ -168,7 +168,7 @@ services:
       -hide_banner -y
       -rtsp_transport tcp -stimeout 5000000 -xerror -use_wallclock_as_timestamps 1 -r 25
       -fflags +genpts -avoid_negative_ts make_zero
-      -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/cam/realmonitor?channel=1&subtype=2"
+      -i "rtsp://viewer:${CAMERA_PASS}@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2"
       -f lavfi -i anullsrc=channel_layout=mono:sample_rate=16000 
       -map 0:0 -map 1:0 -c:v copy -c:a aac -shortest
       -hls_list_size 5 -hls_init_time 1 -hls_time 1 -hls_flags delete_segments+append_list+discont_start+omit_endlist
@@ -184,7 +184,7 @@ services:
       -hide_banner -y
       -rtsp_transport tcp -stimeout 5000000 -xerror -use_wallclock_as_timestamps 1 -r 25
       -fflags +genpts -avoid_negative_ts make_zero
-      -i "rtsp://viewer:${CAMERA_PASS}@192.168.2.66:554/live"
+      -i "rtsp://viewer:${CAMERA_PASS}@10.0.10.10:554/live"
       -f lavfi -i anullsrc=channel_layout=mono:sample_rate=16000
       -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1
       -strftime 1 -c copy -an -map 0 /nvr/back-%Y%m%d%H%M%S.mp4
