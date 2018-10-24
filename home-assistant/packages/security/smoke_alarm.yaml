@@ -1,0 +1,21 @@
+switch:
+  - name: Smoke Alarm
+    platform: mqtt
+    command_topic: "taproot/smoke/set"
+    state_topic: "taproot/smoke/status"
+    payload_on: "ON"
+    payload_off: "OFF"
+    availability_topic: "taproot/smoke/available"
+    icon: "mdi:alarm-bell"
+
+binary_sensor:
+  - name: Smoke Detector
+    platform: mqtt
+    state_topic: "taproot/smoke/status"
+    device_class: "smoke"
+    availability_topic: "taproot/smoke/available"
+  - name: CO Detector
+    platform: mqtt
+    state_topic: "taproot/co/status"
+    device_class: "gas"
+    availability_topic: "taproot/smoke/available"
