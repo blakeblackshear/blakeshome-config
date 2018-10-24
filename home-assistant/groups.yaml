@@ -59,6 +59,9 @@ kitchen:
     - light.pantry_light
     - media_player.kitchen_home
     - binary_sensor.kitchen_sink_water_leak_detector
+    - sensor.kitchen_temperature
+    - sensor.kitchen_humidity
+    - sensor.kitchen_pressure
 
 living_room:
   name: Living Room
@@ -71,6 +74,7 @@ living_room:
     - light.living_room_chandelier_light
     - light.living_room_front_lamp
     - light.living_room_recessed_lights
+    - switch.fireplace
     - remote.living_room
     - switch.downstairs_tv
     - switch.downstairs_shield
@@ -97,6 +101,7 @@ upstairs:
     - group.master
     - group.master_bath
     - group.jakes_room
+    - group.lukes_room
     - group.hall
     - group.guest_room
 
@@ -140,6 +145,14 @@ jakes_room:
   entities:
     - sensor.kids_room_temperature
     - binary_sensor.kids_room_occupancy
+
+lukes_room:
+  name: Luke's Room
+  control: hidden
+  entities:
+    - sensor.lukes_room_temperature
+    - sensor.lukes_room_humidity
+    - sensor.lukes_room_pressure
 
 guest_room:
   name: Guest Room
@@ -201,8 +214,9 @@ crawl_space:
   name: Crawl Space
   control: hidden
   entities:
-    - sensor.temperature_158d0001c163e1
-    - sensor.humidity_158d0001c163e1
+    - sensor.crawl_space_temperature
+    - sensor.crawl_space_humidity
+    - sensor.crawl_space_pressure
     - sensor.dehumidifier_current
     - sensor.dehumidifier_energy
     - sensor.dehumidifier_power
@@ -230,6 +244,9 @@ media_room:
     - sensor.media_humidity
     - sensor.media_temperature
     - climate.media
+    - sensor.media_room_temperature
+    - sensor.media_room_humidity
+    - sensor.media_room_pressure
 
 security:
   name: Security
@@ -267,20 +284,71 @@ security:
     - group.garage_doors
     - input_boolean.baby_monitor
     - binary_sensor.boys_doors_motion
-
+    - switch.smoke_alarm
+    - binary_sensor.smoke_detector
+    - binary_sensor.co_detector
 
 system:
   name: System
   view: yes
   entities:
     - group.batteries
+    - group.pressures
+    - group.temperatures
+    - group.humidity
+    - group.water_leak_detectors
+
+water_leak_detectors:
+  name: Water Leak Detectors
+  entities:
+    - binary_sensor.kitchen_sink_water_leak_detector
+    - binary_sensor.clothes_washer_leak_detector
+    - binary_sensor.guest_bath_leak_detector
+    - binary_sensor.main_hvac_pan_water_detector
+
+pressures:
+  name: Pressures
+  entities:
+    - sensor.outside_pressure
+    - sensor.crawl_space_pressure
+    - sensor.kitchen_pressure
+    - sensor.lukes_room_pressure
+    - sensor.media_room_pressure
+
+temperatures:
+  name: Temperatures
+  entities:
+    - sensor.outside_temperature
+    - sensor.crawl_space_temperature
+    - sensor.kitchen_temperature
+    - sensor.downstairs_temperature
+    - sensor.lukes_room_temperature
+    - sensor.kids_room_temperature
+    - sensor.upstairs_temperature
+    - sensor.master_temperature
+    - sensor.master_bath_temperature
+    - sensor.guest_room_temperature
+    - sensor.media_room_temperature
+    - sensor.media_temperature
+
+humidity:
+  name: Humidity
+  entities:
+    - sensor.outside_humidity
+    - sensor.crawl_space_humidity
+    - sensor.kitchen_humidity
+    - sensor.downstairs_humidity
+    - sensor.lukes_room_humidity
+    - sensor.upstairs_humidity
+    - sensor.master_bath_humidity
+    - sensor.guest_room_humidity
+    - sensor.media_room_humidity
+    - sensor.media_humidity
 
 batteries:
   name: Batteries
   entities:
-    - sensor.crawl_space_temperature_battery
     - sensor.back_door_lock_battery
     - sensor.front_door_lock_battery
     - sensor.back_door_sensor_battery
     - sensor.front_door_sensor_battery
-    - sensor.kitchen_sink_water_leak_battery

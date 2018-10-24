@@ -7,7 +7,43 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.water_leak }}"
     device_class: "moisture"
-    json_attributes: 
+    json_attributes:
+      - "battery"
+      - "voltage"
+      - "linkquality"
+  - platform: "mqtt"
+    name: Clothes Washer Leak Detector
+    state_topic: "zigbee/0x00158d00023738fc"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.water_leak }}"
+    device_class: "moisture"
+    json_attributes:
+      - "battery"
+      - "voltage"
+      - "linkquality"
+  - platform: "mqtt"
+    name: Guest Bath Leak Detector
+    state_topic: "zigbee/0x00158d0002379bac"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.water_leak }}"
+    device_class: "moisture"
+    json_attributes:
+      - "battery"
+      - "voltage"
+      - "linkquality"
+  - platform: "mqtt"
+    name: Main HVAC Pan Water Detector
+    state_topic: "zigbee/0x00158d000237390f"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.water_leak }}"
+    device_class: "moisture"
+    json_attributes:
       - "battery"
       - "voltage"
       - "linkquality"

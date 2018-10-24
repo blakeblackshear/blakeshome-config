@@ -1,7 +1,7 @@
 sensor:
   - platform: "mqtt"
-    name: Outside Temperature
-    state_topic: "zigbee/0x00158d0001ab4496"
+    name: Kitchen Temperature
+    state_topic: "zigbee/0x00158d0002323855"
     availability_topic: "zigbee/bridge/state"
     unit_of_measurement: "°F"
     icon: "mdi:thermometer"
@@ -11,8 +11,8 @@ sensor:
       - "voltage"
       - "linkquality"
   - platform: "mqtt"
-    name: Outside Humidity
-    state_topic: "zigbee/0x00158d0001ab4496"
+    name: Kitchen Humidity
+    state_topic: "zigbee/0x00158d0002323855"
     availability_topic: "zigbee/bridge/state"
     unit_of_measurement: "%"
     icon: "mdi:water-percent"
@@ -22,8 +22,8 @@ sensor:
       - "voltage"
       - "linkquality"
   - platform: "mqtt"
-    name: Outside Pressure
-    state_topic: "zigbee/0x00158d0001ab4496"
+    name: Kitchen Pressure
+    state_topic: "zigbee/0x00158d0002323855"
     availability_topic: "zigbee/bridge/state"
     unit_of_measurement: "Pa"
     icon: "mdi:gauge"

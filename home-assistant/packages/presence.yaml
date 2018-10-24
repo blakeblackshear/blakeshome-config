@@ -136,9 +136,12 @@ automation:
 
   - alias: Notify if our location stops updating
     trigger:
-      - platform: template
+      - platform: time
+        minutes: '/15'
+    condition:
+      - condition: template
         value_template: "{{ (as_timestamp(now())-states.input_datetime.blake_last_seen.attributes.timestamp) > 3600 }}"
-      - platform: template
+      - condition: template
         value_template: "{{ (as_timestamp(now())-states.input_datetime.ali_last_seen.attributes.timestamp) > 3600 }}"
     action:
       service: notify.html5_blake_phone
