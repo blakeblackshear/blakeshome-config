@@ -1,0 +1,7 @@
+switch:
+  - name: Fireplace
+    platform: mqtt
+    command_topic: "taproot/fireplace/set"
+    state_topic: "taproot/fireplace/status"
+    availability_topic: "taproot/fireplace/available"
+    icon: "mdi:fire"
