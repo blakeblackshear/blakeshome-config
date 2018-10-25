@@ -2,13 +2,11 @@
 binary_sensor:
   - platform: mqtt
     name: "Back Door"
-    state_topic: "zwave/downstairs/ZWayVDev_zway_Remote_46-0-0-B/status"
-    payload_on: "on"
-    payload_off: "off"
+    state_topic: "homeassistant_hub/binary_sensor/unknown_node_46_sensor/state"
+    availability_topic: homeassistant_hub/status
     device_class: door
   - platform: mqtt
     name: "Front Door"
-    state_topic: "zwave/downstairs/ZWayVDev_zway_Remote_45-0-0-B/status"
-    payload_on: "on"
-    payload_off: "off"
+    state_topic: "homeassistant_hub/binary_sensor/unknown_node_45_sensor/state"
+    availability_topic: homeassistant_hub/status
     device_class: door

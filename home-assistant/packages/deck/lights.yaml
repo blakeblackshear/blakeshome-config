@@ -2,7 +2,7 @@ automation:
   - alias: Turn off string lights when back button 3 turns off
     trigger:
       - platform: state
-        entity_id: switch.back_panel_button_3
+        entity_id: switch.back_panel_led_3
         from: 'on'
         to: 'off'
     action:
@@ -12,10 +12,13 @@ automation:
 
   - alias: Turn on string lights when back button 3 turns on
     trigger:
-      - platform: state
-        entity_id: switch.back_panel_button_3
-        from: 'off'
-        to: 'on'
+      platform: mqtt
+      topic: homeassistant_hub/events
+    condition:
+      - condition: template
+        value_template: "{{ trigger.payload_json.entity_id=='zwave.back_panel' }}"
+      - condition: template
+        value_template: "{{ trigger.payload_json.scene_id==3 }}"
     action:
       - service: light.turn_on
         entity_id:
@@ -32,7 +35,7 @@ automation:
     action:
       - service: switch.turn_off
         entity_id:
-          - switch.back_panel_button_3
+          - switch.back_panel_led_3
 
   - alias: Turn on back button 3 when lights turn on
     trigger:
@@ -43,4 +46,4 @@ automation:
     action:
       - service: switch.turn_on
         entity_id:
-          - switch.back_panel_button_3
+          - switch.back_panel_led_3

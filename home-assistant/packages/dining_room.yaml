@@ -1,3 +1,11 @@
+light:
+  - platform: "mqtt_json"
+    name: Dining Room Lights
+    state_topic: "homeassistant_hub/light/dining_room/state"
+    availability_topic: "homeassistant_hub/status"
+    brightness: true
+    command_topic: "homeassistant_hub/light/dining_room/set"
+
 binary_sensor:
   - platform: "mqtt"
     name: Dining Room Shutter 1

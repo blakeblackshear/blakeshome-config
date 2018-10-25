@@ -1,18 +1,12 @@
 lock:
   - platform: mqtt
     name: Back Door Lock
-    state_topic: "zwave/downstairs/ZWayVDev_zway_57-0-98/status"
-    command_topic: "zwave/downstairs/ZWayVDev_zway_57-0-98/set"
-    payload_lock: "close"
-    payload_unlock: "open"
-    qos: 1
+    state_topic: "homeassistant_hub/lock/back_door/state"
+    command_topic: "homeassistant_hub/lock/back_door/set"
   - platform: mqtt
     name: Front Door Lock
-    state_topic: "zwave/downstairs/ZWayVDev_zway_50-0-98/status"
-    command_topic: "zwave/downstairs/ZWayVDev_zway_50-0-98/set"
-    payload_lock: "close"
-    payload_unlock: "open"
-    qos: 1
+    state_topic: "homeassistant_hub/lock/front_door/state"
+    command_topic: "homeassistant_hub/lock/front_door/set"
 
 automation:
   - alias: Unlock back door when someone arrives
