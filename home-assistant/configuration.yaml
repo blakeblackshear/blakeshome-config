@@ -59,8 +59,16 @@ tts:
 # MQTT
 mqtt:
   broker: mqtt.blakeshome.com
-  discovery: true
-  discovery_prefix: homeassistant
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+    retain: true
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
+    retain: true
+  # discovery: true
+  # discovery_prefix: homeassistant
 
 map:
 
