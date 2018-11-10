@@ -1,12 +1,8 @@
 
 binary_sensor:
   - platform: mqtt
-    name: "Back Door"
-    state_topic: "homeassistant_hub/binary_sensor/unknown_node_46_sensor/state"
-    availability_topic: homeassistant_hub/status
-    device_class: door
-  - platform: mqtt
     name: "Front Door"
-    state_topic: "homeassistant_hub/binary_sensor/unknown_node_45_sensor/state"
+    state_topic: "homeassistant_hub/binary_sensor/front_door/state"
     availability_topic: homeassistant_hub/status
     device_class: door
+    value_template: '{{ value_json.state }}'

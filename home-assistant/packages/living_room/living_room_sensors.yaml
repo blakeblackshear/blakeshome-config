@@ -12,6 +12,18 @@ binary_sensor:
       - "voltage"
       - "linkquality"
   - platform: "mqtt"
+    name: Back Door
+    state_topic: "zigbee/0x00158d0001bf484f"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "door"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "linkquality"
+  - platform: "mqtt"
     name: Living Room Shutter 1
     state_topic: "zigbee/0x00158d0001b1b801"
     availability_topic: "zigbee/bridge/state"
