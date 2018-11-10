@@ -79,12 +79,6 @@ vacuum:
     host: 192.168.2.36
     token: !secret xiaomi_vacuum_token
 
-xiaomi_aqara:
-  discovery_retry: 5
-  gateways:
-    - mac: 286c07fa2266
-      key: !secret xiaomi_key_286c07fa2266
-
 cover:
   - platform: mqtt
     name: "Blake's Garage Door"
