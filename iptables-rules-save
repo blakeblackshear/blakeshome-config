@@ -24,6 +24,9 @@
 # Unifi controller
 -A INPUT -p tcp -m tcp --dport 8080 -j ACCEPT
 
+# Emulated hue
+-A INPUT -p tcp -m tcp --dport 8300 -j ACCEPT
+
 # Pihole
 -A INPUT -p tcp --dport 80 -j ACCEPT
 -A INPUT -p tcp --dport 53 -j ACCEPT
