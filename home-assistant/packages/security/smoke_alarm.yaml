@@ -1,8 +1,8 @@
 switch:
   - name: Smoke Alarm
     platform: mqtt
-    command_topic: "taproot/smoke/set"
-    state_topic: "taproot/smoke/status"
+    command_topic: "taproot/alarm/set"
+    state_topic: "taproot/alarm/status"
     payload_on: "ON"
     payload_off: "OFF"
     availability_topic: "taproot/smoke/available"
