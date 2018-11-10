@@ -72,6 +72,8 @@ mqtt:
 
 map:
 
+emulated_hue:
+
 vacuum:
   - platform: xiaomi_miio
     host: 192.168.2.36
