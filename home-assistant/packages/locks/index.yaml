@@ -3,10 +3,20 @@ lock:
     name: Back Door Lock
     state_topic: "homeassistant_hub/lock/back_door/state"
     command_topic: "homeassistant_hub/lock/back_door/set"
+    value_template: '{{ value_json.state }}'
+    json_attributes:
+      - 'notification'
+      - 'lock_status'
+      - 'battery_level'
   - platform: mqtt
     name: Front Door Lock
     state_topic: "homeassistant_hub/lock/front_door/state"
     command_topic: "homeassistant_hub/lock/front_door/set"
+    value_template: '{{ value_json.state }}'
+    json_attributes:
+      - 'notification'
+      - 'lock_status'
+      - 'battery_level'
 
 automation:
   - alias: Unlock back door when someone arrives
