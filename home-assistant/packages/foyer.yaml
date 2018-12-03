@@ -1,0 +1,13 @@
+binary_sensor:
+  - platform: "mqtt"
+    name: Front Door
+    state_topic: "zigbee/0x00158d0002b7de52"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "door"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "linkquality"

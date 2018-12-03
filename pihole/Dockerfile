@@ -1,4 +1,4 @@
-FROM diginc/pi-hole:latest
+FROM pihole/pihole:latest
 
 # install mosquitto clients to allow dhcp leases to be
 # published to mqtt

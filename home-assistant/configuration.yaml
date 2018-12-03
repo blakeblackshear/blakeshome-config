@@ -49,6 +49,10 @@ history:
 # View all events in a logbook
 logbook:
 
+recorder:
+  db_url: !secret postgres_url
+
+
 # Track the sun
 sun:
 

@@ -1,0 +1,8 @@
+camera:
+  - name: Weather Radar
+    platform: generic
+    still_image_url: "https://radar.nashvillesevereweather.com/mosaic/nashville25_anim.gif?{{states('sensor.time_utc')}}" 
+    limit_refetch_to_url_change: True
+    content_type: image/gif
+
+

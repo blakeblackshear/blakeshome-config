@@ -18,36 +18,6 @@ automation:
         entity_id: binary_sensor.living_room_shutter_1
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d0001dcc9bd
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d0001ab59ab
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d0001ab67c2
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d0001b71164
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d0001b1b8be
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d0001dcba28
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d0001dcba76
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d0001b780f8
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d0001b7812e
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d0001b1b1a3
-        to: 'on'
-      - platform: state
         entity_id: binary_sensor.laundry_room_motion
         to: 'on'
       - platform: state
@@ -55,12 +25,6 @@ automation:
         to: 'on'
       - platform: state
         entity_id: binary_sensor.master_closet_motion
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.motion_sensor_158d0001b15d41
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.motion_sensor_158d0001e1845a
         to: 'on'
       - platform: state
         entity_id: binary_sensor.half_bath_motion

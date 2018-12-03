@@ -40,3 +40,17 @@ sensor:
     state_topic: "tele/sonoff-3491/SENSOR"
     value_template: '{{ value_json["ENERGY"]["Current"] }}'
     unit_of_measurement: "A"
+
+switch:
+  - platform: mqtt
+    name: "Christmas Tree"
+    state_topic: "stat/7D1FF0/RESULT"
+    value_template: "{{ value_json.POWER }}"
+    command_topic: "cmnd/7D1FF0/POWER"
+    availability_topic: "tele/7D1FF0/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false

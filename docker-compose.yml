@@ -74,7 +74,7 @@ services:
   #   network_mode: host
   homeassistant:
     container_name: hass
-    image: homeassistant/home-assistant:0.73.2
+    image: homeassistant/home-assistant:0.83.2
     volumes:
       - /srv/blakeshome/home-assistant:/config
     network_mode: host
@@ -231,6 +231,16 @@ services:
     network_mode: host
     volumes:
       - movies:/movies
+  db:
+    container_name: postgres
+    image: postgres:alpine
+    restart: unless-stopped
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+    ports:
+      - "127.0.0.1:5432:5432"
 
 volumes:
   mosquitto_data:
@@ -239,6 +249,7 @@ volumes:
   pihole:
   ssl_certs:
   portainer:
+  postgres:
   camera_stream:
   camera_nvr:
     driver: local

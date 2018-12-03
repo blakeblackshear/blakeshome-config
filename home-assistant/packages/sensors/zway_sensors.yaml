@@ -1,8 +1,0 @@
-
-binary_sensor:
-  - platform: mqtt
-    name: "Front Door"
-    state_topic: "homeassistant_hub/binary_sensor/front_door/state"
-    availability_topic: homeassistant_hub/status
-    device_class: door
-    value_template: '{{ value_json.state }}'

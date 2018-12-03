@@ -1,8 +1,7 @@
-# can't limit fetching to once per minute
-# camera:
-#   - name: Backyard Camera
-#     platform: generic
-#     still_image_url: https://cameras.blakeshome.com/nvr/back.jpg
+camera:
+  - name: Backyard Camera
+    platform: generic
+    still_image_url: https://cameras.blakeshome.com/nvr/back.jpg
 
 binary_sensor:
   - name: Backyard Camera Motion
