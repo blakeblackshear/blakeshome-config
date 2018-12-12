@@ -18,7 +18,7 @@ automation:
         - condition: template
           value_template: "{{ not is_state('device_tracker.blake_phone_mqtt', 'home') }}"
     action:
-      service: vacuum.turn_on
+      service: vacuum.start
       data:
         entity_id: vacuum.xiaomi_vacuum_cleaner
 
@@ -36,7 +36,7 @@ automation:
           - wed
           - fri
     action:
-      service: vacuum.turn_on
+      service: vacuum.start
       data:
         entity_id: vacuum.xiaomi_vacuum_cleaner
 
@@ -78,6 +78,6 @@ automation:
         entity_id: vacuum.xiaomi_vacuum_cleaner
         state: 'off'
     action:
-      service: vacuum.turn_on
+      service: vacuum.start
       data:
         entity_id: vacuum.xiaomi_vacuum_cleaner
