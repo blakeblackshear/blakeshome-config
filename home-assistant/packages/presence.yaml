@@ -49,6 +49,15 @@ device_tracker:
     devices:
       blake_phone_mqtt: location/blake_blackshear
       ali_phone_mqtt: location/ali_blackshear
+  - platform: unifi
+    host: !secret unifi_host
+    port: 443
+    username: homeassistant
+    password: !secret unifi_password
+    ssid_filter:
+      - 'blakeshome'
+    new_device_defaults:
+      track_new_devices: false
 
 group:
   people:
@@ -56,6 +65,26 @@ group:
     entities:
       - device_tracker.ali_phone_mqtt
       - device_tracker.blake_phone_mqtt
+  devices:
+    name: Devices
+    entities:
+      - device_tracker.blake_phone
+      - device_tracker.ali_phone
+  guests:
+    name: Guests
+    entities:
+      - device_tracker.faye_phone
+      - device_tracker.murray_phone
+      - device_tracker.nick_phone
+      - device_tracker.brittney_phone
+      - device_tracker.bayley_phone
+      - device_tracker.beau_phone
+      - device_tracker.bentley_phone
+  babysitters:
+    name: Babysitters
+    entities:
+      - device_tracker.grace_phone
+      - device_tracker.grace_watch
 
 input_datetime:
   blake_last_seen:
@@ -71,12 +100,12 @@ automation:
   - alias: Simulate a home message when blake's phone gets a dhcp lease
     trigger:
       platform: mqtt
-      topic: network/dhcp/ac:37:43:a2:09:fa
+      topic: network/dhcp/3c:28:6d:2a:f0:f4
     action:
       - service: mqtt.publish
         data_template:
           topic: location/blake_blackshear
-          payload: '{"latitude": 35.916943, "longitude": -86.776212, "gps_accuracy": 10}'
+          payload: !secret blakeshome_payload
       - service: input_datetime.set_datetime
         entity_id: input_datetime.blake_last_seen
         data_template:
@@ -104,12 +133,12 @@ automation:
   - alias: Simulate a home message when ali's phone gets a dhcp lease
     trigger:
       platform: mqtt
-      topic: network/dhcp/dc:0b:34:b1:b6:ea
+      topic: network/dhcp/3c:28:6d:e3:ec:c4
     action:
       - service: mqtt.publish
         data_template:
           topic: location/ali_blackshear
-          payload: '{"latitude": 35.916943, "longitude": -86.776212, "gps_accuracy": 10}'
+          payload: !secret blakeshome_payload
       - service: input_datetime.set_datetime
         entity_id: input_datetime.ali_last_seen
         data_template:

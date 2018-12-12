@@ -11,3 +11,92 @@ ali_phone_mqtt:
   name: Ali
   picture: /local/ali.png
   track: true
+
+murray_phone:
+  hide_if_away: false
+  icon:
+  mac: 40:4E:36:20:B0:46
+  name: Murray
+  picture:
+  track: true
+
+nick_phone:
+  hide_if_away: false
+  icon:
+  mac: 5C:F7:E6:BD:C3:34
+  name: Nick
+  picture:
+  track: true
+
+faye_phone:
+  hide_if_away: false
+  icon:
+  mac: 7C:50:49:2E:86:9D
+  name: Faye
+  picture:
+  track: true
+
+blake_phone:
+  hide_if_away: false
+  icon:
+  mac: 3C:28:6D:2A:F0:F4
+  name: Blake
+  picture:
+  track: true
+
+ali_phone:
+  hide_if_away: false
+  icon:
+  mac: 3C:28:6D:E3:EC:C4
+  name: Ali
+  picture:
+  track: true
+
+bayley_phone:
+  hide_if_away: false
+  icon:
+  mac: D4:61:9D:4B:A6:88
+  name: Bayley
+  picture:
+  track: true
+
+brittney_phone:
+  hide_if_away: false
+  icon:
+  mac: A4:E9:75:49:82:06
+  name: Brittney
+  picture:
+  track: true
+
+beau_phone:
+  hide_if_away: false
+  icon:
+  mac: D0:13:FD:63:D4:74
+  name: Beau
+  picture:
+  track: true
+
+bentley_phone:
+  hide_if_away: false
+  icon:
+  mac: AC:37:43:A7:DD:76
+  name: Bentley
+  picture:
+  track: true
+
+grace_phone:
+  hide_if_away: false
+  icon:
+  mac: B4:9C:DF:52:47:57
+  name: Grace Phone
+  picture:
+  track: true
+
+grace_watch:
+  hide_if_away: false
+  icon:
+  mac: B8:41:A4:33:5F:FF
+  name: Grace Watch
+  picture:
+  track: true
+
