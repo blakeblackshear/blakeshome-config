@@ -49,6 +49,8 @@ device_tracker:
     devices:
       blake_phone_mqtt: location/blake_blackshear
       ali_phone_mqtt: location/ali_blackshear
+    new_device_defaults:
+      track_new_devices: false
   - platform: unifi
     host: !secret unifi_host
     port: 443
