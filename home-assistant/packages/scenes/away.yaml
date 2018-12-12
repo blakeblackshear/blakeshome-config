@@ -95,7 +95,7 @@ scene:
         brightness: 50
       light.hall_stairs_light:
         state: on
-        brightness: 50
+        brightness: 130
       light.foyer_front_light:
         state: on
         brightness: 50
@@ -108,9 +108,8 @@ automation:
         entity_id: group.people
         to: 'home'
     condition:
-      - condition: sun
-        after: sunrise
-        before: sunset
+      - condition: time
+        before: '22:00:00'
     action:
       - service: scene.turn_on
         data_template:
@@ -125,8 +124,8 @@ automation:
         conditions:
           - condition: sun
             before: sunrise
-          - condition: sun
-            after: sunset
+          - condition: time
+            after: '22:00:00'
     action:
       - service: scene.turn_on
         data_template:
@@ -139,9 +138,8 @@ automation:
       - platform: sun
         event: sunrise
     condition:
-      - condition: sun
-        after: sunrise
-        before: sunset
+      - condition: time
+        before: '22:00:00'
       - condition: state
         entity_id: group.people
         state: 'not_home'
@@ -161,8 +159,8 @@ automation:
         conditions:
           - condition: sun
             before: sunrise
-          - condition: sun
-            after: sunset
+          - condition: time
+            after: '22:00:00'
       - condition: state
         entity_id: group.people
         state: 'not_home'
