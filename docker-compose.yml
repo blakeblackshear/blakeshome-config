@@ -80,6 +80,18 @@ services:
     network_mode: host
     environment:
       TZ: "America/Chicago"
+  appdaemon:
+    container_name: appdaemon
+    restart: unless-stopped
+    image: acockburn/appdaemon:latest
+    volumes:
+      - ./appdaemon:/conf
+    network_mode: host
+    environment:
+      TZ: "America/Chicago"
+      HA_URL: "http://localhost:8123"
+      TOKEN: "${HA_TOKEN}"
+      DASH_URL: "http://127.0.0.1:5050"
   pihole:
     container_name: pihole
     restart: unless-stopped
