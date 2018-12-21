@@ -70,6 +70,57 @@ automation:
       data:
         message: "The alarm is going off!"
 
+  - alias: Disarm when the keypad unlocks the door
+    trigger:
+      - platform: state
+        entity_id: sensor.back_door_last_action
+        to: 'Keypad Unlock'
+      - platform: state
+        entity_id: sensor.front_door_last_action
+        to: 'Keypad Unlock'
+    action:
+      - service: notify.html5_blake_phone
+        data_template:
+          message: "{{ trigger.to_state.attributes.lock_status }}"
+      - service: alarm_control_panel.alarm_disarm
+        data:
+          entity_id: alarm_control_panel.home_alarm
+          code: !secret alarm_code
+
+  - alias: Notify me when the keypad locks the door
+    trigger:
+      - platform: state
+        entity_id: sensor.back_door_last_action
+        to: 'Keypad Lock'
+      - platform: state
+        entity_id: sensor.front_door_last_action
+        to: 'Keypad Lock'
+    action:
+      - service: notify.html5_blake_phone
+        data_template:
+          message: "{{ trigger.to_state.attributes.lock_status }}"
+      - condition: state
+        entity_id: group.people
+        state: 'not_home'
+      - service: alarm_control_panel.alarm_arm_away
+        data:
+          entity_id: alarm_control_panel.home_alarm
+          code: !secret alarm_code
+          
+  # Doesnt work because no state change is triggered for the lock...
+  # - alias: Notify me when a bad code is entered
+  #   trigger:
+  #     - platform: state
+  #       entity_id: sensor.back_door_last_action
+  #       to: 'Keypad Lock'
+  #     - platform: state
+  #       entity_id: sensor.front_door_last_action
+  #       to: 'Keypad Lock'
+  #   action:
+  #     - service: notify.html5_blake_phone
+  #       data_template:
+  #         message: "{{ trigger.to_state.attributes.lock_status }}"
+
   - alias: Disarm when we arrive
     trigger:
       - platform: state
