@@ -1,0 +1,28 @@
+# [x] just disarm the downstairs, motion sensors upstairs should still alert me
+# [ ] if no motion after period of time, rearm and ensure doors are locked. maybe play a TTS message 30 seconds in advance.
+# [ ] keypad unlock with usercode 3 should disarm
+# [ ] keypad lock should activate alarm again
+# [ ] keypad unlock should activate light scene, keypad lock should deactivate light scene
+
+
+input_boolean:
+  dog_sitter:
+    name: Dog Sitter Mode
+    initial: off
+    icon: mdi:dog-side
+
+automation:
+  - alias: 'Motion detected upstairs'
+    trigger:
+      - platform: state
+        entity_id: group.upstairs_motion_sensors
+        to: 'on'
+    condition:
+      condition: state
+      entity_id: input_boolean.dog_sitter
+      state: 'on'
+    action:
+      - service: notify.html5_blake_phone
+        data:
+          title: Dog Sitter Mode
+          message: Motion detected upstairs
