@@ -31,3 +31,28 @@ binary_sensor:
       - "battery"
       - "voltage"
       - "linkquality"
+  - platform: "mqtt"
+    name: Dining Motion
+    state_topic: "zigbee/0x00158d0002b95dca"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "linkquality"
+
+sensor:
+  - platform: "mqtt"
+    name: Dining Illuminance
+    state_topic: "zigbee/0x00158d0002b95dca"
+    availability_topic: "zigbee/bridge/state"
+    unit_of_measurement: "lx"
+    device_class: "illuminance"
+    value_template: "{{ value_json.illuminance }}"
+    json_attributes: 
+      - "linkquality"
+      - "battery"
+      - "voltage"

@@ -1,4 +1,29 @@
+binary_sensor:
+  - platform: "mqtt"
+    name: Kitchen Motion
+    state_topic: "zigbee/0x00158d0002b4233f"
+    availability_topic: "zigbee/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "linkquality"
+
 sensor:
+  - platform: "mqtt"
+    name: Kitchen Illuminance
+    state_topic: "zigbee/0x00158d0002b4233f"
+    availability_topic: "zigbee/bridge/state"
+    unit_of_measurement: "lx"
+    device_class: "illuminance"
+    value_template: "{{ value_json.illuminance }}"
+    json_attributes: 
+      - "linkquality"
+      - "battery"
+      - "voltage"
   - platform: "mqtt"
     name: Kitchen Temperature
     state_topic: "zigbee/0x00158d0002323855"
