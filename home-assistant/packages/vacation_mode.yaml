@@ -1,0 +1,115 @@
+light:  
+  - platform: group
+    name: Foyer Lights
+    entities:
+      - light.foyer_front_light
+      - light.foyer_back_light
+  - platform: group
+    name: Living Room Lights
+    entities:
+      - light.living_room_chandelier_light
+      - light.living_room_recessed_lights
+
+input_boolean:
+  vacation_mode:
+    name: Vacation Mode
+    initial: off
+    icon: mdi:airplane
+
+group:
+  random_away_lights:
+    entities:
+      - light.kitchen_lights
+      - light.foyer_lights
+      - light.playroom_lights
+      - light.living_room_lights
+      - light.master_lamps
+
+automation:
+################################################################
+## Random lights on while sunset and vacation mode on
+################################################################
+  - alias: Random Vacation Lights
+    initial_state: True
+    hide_entity: False
+
+    trigger:
+      - platform: time
+        minutes: '/30'
+        seconds: 00
+
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'on'
+    
+    action:
+      - delay: "00:{{ '{:02}'.format(range(1, 29) | random | int) }}:00"
+
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'on'
+
+      - condition: time
+        before: "01:00:00"
+
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: armed_away
+
+      - service: homeassistant.toggle
+        data_template:
+          entity_id: "{{ state_attr('group.random_away_lights','entity_id') | random }}"
+  
+  ##########################################################
+  ## Random Lights Off
+  ##########################################################
+  - alias: Random Lights Off At 1AM
+    initial_state: True
+    hide_entity: False
+
+    trigger:
+      - platform: time
+        at: "01:00:00"
+    
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'on'
+
+    action:
+      - service: homeassistant.turn_off
+        entity_id: group.random_away_lights
+
+  ##########################################################
+  ## Random lights Off
+  ##########################################################
+  - alias: Random Lights Off
+    initial_state: True
+    hide_entity: False
+
+    trigger:
+      - platform: state
+        entity_id: input_boolean.vacation_mode
+        from: 'on'
+        to: 'off'
+
+    action:
+      - service: homeassistant.turn_off
+        entity_id: group.random_away_lights
+  
+  - alias: Turn on vacation mode if we are more than 50 miles away
+    trigger:
+      - platform: numeric_state
+        entity_id: proximity.blake_home
+        above: '50000'
+      - platform: numeric_state
+        entity_id: proximity.ali_home
+        above: '50000'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.vacation_mode
+      - service: notify.html5_blake_phone
+        data:
+          message: "Vacation mode enabled."
+    
