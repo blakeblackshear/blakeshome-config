@@ -12,6 +12,66 @@ binary_sensor:
       - "voltage"
       - "linkquality"
 
+light:
+  - platform: mqtt
+    name: Butlers Pantry Under Cabinet
+    state_topic: "tasmota/stat/4BD477/RESULT"
+    command_topic: "tasmota/cmnd/4BD477/POWER"
+    state_value_template: "{{ value_json.POWER }}"
+    brightness_state_topic: "tasmota/stat/4BD477/RESULT"
+    brightness_command_topic: "tasmota/cmnd/4BD477/Dimmer"
+    brightness_scale: 100
+    brightness_value_template: "{{ value_json.Dimmer }}"
+    white_value_state_topic: "tasmota/stat/4BD477/RESULT"
+    white_value_command_topic: "tasmota/cmnd/4BD477/Channel5"
+    white_value_scale: 100
+    white_value_template: "{{ value_json.Channel[4] }}"
+    rgb_command_topic: "tasmota/cmnd/4BD477/Color"
+    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+    rgb_state_topic: "tasmota/stat/4BD477/RESULT"
+    rgb_value_template: "{{(value_json.Channel[0]*2.55)|int}},{{(value_json.Channel[1]*2.55)|int}},{{(value_json.Channel[2]*2.55)|int}}"
+    effect_state_topic: "tasmota/stat/4BD477/RESULT"
+    effect_command_topic: "tasmota/cmnd/4BD477/Scheme"
+    effect_list:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+    retain: false
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+  - platform: mqtt
+    name: Butlers Pantry Over Cabinet
+    state_topic: "tasmota/stat/4BD4E3/RESULT"
+    command_topic: "tasmota/cmnd/4BD4E3/POWER"
+    state_value_template: "{{ value_json.POWER }}"
+    brightness_state_topic: "tasmota/stat/4BD4E3/RESULT"
+    brightness_command_topic: "tasmota/cmnd/4BD4E3/Dimmer"
+    brightness_scale: 100
+    brightness_value_template: "{{ value_json.Dimmer }}"
+    white_value_state_topic: "tasmota/stat/4BD4E3/RESULT"
+    white_value_command_topic: "tasmota/cmnd/4BD4E3/Channel5"
+    white_value_scale: 100
+    white_value_template: "{{ value_json.Channel[4] }}"
+    rgb_command_topic: "tasmota/cmnd/4BD4E3/Color"
+    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+    rgb_state_topic: "tasmota/stat/4BD4E3/RESULT"
+    rgb_value_template: "{{(value_json.Channel[0]*2.55)|int}},{{(value_json.Channel[1]*2.55)|int}},{{(value_json.Channel[2]*2.55)|int}}"
+    effect_state_topic: "tasmota/stat/4BD4E3/RESULT"
+    effect_command_topic: "tasmota/cmnd/4BD4E3/Scheme"
+    effect_list:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+    retain: false
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+
 automation:
   - alias: Turn on pantry light with motion
     trigger:
