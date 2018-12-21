@@ -98,18 +98,82 @@ automation:
       - service: homeassistant.turn_off
         entity_id: group.random_away_lights
   
-  - alias: Turn on vacation mode if we are more than 50 miles away
+  - alias: Turn on vacation mode if we are both more than 50 miles away
     trigger:
       - platform: numeric_state
         entity_id: proximity.blake_home
         above: '50000'
+        for:
+          minutes: 15
       - platform: numeric_state
         entity_id: proximity.ali_home
         above: '50000'
+        for:
+          minutes: 15
+    condition:
+      - condition: numeric_state
+        entity_id: proximity.blake_home
+        above: '50000'
+      - condition: numeric_state
+        entity_id: proximity.ali_home
+        above: '50000'
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
     action:
       - service: input_boolean.turn_on
         entity_id: input_boolean.vacation_mode
       - service: notify.html5_blake_phone
         data:
           message: "Vacation mode enabled."
+  
+  - alias: Turn off vacation mode if either of us is less than 50 miles away
+    trigger:
+      - platform: numeric_state
+        entity_id: proximity.blake_home
+        below: '50000'
+        for:
+          minutes: 15
+      - platform: numeric_state
+        entity_id: proximity.ali_home
+        below: '50000'
+        for:
+          minutes: 15
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.vacation_mode
+      - service: notify.html5_blake_phone
+        data:
+          message: "Vacation mode disabled."
     
+  - alias: Set the thermostats to vacation mode
+    trigger:
+      - platform: state
+        entity_id: input_boolean.vacation_mode
+        from: 'off'
+        to: 'on'
+    action:
+      - service: climate.set_away_mode
+        data:
+          away_mode: 'yes'
+          entity_id:
+            - climate.downstairs
+            - climate.upstairs
+    
+  - alias: Set the thermostats to normal mode
+    trigger:
+      - platform: state
+        entity_id: input_boolean.vacation_mode
+        from: 'on'
+        to: 'off'
+    action:
+      - service: climate.set_away_mode
+        data:
+          away_mode: 'no'
+          entity_id:
+            - climate.downstairs
+            - climate.upstairs
