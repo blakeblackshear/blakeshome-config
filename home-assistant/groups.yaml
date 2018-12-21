@@ -1,3 +1,12 @@
+default_view:
+  icon: mdi:home
+  view: yes
+  entities:
+    - group.people
+    - scene.lockup
+    - sensor.locked_up
+    - vacuum.xiaomi_vacuum_cleaner
+
 downstairs:
   name: Downstairs
   view: yes
@@ -15,6 +24,7 @@ foyer:
   entities:
     - binary_sensor.front_door
     - lock.front_door_lock
+    - sensor.front_door_last_action
     - light.foyer_back_light
     - light.foyer_front_light
 
@@ -43,6 +53,8 @@ dining_room:
     - light.dining_room_light
     - binary_sensor.dining_room_shutter_1
     - binary_sensor.dining_room_shutter_2
+    - binary_sensor.dining_motion
+    - sensor.dining_illuminance
 
 kitchen:
   name: Kitchen
@@ -56,18 +68,25 @@ kitchen:
     - light.kitchen_recessed_lights
     - light.under_cabinet
     - light.over_cabinet
+    - light.butlers_pantry_under_cabinet
+    - light.butlers_pantry_over_cabinet
+    - light.kitchen_under_cabinet
+    - light.kitchen_over_cabinet
     - light.pantry_light
     - media_player.kitchen_home
     - binary_sensor.kitchen_sink_water_leak_detector
     - sensor.kitchen_temperature
     - sensor.kitchen_humidity
     - sensor.kitchen_pressure
+    - binary_sensor.kitchen_motion
+    - sensor.kitchen_illuminance
 
 living_room:
   name: Living Room
   control: hidden
   entities:
     - lock.back_door_lock
+    - sensor.back_door_last_action
     - binary_sensor.back_door
     - binary_sensor.living_room_motion
     - light.living_room_back_lamp
@@ -250,13 +269,34 @@ media_room:
 
 security:
   name: Security
+  icon: mdi:security
   view: yes
   entities:
+    - camera.backyard_camera
     - alarm_control_panel.home_alarm
     - light.gateway_light_286c07fa2266
     - scene.lockup
     - sensor.locked_up
     - binary_sensor.backyard_camera_motion
+    - binary_sensor.playroom_motion
+    - lock.back_door_lock
+    - sensor.back_door_last_action
+    - lock.front_door_lock
+    - sensor.front_door_last_action
+    - group.garage_doors
+    - input_boolean.baby_monitor
+    - input_boolean.dog_sitter
+    - input_boolean.vacation_mode
+    - switch.smoke_alarm
+    - binary_sensor.smoke_detector
+    - binary_sensor.co_detector
+    - group.upstairs_motion_sensors
+    - group.downstairs_motion_sensors
+    - group.window_sensors
+
+window_sensors:
+  name: Window Sensors
+  entities:
     - binary_sensor.living_room_shutter_1
     - binary_sensor.living_room_shutter_2
     - binary_sensor.living_room_shutter_3
@@ -264,29 +304,41 @@ security:
     - binary_sensor.living_room_shutter_5
     - binary_sensor.living_room_shutter_6
     - binary_sensor.living_room_shutter_7
-    - binary_sensor.playroom_motion
     - binary_sensor.dining_room_shutter_1
     - binary_sensor.dining_room_shutter_2
     - binary_sensor.play_room_shutter_1
     - binary_sensor.play_room_shutter_2
+
+door_sensors:
+  name: Door Sensors
+  entities:
+    - binary_sensor.back_door
+    - binary_sensor.front_door
+
+upstairs_motion_sensors:
+  name: Upstairs Motion Sensors
+  entities:
     - binary_sensor.laundry_room_motion
     - binary_sensor.hall_motion
+    - binary_sensor.boys_doors_motion
     - binary_sensor.master_closet_motion
     - binary_sensor.blake_bedside_motion
     - binary_sensor.ali_bedside_motion
+
+downstairs_motion_sensors:
+  name: Downstairs Motion Sensors
+  entities:
     - binary_sensor.pantry_motion
-    - lock.back_door_lock
-    - binary_sensor.back_door
-    - binary_sensor.living_room_motion
-    - binary_sensor.front_door
-    - lock.front_door_lock
     - binary_sensor.half_bath_motion
-    - group.garage_doors
-    - input_boolean.baby_monitor
-    - binary_sensor.boys_doors_motion
-    - switch.smoke_alarm
-    - binary_sensor.smoke_detector
-    - binary_sensor.co_detector
+    - binary_sensor.dining_motion
+    - binary_sensor.kitchen_motion
+    - binary_sensor.living_room_motion
+
+weather:
+  name: Weather
+  view: yes
+  entities:
+    - camera.weather_radar
 
 system:
   name: System
