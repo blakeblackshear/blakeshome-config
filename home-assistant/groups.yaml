@@ -207,6 +207,7 @@ hall:
 outside:
   name: Outside
   view: yes
+  icon: mdi:white-balance-sunny
   entities:
     - binary_sensor.backyard_camera_motion
     - light.driveway_lights
@@ -254,6 +255,7 @@ garage_doors:
 media_room:
   name: Media Room
   control: hidden
+  icon: mdi:movie
   view: yes
   entities:
     - light.media_stairs_light
@@ -336,12 +338,14 @@ downstairs_motion_sensors:
 
 weather:
   name: Weather
+  icon: mdi:cloud
   view: yes
   entities:
     - camera.weather_radar
 
 system:
   name: System
+  icon: mdi:settings
   view: yes
   entities:
     - group.batteries
