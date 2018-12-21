@@ -100,9 +100,18 @@ group: !include groups.yaml
 script: !include scripts.yaml
 
 
+twilio:
+  account_sid: !secret twilio_account_sid
+  auth_token: !secret twilio_auth_token
 
 notify:
   - name: html5
     platform: html5
     gcm_api_key: !secret google_messaging_server_key
     gcm_sender_id: !secret google_messaging_sender_id
+  - name: blakeshome_call
+    platform: twilio_call
+    from_number: !secret twilio_phone_number
+  - name: blakeshome_sms
+    platform: twilio_sms
+    from_number: !secret twilio_phone_number
