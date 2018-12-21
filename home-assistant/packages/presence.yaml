@@ -15,7 +15,7 @@ zone:
   - name: Home
     latitude: !secret blakeshome_latitude
     longitude: !secret blakeshome_longitude
-    radius: 75
+    radius: 100
     icon: mdi:home
 
   - name: Blackshear House
@@ -108,6 +108,7 @@ automation:
         data_template:
           topic: location/blake_blackshear
           payload: !secret blakeshome_payload
+          retain: true
       - service: input_datetime.set_datetime
         entity_id: input_datetime.blake_last_seen
         data_template:
@@ -126,6 +127,7 @@ automation:
         data_template:
           topic: location/blake_blackshear
           payload: '{{ trigger.payload }}'
+          retain: true
       - service: input_datetime.set_datetime
         entity_id: input_datetime.blake_last_seen
         data_template:
@@ -141,6 +143,7 @@ automation:
         data_template:
           topic: location/ali_blackshear
           payload: !secret blakeshome_payload
+          retain: true
       - service: input_datetime.set_datetime
         entity_id: input_datetime.ali_last_seen
         data_template:
@@ -159,6 +162,7 @@ automation:
         data_template:
           topic: location/ali_blackshear
           payload: '{{ trigger.payload }}'
+          retain: true
       - service: input_datetime.set_datetime
         entity_id: input_datetime.ali_last_seen
         data_template:
