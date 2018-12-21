@@ -1,0 +1,24 @@
+input_boolean:
+  guest_mode:
+    name: Guest Mode
+    initial: off
+    icon: mdi:account-plus
+
+automation:
+  - alias: Turn on guest mode when guests are present
+    trigger:
+      - platform: state
+        entity_id: group.guests
+        to: 'home'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.guest_mode
+  - alias: Turn off guest mode when guests are not present
+    trigger:
+      - platform: state
+        entity_id: group.guests
+        to: 'not_home'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.guest_mode
+    

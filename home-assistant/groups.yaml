@@ -6,6 +6,7 @@ default_view:
     - scene.lockup
     - sensor.locked_up
     - vacuum.xiaomi_vacuum_cleaner
+    - input_boolean.guest_mode
 
 downstairs:
   name: Downstairs

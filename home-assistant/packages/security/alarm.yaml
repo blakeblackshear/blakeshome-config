@@ -140,6 +140,10 @@ automation:
       - platform: state
         entity_id: group.people
         to: 'not_home'
+    condition:
+      condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
     action:
       - service: alarm_control_panel.alarm_arm_away
         data:
@@ -154,14 +158,17 @@ automation:
         for:
           minutes: 5
     condition:
-      condition: or
-      conditions:
-        - condition: state
-          entity_id: lock.back_door_lock
-          state: 'unlocked'
-        - condition: state
-          entity_id: lock.front_door_lock
-          state: 'unlocked'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: lock.back_door_lock
+            state: 'unlocked'
+          - condition: state
+            entity_id: lock.front_door_lock
+            state: 'unlocked'
     action:
       - service: lock.lock
         entity_id: lock.back_door_lock
@@ -176,14 +183,17 @@ automation:
         for:
           minutes: 6
     condition:
-      condition: or
-      conditions:
-        - condition: state
-          entity_id: lock.back_door_lock
-          state: 'unlocked'
-        - condition: state
-          entity_id: lock.front_door_lock
-          state: 'unlocked'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: lock.back_door_lock
+            state: 'unlocked'
+          - condition: state
+            entity_id: lock.front_door_lock
+            state: 'unlocked'
     action:
       service: notify.html5_blake_phone
       data:

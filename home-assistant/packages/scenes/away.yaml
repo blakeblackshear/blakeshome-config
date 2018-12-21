@@ -110,6 +110,9 @@ automation:
     condition:
       - condition: time
         before: '22:00:00'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
     action:
       - service: scene.turn_on
         data_template:
@@ -120,6 +123,9 @@ automation:
         entity_id: group.people
         to: 'home'
     condition:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
       - condition: or
         conditions:
           - condition: sun
@@ -143,6 +149,9 @@ automation:
       - condition: state
         entity_id: group.people
         state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
     action:
       - service: scene.turn_on
         data_template:
@@ -164,6 +173,9 @@ automation:
       - condition: state
         entity_id: group.people
         state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
     action:
       - service: scene.turn_on
         data_template:
