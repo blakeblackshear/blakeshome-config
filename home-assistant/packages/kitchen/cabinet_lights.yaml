@@ -5,8 +5,18 @@ light:
       - light.kitchen_recessed_lights
       - light.kitchen_island_lights
       - light.kitchen_breakfast_lights
-  - platform: mqtt
+  - platform: group
     name: Under Cabinet
+    entities:
+      - light.kitchen_under_cabinet
+      - light.butlers_pantry_under_cabinet
+  - platform: group
+    name: Over Cabinet
+    entities:
+      - light.kitchen_over_cabinet
+      - light.butlers_pantry_over_cabinet
+  - platform: mqtt
+    name: Kitchen Under Cabinet
     state_topic: "tasmota/stat/4BD5AF/RESULT"
     command_topic: "tasmota/cmnd/4BD5AF/POWER"
     state_value_template: "{{ value_json.POWER }}"
@@ -35,7 +45,7 @@ light:
     payload_on: "ON"
     payload_off: "OFF"
   - platform: mqtt
-    name: Over Cabinet
+    name: Kitchen Over Cabinet
     state_topic: "tasmota/stat/4BD985/RESULT"
     command_topic: "tasmota/cmnd/4BD985/POWER"
     state_value_template: "{{ value_json.POWER }}"
