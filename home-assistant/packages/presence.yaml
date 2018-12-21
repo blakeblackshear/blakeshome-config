@@ -82,9 +82,6 @@ group:
       - device_tracker.bayley_phone
       - device_tracker.beau_phone
       - device_tracker.bentley_phone
-  babysitters:
-    name: Babysitters
-    entities:
       - device_tracker.grace_phone
       - device_tracker.grace_watch
 
