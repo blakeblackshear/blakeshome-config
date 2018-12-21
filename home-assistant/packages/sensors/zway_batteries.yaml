@@ -1,11 +1,13 @@
 sensor:
   - platform: mqtt
     name: Front Door Lock Battery
-    state_topic: "homeassistant_hub/sensor/front_door_lock_battery/status"
+    state_topic: "homeassistant_hub/sensor/front_door_lock_battery/state"
+    availability_topic: homeassistant_hub/status
     unit_of_measurement: '%'
     value_template: '{{ value_json.state }}'
   - platform: mqtt
     name: Back Door Lock Battery
-    state_topic: "homeassistant_hub/sensor/back_door_lock_battery/status"
+    state_topic: "homeassistant_hub/sensor/back_door_lock_battery/state"
+    availability_topic: homeassistant_hub/status
     unit_of_measurement: '%'
     value_template: '{{ value_json.state }}'
