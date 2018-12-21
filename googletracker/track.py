@@ -23,7 +23,9 @@ service = Service(email, password)
 home = (float(home_latitude), float(home_longitude))
 
 while True:
-    for person in service.get_all_people():
+    people = service.get_all_people()
+    print("Found "+str(len(people))+" people.")
+    for person in people:
         # ignore locations that are not at least accurate within 1000 meters
         if person._accuracy > 1000:
             continue

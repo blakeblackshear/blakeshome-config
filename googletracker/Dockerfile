@@ -4,4 +4,4 @@ RUN pip3 install --no-cache-dir locationsharinglib==0.3.0 paho-mqtt geopy
 
 COPY . .
 
-CMD [ "python", "track.py" ]
+CMD [ "python", "-u", "track.py" ]
