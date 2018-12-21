@@ -19,3 +19,48 @@ binary_sensor:
     state_topic: "taproot/co/status"
     device_class: "gas"
     availability_topic: "taproot/smoke/available"
+
+
+automation:
+  - alias: Send a text message if the smoke alarm goes off
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.smoke_detector 
+        from: 'off'
+        to: 'on'
+        for:
+          minutes: 1
+    action:
+      - service: notify.blakeshome_sms
+        data_template:
+          message: 'The smoke alarm is going off!'
+          target:
+            - !secret blake_phone_number
+  - alias: Send a text message if the co alarm goes off
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.co_detector 
+        from: 'off'
+        to: 'on'
+        for:
+          minutes: 1
+    action:
+      - service: notify.blakeshome_sms
+        data_template:
+          message: 'The carbon monoxide alarm is going off!'
+          target:
+            - !secret blake_phone_number
+  - alias: Send a text message if the smoke or co alarms are unavailable
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.smoke_detector
+        to: 'unavailable'
+      - platform: state
+        entity_id: binary_sensor.co_detector
+        to: 'unavailable'
+    action:
+      - service: notify.blakeshome_sms
+        data_template:
+          message: 'The smoke or co alarms are disconnected.'
+          target:
+            - !secret blake_phone_number

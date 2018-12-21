@@ -47,3 +47,19 @@ binary_sensor:
       - "battery"
       - "voltage"
       - "linkquality"
+
+automation:
+  - alias: Send a text message if a water leak is detected
+    trigger:
+      - platform: state
+        entity_id: group.water_leak_detectors 
+        from: 'off'
+        to: 'on'
+        for:
+          minutes: 1
+    action:
+      - service: notify.blakeshome_sms
+        data_template:
+          message: 'A water leak was detected!'
+          target:
+            - !secret blake_phone_number
