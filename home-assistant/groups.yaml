@@ -105,6 +105,7 @@ living_room:
     - sensor.downstairs_humidity
     - sensor.downstairs_temperature
     - vacuum.xiaomi_vacuum_cleaner
+    - sensor.vacuum_time_in_the_last_24_hours
     - climate.downstairs
     - binary_sensor.living_room_shutter_1
     - binary_sensor.living_room_shutter_2

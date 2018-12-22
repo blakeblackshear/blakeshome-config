@@ -26,3 +26,39 @@ automation:
         data:
           title: Dog Sitter Mode
           message: Motion detected upstairs
+
+  - alias: Run vacuum when locked with keypad in dog sitter mode
+    trigger:
+      - platform: state
+        entity_id: sensor.back_door_last_action
+        to: 'Keypad Lock'
+        for:
+          minutes: 1
+      - platform: state
+        entity_id: sensor.front_door_last_action
+        to: 'Keypad Lock'
+        for:
+          minutes: 1
+    condition:
+      - condition: state
+        entity_id: lock.back_door_lock
+        state: 'locked'
+      - condition: state
+        entity_id: lock.front_door_lock
+        state: 'locked'
+      - condition: state
+        entity_id: input_boolean.dog_sitter
+        state: 'on'
+      - condition: numeric_state
+        entity_id: sensor.vacuum_time_in_the_last_24_hours
+        below: 1
+      - condition: state
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        state: 'off'
+    action:
+      - service: notify.html5_blake_phone
+        data_template:
+          message: "Running the vacuum after dog sitter visit."
+      - service: vacuum.start
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
