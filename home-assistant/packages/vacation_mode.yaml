@@ -142,7 +142,7 @@ automation:
     condition:
       - condition: state
         entity_id: input_boolean.vacation_mode
-        state: 'off'
+        state: 'on'
     action:
       - service: input_boolean.turn_off
         entity_id: input_boolean.vacation_mode
