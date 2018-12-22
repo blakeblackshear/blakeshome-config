@@ -5,3 +5,14 @@ switch:
     state_topic: "taproot/fireplace/status"
     availability_topic: "taproot/fireplace/available"
     icon: "mdi:fire"
+
+automation:
+  - alias: Turn off the fireplace when we leave
+    trigger:
+      - platform: state
+        entity_id: group.people
+        to: 'not_home'
+    action:
+      - service: switch.turn_off
+        entity_id:
+          - switch.fireplace
