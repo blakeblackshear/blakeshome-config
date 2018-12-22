@@ -71,8 +71,8 @@ mqtt:
     topic: 'hass/status'
     payload: 'offline'
     retain: true
-  # discovery: true
-  # discovery_prefix: homeassistant
+  discovery: true
+  discovery_prefix: hass
 
 map:
 
