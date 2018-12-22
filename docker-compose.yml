@@ -213,9 +213,9 @@ services:
     build:
       context: motion
     volumes:
-      - ./motion/motion.conf:/etc/motion/motion.conf:ro
-      - ./motion/mask.pgm:/etc/motion/mask.pgm:ro
-      - ./motion/conf.d:/etc/motion/conf.d:ro
+      - ./motion/motion.conf:/usr/local/etc/motion/motion.conf:ro
+      - ./motion/mask.pgm:/usr/local/etc/motion/mask.pgm:ro
+      - ./motion/conf.d:/usr/local/etc/motion/conf.d:ro
       - camera_nvr:/nvr
   nvr_snapshot:
     container_name: nvr_snapshot
