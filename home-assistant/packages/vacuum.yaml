@@ -60,7 +60,7 @@ automation:
     condition:
       - condition: state
         entity_id: vacuum.xiaomi_vacuum_cleaner
-        state: 'off'
+        state: 'docked'
       - condition: time
         weekday:
           - sat
@@ -87,7 +87,7 @@ automation:
     condition:
       - condition: state
         entity_id: vacuum.xiaomi_vacuum_cleaner
-        state: 'off'
+        state: 'docked'
     action:
       service: vacuum.start
       data:

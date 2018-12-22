@@ -54,7 +54,7 @@ automation:
         below: 1
       - condition: state
         entity_id: vacuum.xiaomi_vacuum_cleaner
-        state: 'off'
+        state: 'docked'
     action:
       - service: notify.html5_blake_phone
         data_template:
