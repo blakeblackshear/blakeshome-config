@@ -1,0 +1,65 @@
+##
+## Main arguments, all optional
+##
+title: Home Panel
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+
+clock:
+    widget_type: clock
+
+blake_presence:
+    widget_type: device_tracker
+    title: Blake
+    device: blake_phone_mqtt
+
+ali_presence:
+    widget_type: device_tracker
+    title: Ali
+    device: ali_phone_mqtt
+
+living_music:
+    widget_type: media_player
+    title: Living Room Music
+    entity: media_player.living_room_2
+
+back_door_lock:
+    widget_type: lock
+    title: Back Door
+    entity: lock.back_door_lock
+
+front_door_lock:
+    widget_type: lock
+    title: Front Door
+    entity: lock.front_door_lock
+
+blake_garage:
+    widget_type: cover
+    title: Blake Garage
+    icon_on: mdi-garage-open
+    icon_off: mdi-garage
+    entity: cover.blakes_garage_door
+
+ali_garage:
+    widget_type: cover
+    title: Ali Garage
+    icon_on: mdi-garage-open
+    icon_off: mdi-garage
+    entity: cover.alis_garage_door
+
+entitypicture2:
+    widget_type: entitypicture
+    entity: media_player.living_room_2
+    base_url: https://hass.blakeshome.com
+    image_style: "top: 0; bottom: 0; left: 0; right: 0;"
+
+alarm:
+    widget_type: alarm
+    entity: alarm_control_panel.home_alarm
+
+layout:
+    - clock(2x1), light.kitchen_lights, light.living_room_lights, input_boolean.guest_mode
+    - sensor.kitchen_temperature, sensor.outside_temperature, sensor.outside_humidity
+    - blake_presence, ali_presence, front_door_lock, back_door_lock, blake_garage, ali_garage
+    - living_music(2x2), entitypicture2(3x2), alarm(3x2)
