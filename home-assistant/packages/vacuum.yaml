@@ -1,3 +1,13 @@
+sensor:
+  - platform: history_stats
+    name: Vacuum time in the last 24 hours
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    state: 'cleaning'
+    type: time
+    end: '{{ now() }}'
+    duration:
+      hours: 24
+
 automation:
   - alias: Run the vacuum if Ali is at the gym
     trigger:
@@ -48,15 +58,16 @@ automation:
         for:
           minutes: 7
     condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-          state: 'off'
-        - condition: time
-          weekday:
-            - sat
-            - sun
+      - condition: state
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        state: 'off'
+      - condition: time
+        weekday:
+          - sat
+          - sun
+      - condition: numeric_state
+        entity_id: sensor.vacuum_time_in_the_last_24_hours
+        below: 1
     action:
       service: notify.html5_blake_phone
       #target: ['specific device to notify']
