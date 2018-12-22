@@ -63,6 +63,8 @@ services:
   #   environment:
   #     TZ: "America/Chicago"
   #   network_mode: host
+  #   volumes:
+  #     - ./mqttlogger:/mqttlogger
   homeassistant:
     container_name: hass
     image: homeassistant/home-assistant:0.83.2
