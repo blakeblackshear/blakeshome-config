@@ -49,6 +49,7 @@ device_tracker:
     devices:
       blake_phone_mqtt: location/blake_blackshear
       ali_phone_mqtt: location/ali_blackshear
+    consider_home: 3600
     new_device_defaults:
       track_new_devices: false
   - platform: unifi
@@ -58,6 +59,7 @@ device_tracker:
     password: !secret unifi_password
     ssid_filter:
       - 'blakeshome'
+    consider_home: 3600
     new_device_defaults:
       track_new_devices: false
 
