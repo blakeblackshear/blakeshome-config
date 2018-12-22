@@ -55,15 +55,6 @@ services:
       HOME_LATITUDE: "${GOOGLETRACKER_HOME_LATITUDE}"
       HOME_LONGITUDE: "${GOOGLETRACKER_HOME_LONGITUDE}"
     network_mode: host
-  zway_ws_mqtt_bridge:
-    container_name: zway_ws_mqtt_bridge
-    restart: unless-stopped
-    build:
-      context: zway_ws_mqtt_bridge
-    environment:
-      TZ: "America/Chicago"
-      MQTT_SERVER: mqtt://mqtt.blakeshome.com
-    network_mode: host
   # mqttlogger:
   #   container_name: mqttlogger
   #   restart: unless-stopped
