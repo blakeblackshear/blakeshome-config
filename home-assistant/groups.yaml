@@ -73,6 +73,8 @@ kitchen:
     - light.butlers_pantry_over_cabinet
     - light.kitchen_under_cabinet
     - light.kitchen_over_cabinet
+    - light.fridge_under_cabinet
+    - light.fridge_over_cabinet
     - light.pantry_light
     - media_player.kitchen_home
     - binary_sensor.kitchen_sink_water_leak_detector
