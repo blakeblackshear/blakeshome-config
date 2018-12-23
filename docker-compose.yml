@@ -126,18 +126,24 @@ services:
   nginx:
     container_name: nginx
     restart: unless-stopped
-    image: rrusakov/nginx-naxsi-nginscript:latest
+    build:
+      context: nginx
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - ./nginx/html:/etc/nginx/html:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/naxsi_core.rules:/etc/nginx/naxsi_core.rules:ro
       - ./nginx/whitelist.rules:/etc/nginx/whitelist.rules:ro
       - ssl_certs:/etc/ssl/private:ro
       - ./nginx/cameras:/var/www/cameras:ro
       - camera_stream:/data/cameras
       - camera_nvr:/data/nvr
       - /var/www/public:/var/www/public:ro
+    environment:
+      BLAKE_TOKEN: "${BLAKE_HASS_TOKEN}"
+      ALI_TOKEN: "${ALI_HASS_TOKEN}"
     network_mode: host
+    command: /bin/bash -c "envsubst < /etc/nginx/conf.d/tokens.template > /etc/nginx/tokens.json && exec nginx -g 'daemon off;'"
   lets_encrypt:
     container_name: acme.sh
     restart: unless-stopped
