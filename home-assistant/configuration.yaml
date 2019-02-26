@@ -99,6 +99,32 @@ ecobee:
 group: !include groups.yaml
 script: !include scripts.yaml
 
+sensor:
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'time_date'
+      - 'time_utc'
+  - platform: darksky
+    api_key: !secret dark_sky_secret
+    forecast:
+      - 1
+    monitored_conditions:
+      - summary
+      - temperature
+      - apparent_temperature
+      - temperature_min
+      - temperature_max
+      - humidity
+      - precip_probability
+      - precip_intensity
+      - precip_type
+      - wind_speed
+      - wind_bearing
+      - pressure
+      - icon
 
 twilio:
   account_sid: !secret twilio_account_sid

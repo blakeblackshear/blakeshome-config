@@ -17,13 +17,8 @@ automation:
       condition: sun
       after: sunset
     action:
-      - service: light.turn_on
-        entity_id:
-          - light.deck_string_lights
-          - light.driveway_lights
-          - light.deck_recessed_lights
-        data:
-          brightness_pct: 75
+      - service: scene.turn_on
+        entity_id: scene.backyard_night_active
       - service: timer.start
         entity_id: timer.outside_lights_after_dark
 
@@ -34,22 +29,22 @@ automation:
       event_data: 
         entity_id: timer.outside_lights_after_dark
     action:
-      - service: light.turn_off
-        entity_id:
-          - light.deck_string_lights
-          - light.driveway_lights
-          - light.deck_recessed_lights
+      - wait_template: "{{ states.sensor.backyard_person_score.state|int == 0 }}"
+        timeout: '00:10:00'
+        continue_on_timeout: 'false'
+      - service: scene.turn_on
+        entity_id: scene.backyard_night_normal
   
   - alias: Turn off the outside lights if the door locks when the timer is running
     trigger:
-      - platform: state
-        entity_id: lock.back_door_lock
-        from: 'unlocked'
-        to: 'locked'
+      - platform: mqtt
+        topic: "homeassistant_hub/lock/back_door/state"
     condition:
       - condition: state
         entity_id: timer.outside_lights_after_dark
         state: 'active'
+      - condition: template
+        value_template: "{{ 'Manual Lock' == trigger.payload_json.notification }}"
     action:
       - service: timer.finish
         entity_id: timer.outside_lights_after_dark

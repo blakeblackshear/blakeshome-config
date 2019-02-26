@@ -39,15 +39,18 @@ scene:
       light.kitchen_island_lights:
         state: on
         brightness: 130
-      light.kitchen_recessed_lights:
+      light.kitchen_breakfast_lights:
         state: on
-        brightness: 130
-      light.hall_stairs_light:
+        brightness: 100
+      light.kitchen_recessed_lights:
         state: on
         brightness: 130
       light.foyer_front_light:
         state: on
-        brightness: 130
+        brightness: 90
+      light.foyer_back_light:
+        state: on
+        brightness: 90
   - name: Nighttime Away
     entities:
       light.over_cabinet: off
@@ -58,7 +61,7 @@ scene:
       light.foyer_back_light: off
       light.foyer_front_light: 
         state: on
-        brightness: 130
+        brightness: 90
       light.half_bath_bathroom_light: off
       light.half_bath_hall_light: off
       light.playroom_light: off
@@ -79,6 +82,28 @@ scene:
       light.deck_recessed_lights: off
       light.deck_string_lights: off
       light.media_stairs_light: off
+  - name: Goodnight
+    entities:
+      light.kitchen_lights: off
+      light.butlers_pantry_light: off
+      light.pantry_light: off
+      light.foyer_back_light: off
+      light.foyer_front_light: 
+        state: on
+        brightness: 90
+      light.half_bath_bathroom_light: off
+      light.half_bath_hall_light: off
+      light.playroom_light: off
+      light.dining_room_light: off
+      light.living_room_chandelier_light: off
+      light.living_room_recessed_lights: off
+      remote.living_room: off
+      media_player.living_room: off
+      media_player.living_room_2: off
+      media_player.living_room_and_deck: off
+      light.hall_stairs_light: off
+      light.laundry_room_light: off
+      switch.fireplace: off
   - name: Nighttime Arrived
     entities:
       light.over_cabinet:
@@ -87,18 +112,15 @@ scene:
       light.under_cabinet:
         state: on
         brightness: 75
-      light.kitchen_island_lights:
+      light.kitchen_lights:
         state: on
-        brightness: 50
-      light.kitchen_recessed_lights:
-        state: on
-        brightness: 50
-      light.hall_stairs_light:
-        state: on
-        brightness: 130
+        brightness: 90
       light.foyer_front_light:
         state: on
-        brightness: 50
+        brightness: 90
+      light.foyer_back_light:
+        state: on
+        brightness: 90
 
 
 automation:

@@ -50,8 +50,14 @@ automation:
         entity_id: input_boolean.vacation_mode
         state: 'on'
 
-      - condition: time
-        before: "01:00:00"
+      - condition: or
+        conditions:
+          - condition: time
+            before: "01:00:00"
+
+          - condition: sun
+            after: sunset
+            after_offset: "-01:00:00"
 
       - condition: state
         entity_id: alarm_control_panel.home_alarm

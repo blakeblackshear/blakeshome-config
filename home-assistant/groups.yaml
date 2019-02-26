@@ -280,11 +280,12 @@ security:
   entities:
     - camera.backyard_camera
     - alarm_control_panel.home_alarm
-    - light.gateway_light_286c07fa2266
     - scene.lockup
     - sensor.locked_up
     - binary_sensor.backyard_camera_motion
+    - sensor.backyard_person_score
     - binary_sensor.playroom_motion
+    - binary_sensor.half_bath_motion
     - lock.back_door_lock
     - sensor.back_door_last_action
     - lock.front_door_lock
@@ -335,7 +336,6 @@ downstairs_motion_sensors:
   name: Downstairs Motion Sensors
   entities:
     - binary_sensor.pantry_motion
-    - binary_sensor.half_bath_motion
     - binary_sensor.dining_motion
     - binary_sensor.kitchen_motion
     - binary_sensor.living_room_motion

@@ -1,3 +1,23 @@
+scene:
+  - name: Backyard Night Active
+    entities:
+      light.deck_string_lights:
+        state: on
+        brightness_pct: 75
+      light.driveway_lights:
+        state: on
+        brightness_pct: 75
+      light.deck_recessed_lights:
+        state: on
+        brightness_pct: 75
+  - name: Backyard Night Normal
+    entities:
+      light.deck_string_lights: off
+      light.deck_recessed_lights: off
+      light.driveway_lights:
+        state: on
+        brightness: 50
+
 automation:
   - alias: Turn off string lights when back button 3 turns off
     trigger:
