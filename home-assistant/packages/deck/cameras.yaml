@@ -2,7 +2,9 @@ camera:
   - name: Backyard Camera
     platform: generic
     still_image_url: https://cameras.blakeshome.com/nvr/back.jpg
-
+  - name: Backyard Last Person
+    platform: generic
+    still_image_url: http://192.168.2.148:5000/best_person.jpg
 binary_sensor:
   - name: Backyard Camera Motion
     platform: mqtt

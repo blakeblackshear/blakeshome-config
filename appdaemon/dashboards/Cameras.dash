@@ -1,0 +1,15 @@
+##
+## Main arguments, all optional
+##
+title: Home Panel
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 10
+
+backyard:
+    widget_type: camera
+    entity_picture: https://cameras.blakeshome.com/nvr/back.jpg
+    refresh: 60
+
+layout:
+    - backyard(10x6)

@@ -279,6 +279,7 @@ security:
   view: yes
   entities:
     - camera.backyard_camera
+    - camera.backyard_last_person
     - alarm_control_panel.home_alarm
     - scene.lockup
     - sensor.locked_up
@@ -298,6 +299,10 @@ security:
     - binary_sensor.smoke_detector
     - binary_sensor.co_detector
     - group.upstairs_motion_sensors
+    - input_datetime.downstairs_last_motion
+    - input_datetime.hall_last_motion
+    - input_datetime.last_door_closed
+    - sensor.someone_downstairs
     - group.downstairs_motion_sensors
     - group.window_sensors
 

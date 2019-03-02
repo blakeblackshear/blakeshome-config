@@ -11,6 +11,35 @@ alarm_control_panel:
       pending_time: 0
       delay_time: 0
 
+input_datetime:
+  downstairs_last_motion:
+    name: Downstairs last motion
+    has_date: true
+    has_time: true
+  hall_last_motion:
+    name: Hall last motion
+    has_date: true
+    has_time: true
+  last_door_closed:
+    name: Last door closed
+    has_date: true
+    has_time: true
+
+sensor:
+  - platform: template
+    sensors:
+      someone_downstairs:
+        friendly_name: "Someone Downstairs"
+        value_template: >-
+          {% set downstairs_last_motion = state_attr('input_datetime.downstairs_last_motion','timestamp') %}
+          {% set last_door_closed = state_attr('input_datetime.last_door_closed','timestamp') %}
+          {% set hall_last_motion = state_attr('input_datetime.hall_last_motion','timestamp') %}
+          {% if downstairs_last_motion > last_door_closed and downstairs_last_motion > hall_last_motion %}
+            Yes
+          {% else %}
+            Maybe
+          {% endif %}
+
 automation:
   - alias: 'Trigger alarm while armed away'
     trigger:
@@ -198,3 +227,62 @@ automation:
       service: notify.html5_blake_phone
       data:
         message: "Uh oh. I wasn't able to lock the doors automatically."
+
+  - alias: Update the downstairs last motion time
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.pantry_motion
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.dining_motion
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.kitchen_motion
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.living_room_motion
+        from: 'off'
+        to: 'on'
+    action:
+      - service: input_datetime.set_datetime
+        entity_id: input_datetime.downstairs_last_motion
+        data_template:
+          time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+          date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
+  
+  - alias: Update the last door close
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_door
+        from: 'on'
+        to: 'off'
+      - platform: state
+        entity_id: binary_sensor.back_door
+        from: 'on'
+        to: 'off'
+    action:
+      - service: input_datetime.set_datetime
+        entity_id: input_datetime.last_door_closed
+        data_template:
+          time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+          date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
+
+  - alias: Update the hall last motion
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.hall_motion
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.boys_doors_motion
+        from: 'off'
+        to: 'on'
+    action:
+      - service: input_datetime.set_datetime
+        entity_id: input_datetime.hall_last_motion
+        data_template:
+          time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+          date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'

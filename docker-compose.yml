@@ -171,22 +171,6 @@ services:
       /stream/back-med.m3u8
     volumes:
       - camera_stream:/stream
-  camera_back_hls_low:
-    container_name: camera_back_hls_low
-    restart: unless-stopped
-    image: jrottenberg/ffmpeg:4.0-alpine
-    command: >-
-      -hide_banner -y
-      -rtsp_transport tcp -stimeout 5000000 -xerror -use_wallclock_as_timestamps 1 -r 25
-      -fflags +genpts -avoid_negative_ts make_zero
-      -i "rtsp://viewer:${CAMERA_PASS}@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2"
-      -f lavfi -i anullsrc=channel_layout=mono:sample_rate=16000 
-      -map 0:0 -map 1:0 -c:v copy -c:a aac -shortest
-      -hls_list_size 5 -hls_init_time 1 -hls_time 1 -hls_flags delete_segments+append_list+discont_start+omit_endlist
-      -hls_start_number_source epoch
-      /stream/back-low.m3u8
-    volumes:
-      - camera_stream:/stream
   camera_back_nvr:
     container_name: camera_back_nvr
     restart: unless-stopped
@@ -206,16 +190,12 @@ services:
     volumes:
       - camera_nvr:/nvr
       - camera_stream:/stream
-  motion:
-    container_name: motion
-    restart: unless-stopped
-    build:
-      context: motion
-    volumes:
-      - ./motion/motion.conf:/usr/local/etc/motion/motion.conf:ro
-      - ./motion/mask.pgm:/usr/local/etc/motion/mask.pgm:ro
-      - ./motion/conf.d:/usr/local/etc/motion/conf.d:ro
-      - camera_nvr:/nvr
+
+  # live camera feed jsmpeg
+  # ffmpeg -rtsp_transport tcp -stimeout 5000000 -use_wallclock_as_timestamps 1 
+  #   -r 25 -fflags +genpts -avoid_negative_ts make_zero -i rtsp://viewer:test1234@10.0.10.10:554/live 
+  #   -reset_timestamps 1 -strftime 1 -f mpegts -codec:v mpeg1video -s 640:360 -b:v 1500k -r 25 -bf 0 -an 
+  #   -tune zerolatency http://localhost:8081/supersecret
   nvr_snapshot:
     container_name: nvr_snapshot
     restart: unless-stopped
@@ -233,7 +213,7 @@ services:
     volumes:
       - camera_nvr:/data
     environment:
-      FIND_PARAMS: -mmin +20160 # 14*24*60
+      FIND_PARAMS: -mmin +10080 # 7*24*60
   samba:
     container_name: samba
     restart: unless-stopped

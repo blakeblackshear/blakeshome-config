@@ -1,0 +1,35 @@
+##
+## Main arguments, all optional
+##
+title: Home Panel
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 10
+
+vacuum:
+    widget_type: switch
+    title: Vacuum
+    entity: vacuum.xiaomi_vacuum_cleaner
+    icon_style_active: "font-size: 500%; color: #aaff00"
+    icon_style_inactive: "font-size: 500%"
+    icon_on: mdi-google-circles-group
+    icon_off: mdi-broom
+
+battery:
+    title: Battery
+    widget_type: sensor
+    units: "%"
+    entity: vacuum.xiaomi_vacuum_cleaner.battery_level
+
+fan_speed:
+    title: Fan Speed
+    widget_type: sensor
+    entity: vacuum.xiaomi_vacuum_cleaner.fan_speed
+
+status:
+    widget_type: sensor
+    entity: vacuum.xiaomi_vacuum_cleaner.status
+
+layout:
+    - vacuum(2x2)
+    - status, battery, fan_speed

@@ -1,0 +1,28 @@
+##
+## Main arguments, all optional
+##
+title: Home Panel
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 10
+
+clock:
+    widget_type: clock
+
+living_music:
+    widget_type: media_player
+    title: Living Room Music
+    entity: media_player.living_room_2
+
+entitypicture2:
+    widget_type: entitypicture
+    entity: media_player.living_room_2
+    base_url: https://hass.blakeshome.com
+    image_style: "top: 0; bottom: 0; left: 0; right: 0;"
+
+alarm:
+    widget_type: alarm
+    entity: alarm_control_panel.home_alarm
+
+layout:
+    - living_music(3x3), entitypicture2(4x3)

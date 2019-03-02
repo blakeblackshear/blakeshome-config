@@ -2,9 +2,9 @@
 ## Main arguments, all optional
 ##
 title: Home Panel
-widget_dimensions: [120, 120]
+widget_dimensions: [125, 125]
 widget_margins: [5, 5]
-columns: 8
+columns: 9
 
 clock:
     widget_type: clock
@@ -57,9 +57,85 @@ entitypicture2:
 alarm:
     widget_type: alarm
     entity: alarm_control_panel.home_alarm
+    
+music:
+    widget_type: navigate
+    title: Music
+    dashboard: Music
+    icon_active: mdi-music
+    icon_inactive: mdi-music
+    icon_active_style: "font-size: 500%;"
+    icon_inactive_style: "font-size: 500%;"
+    args:
+      timeout: 10
+      return: Home
+    
+vacuum:
+    widget_type: navigate
+    title: Vacuum
+    dashboard: Vacuum
+    icon_active: mdi-robot-vacuum
+    icon_inactive: mdi-robot-vacuum
+    icon_active_style: "font-size: 500%;"
+    icon_inactive_style: "font-size: 500%;"
+    args:
+      timeout: 10
+      return: Home
+    
+cameras:
+    widget_type: navigate
+    title: Cameras
+    dashboard: Cameras
+    icon_active: mdi-cctv
+    icon_inactive: mdi-cctv
+    icon_active_style: "font-size: 2000%;"
+    icon_inactive_style: "font-size: 2000%;"
+    args:
+      timeout: 10
+      return: Home
+
+security:
+    widget_type: navigate
+    title: Security
+    dashboard: Security
+    icon_active: mdi-security
+    icon_inactive: mdi-security
+    icon_active_style: "font-size: 2000%;"
+    icon_inactive_style: "font-size: 2000%;"
+    args:
+      timeout: 10
+      return: Home
+
+guestmode:
+    widget_type: input_boolean
+    title: Guest Mode
+    icon_on: mdi-account-outline
+    icon_off: mdi-account-outline
+    icon_style_active: "font-size: 2000%;"
+    icon_style_inactive: "font-size: 2000%;"
+    entity: input_boolean.guest_mode
+
+weather_today:
+  widget_type: weather
+  title: Today
+  show_forecast: 1
+  prefer_icons: 1
+  forecast_title: Today
+  sensors:
+    icon: sensor.dark_sky_icon
+    precip_probability: sensor.dark_sky_precip_probability
+    precip_intensity: sensor.dark_sky_precip_intensity
+    precip_type: sensor.dark_sky_precip
+    wind_speed: sensor.dark_sky_wind_speed
+    wind_bearing: sensor.dark_sky_wind_bearing
+    forecast_icon: sensor.dark_sky_icon_1
+    forecast_temperature_min: sensor.dark_sky_daily_low_temperature_1
+    forecast_temperature_max: sensor.dark_sky_daily_high_temperature_1
+    forecast_precip_probability: sensor.dark_sky_precip_probability_1
+    forecast_precip_type: sensor.dark_sky_precip_1
 
 layout:
-    - clock(2x1), light.kitchen_lights, light.living_room_lights, input_boolean.guest_mode
-    - sensor.kitchen_temperature, sensor.outside_temperature, sensor.outside_humidity
-    - blake_presence, ali_presence, front_door_lock, back_door_lock, blake_garage, ali_garage
-    - living_music(2x2), entitypicture2(3x2), alarm(3x2)
+    - spacer(7x1), sensor.outside_temperature, weather_today
+    -
+    - spacer, spacer, music, clock(3x1), vacuum
+    - cameras(3x3),security(3x3),guestmode(3x3)

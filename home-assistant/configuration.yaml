@@ -141,3 +141,18 @@ notify:
   - name: blakeshome_sms
     platform: twilio_sms
     from_number: !secret twilio_phone_number
+
+panel_custom:
+  - name: frigate
+    sidebar_title: Frigate
+    sidebar_icon: mdi:cctv
+    # This is the url that will load the panel
+    url_path: frigate
+    # Location where the panel is hosted during development
+    js_url: https://cameras.blakeshome.com/static/js/main.fcde51b5.js
+    # We want to load in an iframe to work around limitations in React
+    embed_iframe: true
+    # This will be available as prop `panel.config`.
+    config:
+      api_url: https://cameras.blakeshome.com
+      camera_streams: back
