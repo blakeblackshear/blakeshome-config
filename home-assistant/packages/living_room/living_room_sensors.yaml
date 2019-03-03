@@ -7,10 +7,6 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.occupancy }}"
     device_class: "motion"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Back Door
     state_topic: "zigbee/0x00158d0001bf484f"
@@ -19,10 +15,6 @@ binary_sensor:
     payload_off: true
     value_template: "{{ value_json.contact }}"
     device_class: "door"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Living Room Shutter 1
     state_topic: "zigbee/0x00158d0001b1b801"
@@ -31,10 +23,6 @@ binary_sensor:
     payload_off: true
     value_template: "{{ value_json.contact }}"
     device_class: "window"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Living Room Shutter 2
     state_topic: "zigbee/0x00158d0001dcc9bd"
@@ -43,10 +31,6 @@ binary_sensor:
     payload_off: true
     value_template: "{{ value_json.contact }}"
     device_class: "window"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Living Room Shutter 3
     state_topic: "zigbee/0x00158d0001ab59ab"
@@ -55,10 +39,6 @@ binary_sensor:
     payload_off: true
     value_template: "{{ value_json.contact }}"
     device_class: "window"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Living Room Shutter 4
     state_topic: "zigbee/0x00158d0001ab67c2"
@@ -67,10 +47,6 @@ binary_sensor:
     payload_off: true
     value_template: "{{ value_json.contact }}"
     device_class: "window"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Living Room Shutter 5
     state_topic: "zigbee/0x00158d0001b71164"
@@ -79,10 +55,6 @@ binary_sensor:
     payload_off: true
     value_template: "{{ value_json.contact }}"
     device_class: "window"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Living Room Shutter 6
     state_topic: "zigbee/0x00158d0001b1b8be"
@@ -91,10 +63,6 @@ binary_sensor:
     payload_off: true
     value_template: "{{ value_json.contact }}"
     device_class: "window"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Living Room Shutter 7
     state_topic: "zigbee/0x00158d0001dcba28"
@@ -103,7 +71,3 @@ binary_sensor:
     payload_off: true
     value_template: "{{ value_json.contact }}"
     device_class: "window"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"

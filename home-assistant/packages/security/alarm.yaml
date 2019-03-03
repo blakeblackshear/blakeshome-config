@@ -69,12 +69,12 @@ automation:
   - alias: Garage doors set off alarm
     trigger:
       - platform: state
-        entity_id: cover.alis_garage_door
+        entity_id: cover.ali_s_garage_door
         to: 'open'
         for:
           minutes: 2
       - platform: state
-        entity_id: cover.blakes_garage_door
+        entity_id: cover.blake_s_garage_door
         to: 'open'
         for:
           minutes: 2

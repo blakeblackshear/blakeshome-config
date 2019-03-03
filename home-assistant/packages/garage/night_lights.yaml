@@ -6,11 +6,11 @@ automation:
   - alias: Turn on the outside lights if the garage opens at night
     trigger:
       - platform: state
-        entity_id: cover.alis_garage_door
+        entity_id: cover.ali_s_garage_door
         from: 'closed'
         to: 'open'
       - platform: state
-        entity_id: cover.blakes_garage_door
+        entity_id: cover.blake_s_garage_door
         from: 'closed'
         to: 'open'
     condition:

@@ -28,5 +28,5 @@ automation:
     action:
       - service: cover.close_cover
         entity_id:
-          - cover.blakes_garage_door
-          - cover.alis_garage_door
+          - cover.blake_s_garage_door
+          - cover.ali_s_garage_door

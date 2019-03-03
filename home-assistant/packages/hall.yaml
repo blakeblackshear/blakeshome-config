@@ -1,11 +1,13 @@
 light:
-  - platform: "mqtt_json"
+  - platform: mqtt
+    schema: json
     name: Hall Right Lamp
     state_topic: "zigbee/0x000b57fffe2f0751"
     availability_topic: "zigbee/bridge/state"
     brightness: true
     command_topic: "zigbee/0x000b57fffe2f0751/set"
-  - platform: "mqtt_json"
+  - platform: mqtt
+    schema: json
     name: Hall Left Lamp
     state_topic: "zigbee/0x000b57fffe2e2fef"
     availability_topic: "zigbee/bridge/state"
@@ -21,10 +23,6 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.occupancy }}"
     device_class: "motion"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Hall Motion
     state_topic: "zigbee/0x00158d0001d66c8d"
@@ -33,10 +31,6 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.occupancy }}"
     device_class: "motion"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
 
 automation:
   - alias: Turn on hall lamps one hour after sunrise

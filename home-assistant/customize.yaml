@@ -8,10 +8,10 @@ group.garage_doors:
   aliases:
     - Garage
 
-cover.blakes_garage_door:
+cover.blake_s_garage_door:
   device_class: garage
 
-cover.alis_garage_door:
+cover.ali_s_garage_door:
   device_class: garage
 
 group.master_lamps:

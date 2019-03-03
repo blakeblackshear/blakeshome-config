@@ -16,15 +16,13 @@ sensor:
     state_topic: homeassistant_hub/lock/back_door/state
     value_template: '{{ value_json.notification }}'
     availability_topic: homeassistant_hub/status
-    json_attributes:
-      - "lock_status"
+    json_attributes_topic: homeassistant_hub/lock/back_door/state
   - platform: mqtt
     name: Front Door Last Action
     state_topic: homeassistant_hub/lock/front_door/state
     value_template: '{{ value_json.notification }}'
     availability_topic: homeassistant_hub/status
-    json_attributes:
-      - "lock_status"
+    json_attributes_topic: homeassistant_hub/lock/front_door/state
 
 automation:
   - alias: Unlock back door when someone arrives

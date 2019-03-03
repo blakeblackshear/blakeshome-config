@@ -6,10 +6,6 @@ sensor:
     unit_of_measurement: "°F"
     icon: "mdi:thermometer"
     value_template: "{{ ((float(value_json.temperature) * 9 / 5 ) + 32) | round(1) }}"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Guest Room Humidity
     state_topic: "zigbee/0x00158d0001c1647d"
@@ -17,7 +13,3 @@ sensor:
     unit_of_measurement: "%"
     icon: "mdi:water-percent"
     value_template: "{{ value_json.humidity }}"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"

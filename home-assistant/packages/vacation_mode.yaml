@@ -34,7 +34,7 @@ automation:
     hide_entity: False
 
     trigger:
-      - platform: time
+      - platform: time_pattern
         minutes: '/30'
         seconds: 00
 

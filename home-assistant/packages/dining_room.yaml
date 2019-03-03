@@ -1,5 +1,6 @@
 light:
-  - platform: "mqtt_json"
+  - platform: mqtt
+    schema: json
     name: Dining Room Lights
     state_topic: "homeassistant_hub/light/dining_room/state"
     availability_topic: "homeassistant_hub/status"
@@ -15,10 +16,6 @@ binary_sensor:
     payload_off: true
     value_template: "{{ value_json.contact }}"
     device_class: "window"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Dining Room Shutter 2
     state_topic: "zigbee/0x00158d0001b7812e"
@@ -27,10 +24,6 @@ binary_sensor:
     payload_off: true
     value_template: "{{ value_json.contact }}"
     device_class: "window"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Dining Motion
     state_topic: "zigbee/0x00158d0002b95dca"
@@ -39,10 +32,6 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.occupancy }}"
     device_class: "motion"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
 
 sensor:
   - platform: "mqtt"
@@ -52,7 +41,3 @@ sensor:
     unit_of_measurement: "lx"
     device_class: "illuminance"
     value_template: "{{ value_json.illuminance }}"
-    json_attributes: 
-      - "linkquality"
-      - "battery"
-      - "voltage"

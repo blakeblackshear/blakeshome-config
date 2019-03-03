@@ -7,7 +7,3 @@ binary_sensor:
     payload_off: true
     value_template: "{{ value_json.contact }}"
     device_class: "door"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"

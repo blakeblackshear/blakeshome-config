@@ -42,7 +42,6 @@ play_room:
   control: hidden
   entities:
     - light.playroom_light
-    - timer.playroom_lights
     - binary_sensor.playroom_motion
     - binary_sensor.play_room_shutter_1
     - binary_sensor.play_room_shutter_2
@@ -51,7 +50,6 @@ dining_room:
   name: Dining Room
   control: hidden
   entities:
-    - light.dining_room_light
     - binary_sensor.dining_room_shutter_1
     - binary_sensor.dining_room_shutter_2
     - binary_sensor.dining_motion
@@ -100,7 +98,6 @@ living_room:
     - remote.living_room
     - switch.downstairs_tv
     - switch.downstairs_shield
-    - media_player.downstairs
     - media_player.living_room
     - media_player.living_room_2
     - media_player.living_room_and_deck
@@ -144,11 +141,7 @@ master:
     - binary_sensor.blake_bedside_motion
     - light.master_ali_lamp
     - binary_sensor.ali_bedside_motion
-    - light.gateway_light_286c07fa2266
-    - sensor.illumination_286c07fa2266
     - sensor.master_temperature
-    - binary_sensor.switch_158d00016d7770
-    - binary_sensor.switch_158d00019de5ec
 
 master_bath:
   name: Master Bathroom
@@ -253,8 +246,8 @@ crawl_space:
 garage_doors:
   name: Garage Doors
   entities:
-    - cover.alis_garage_door
-    - cover.blakes_garage_door
+    - cover.ali_s_garage_door
+    - cover.blake_s_garage_door
 
 media_room:
   name: Media Room
@@ -415,5 +408,3 @@ batteries:
   entities:
     - sensor.back_door_lock_battery
     - sensor.front_door_lock_battery
-    - sensor.back_door_sensor_battery
-    - sensor.front_door_sensor_battery

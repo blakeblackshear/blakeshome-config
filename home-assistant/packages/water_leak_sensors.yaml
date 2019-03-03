@@ -7,10 +7,6 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.water_leak }}"
     device_class: "moisture"
-    json_attributes:
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Clothes Washer Leak Detector
     state_topic: "zigbee/0x00158d00023738fc"
@@ -19,10 +15,6 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.water_leak }}"
     device_class: "moisture"
-    json_attributes:
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Guest Bath Leak Detector
     state_topic: "zigbee/0x00158d0002379bac"
@@ -31,10 +23,6 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.water_leak }}"
     device_class: "moisture"
-    json_attributes:
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Main HVAC Pan Water Detector
     state_topic: "zigbee/0x00158d000237390f"
@@ -43,10 +31,6 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.water_leak }}"
     device_class: "moisture"
-    json_attributes:
-      - "battery"
-      - "voltage"
-      - "linkquality"
 
 automation:
   - alias: Send a text message if a water leak is detected

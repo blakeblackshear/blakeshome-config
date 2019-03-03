@@ -1,11 +1,13 @@
 light:
-  - platform: "mqtt_json"
+  - platform: mqtt
+    schema: json
     name: Living Room Back Lamp
     state_topic: "zigbee/0x001788010344dd8e"
     availability_topic: "zigbee/bridge/state"
     brightness: true
     command_topic: "zigbee/0x001788010344dd8e/set"
-  - platform: "mqtt_json"
+  - platform: mqtt
+    schema: json
     name: Living Room Front Lamp
     state_topic: "zigbee/0x00178801030453ea"
     availability_topic: "zigbee/bridge/state"

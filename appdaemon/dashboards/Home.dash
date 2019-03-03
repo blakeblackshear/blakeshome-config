@@ -39,14 +39,14 @@ blake_garage:
     title: Blake Garage
     icon_on: mdi-garage-open
     icon_off: mdi-garage
-    entity: cover.blakes_garage_door
+    entity: cover.blake_s_garage_door
 
 ali_garage:
     widget_type: cover
     title: Ali Garage
     icon_on: mdi-garage-open
     icon_off: mdi-garage
-    entity: cover.alis_garage_door
+    entity: cover.ali_s_garage_door
 
 entitypicture2:
     widget_type: entitypicture
