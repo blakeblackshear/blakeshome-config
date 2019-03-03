@@ -7,10 +7,6 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.occupancy }}"
     device_class: "motion"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
 
 automation:
   - alias: Turn on master closet lights with motion

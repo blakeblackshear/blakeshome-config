@@ -8,7 +8,7 @@ automation:
     action:
       - service: cover.open_cover
         entity_id:
-          - cover.blakes_garage_door
+          - cover.blake_s_garage_door
   - alias: Close blake's garage door when the button turns off
     trigger:
       platform: state
@@ -18,11 +18,11 @@ automation:
     action:
       - service: cover.close_cover
         entity_id:
-          - cover.blakes_garage_door
+          - cover.blake_s_garage_door
   - alias: Turn off button when blake's garage door is closed
     trigger:
       - platform: state
-        entity_id: cover.blakes_garage_door
+        entity_id: cover.blake_s_garage_door
         from: 'open'
         to: 'closed'
     action:
@@ -32,7 +32,7 @@ automation:
   - alias: Turn on button when blake's garage door is opened
     trigger:
       - platform: state
-        entity_id: cover.blakes_garage_door
+        entity_id: cover.blake_s_garage_door
         from: 'closed'
         to: 'open'
     action:
@@ -50,7 +50,7 @@ automation:
     action:
       - service: cover.open_cover
         entity_id:
-          - cover.alis_garage_door
+          - cover.ali_s_garage_door
   - alias: Close ali's garage door when the button turns off
     trigger:
       platform: state
@@ -60,11 +60,11 @@ automation:
     action:
       - service: cover.close_cover
         entity_id:
-          - cover.alis_garage_door
+          - cover.ali_s_garage_door
   - alias: Turn off button when ali's garage door is closed
     trigger:
       - platform: state
-        entity_id: cover.alis_garage_door
+        entity_id: cover.ali_s_garage_door
         from: 'open'
         to: 'closed'
     action:
@@ -74,7 +74,7 @@ automation:
   - alias: Turn on button when ali's garage door is opened
     trigger:
       - platform: state
-        entity_id: cover.alis_garage_door
+        entity_id: cover.ali_s_garage_door
         from: 'closed'
         to: 'open'
     action:

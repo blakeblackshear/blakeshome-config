@@ -1,149 +1,174 @@
 light:
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Foyer Back Light
     state_topic: homeassistant_hub/light/foyer_back/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/foyer_back/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Foyer Front Light
     state_topic: homeassistant_hub/light/foyer_front/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/foyer_front/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Living Room Chandelier Light
     state_topic: homeassistant_hub/light/living_room_chandelier/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/living_room_chandelier/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Living Room Recessed Lights
     state_topic: homeassistant_hub/light/living_room_recessed/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/living_room_recessed/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Butlers Pantry Light
     state_topic: homeassistant_hub/light/butlers_pantry/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/butlers_pantry/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Deck Recessed Lights
     state_topic: homeassistant_hub/light/deck_recessed/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/deck_recessed/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Deck String Lights
     state_topic: homeassistant_hub/light/deck_string/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/deck_string/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Driveway Lights
     state_topic: homeassistant_hub/light/driveway/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/driveway/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Half Bath Bathroom Light
     state_topic: homeassistant_hub/light/half_bath/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/half_bath/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Half Bath Hall Light
     state_topic: homeassistant_hub/light/half_bath_hall/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/half_bath_hall/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Hall Lights
     state_topic: homeassistant_hub/light/hall/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/hall/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Hall Stairs Light
     state_topic: homeassistant_hub/light/hall_stairs/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/hall_stairs/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Kitchen Recessed Lights
     state_topic: homeassistant_hub/light/kitchen_recessed/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/kitchen_recessed/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Kitchen Island Lights
     state_topic: homeassistant_hub/light/kitchen_island/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/kitchen_island/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Kitchen Breakfast Lights
     state_topic: homeassistant_hub/light/kitchen_breakfast/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/kitchen_breakfast/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Laundry Room Light
     state_topic: homeassistant_hub/light/laundry_room/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/laundry_room/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Master Blake Lamp
     state_topic: homeassistant_hub/light/master_blake_lamp/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/master_blake_lamp/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Master Ali Lamp
     state_topic: homeassistant_hub/light/master_ali_lamp/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/master_ali_lamp/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Media Stairs Light
     state_topic: homeassistant_hub/light/media_stairs/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/media_stairs/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Pantry Light
     state_topic: homeassistant_hub/light/pantry/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/pantry/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Playroom Light
     state_topic: homeassistant_hub/light/playroom/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/playroom/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Porch Lights
     state_topic: homeassistant_hub/light/porch/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/porch/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Master Closet Lights
     state_topic: homeassistant_hub/light/master_closet/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/master_closet/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Master Bath Lights
     state_topic: homeassistant_hub/light/master_bath/state
     availability_topic: homeassistant_hub/status
     command_topic: homeassistant_hub/light/master_bath/set
     brightness: true
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: Master Shower Light
     state_topic: homeassistant_hub/light/master_shower/state
     availability_topic: homeassistant_hub/status

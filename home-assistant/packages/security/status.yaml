@@ -3,8 +3,8 @@ scene:
     entities:
       lock.back_door_lock: locked
       lock.front_door_lock: locked
-      cover.blakes_garage_door: closed
-      cover.alis_garage_door: closed
+      cover.blake_s_garage_door: closed
+      cover.ali_s_garage_door: closed
 
 sensor:
   platform: template
@@ -14,8 +14,8 @@ sensor:
       value_template: >-
         {% if is_state('lock.back_door_lock', 'unlocked') or 
               is_state('lock.front_door_lock','unlocked') or
-              is_state('cover.blakes_garage_door', 'open') or
-              is_state('cover.alis_garage_door', 'open')  %}
+              is_state('cover.blake_s_garage_door', 'open') or
+              is_state('cover.ali_s_garage_door', 'open')  %}
           Not Secured
         {% else %}
           Secured

@@ -7,10 +7,6 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.occupancy }}"
     device_class: "motion"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Ali Bedside Motion
     state_topic: "zigbee/0x00158d0001e1845a"
@@ -19,7 +15,3 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.occupancy }}"
     device_class: "motion"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"

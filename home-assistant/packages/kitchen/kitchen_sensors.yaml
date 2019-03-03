@@ -7,10 +7,6 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.occupancy }}"
     device_class: "motion"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
 
 sensor:
   - platform: "mqtt"
@@ -20,10 +16,6 @@ sensor:
     unit_of_measurement: "lx"
     device_class: "illuminance"
     value_template: "{{ value_json.illuminance }}"
-    json_attributes: 
-      - "linkquality"
-      - "battery"
-      - "voltage"
   - platform: "mqtt"
     name: Kitchen Temperature
     state_topic: "zigbee/0x00158d0002323855"
@@ -31,10 +23,6 @@ sensor:
     unit_of_measurement: "°F"
     icon: "mdi:thermometer"
     value_template: "{{ ((float(value_json.temperature) * 9 / 5 ) + 32) | round(1) }}"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Kitchen Humidity
     state_topic: "zigbee/0x00158d0002323855"
@@ -42,10 +30,6 @@ sensor:
     unit_of_measurement: "%"
     icon: "mdi:water-percent"
     value_template: "{{ value_json.humidity }}"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
   - platform: "mqtt"
     name: Kitchen Pressure
     state_topic: "zigbee/0x00158d0002323855"
@@ -53,7 +37,3 @@ sensor:
     unit_of_measurement: "Pa"
     icon: "mdi:gauge"
     value_template: "{{ value_json.pressure }}"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"

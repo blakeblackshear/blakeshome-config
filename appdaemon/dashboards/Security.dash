@@ -25,4 +25,4 @@ layout:
     - alarm,binary_sensor.smoke_detector,binary_sensor.co_detector,binary_sensor.back_door,binary_sensor.front_door,binary_sensor.pantry_motion,binary_sensor.half_bath_motion,binary_sensor.dining_motion,binary_sensor.kitchen_motion,binary_sensor.living_room_motion
     - lock.back_door_lock,lock.front_door_lock,binary_sensor.laundry_room_motion,binary_sensor.hall_motion,binary_sensor.boys_doors_motion,binary_sensor.master_closet_motion,binary_sensor.blake_bedside_motion,binary_sensor.ali_bedside_motion,binary_sensor.backyard_camera_motion,binary_sensor.playroom_motion
     - binary_sensor.living_room_shutter_1,binary_sensor.living_room_shutter_2,binary_sensor.living_room_shutter_3,binary_sensor.living_room_shutter_4,binary_sensor.living_room_shutter_5,binary_sensor.living_room_shutter_6,binary_sensor.living_room_shutter_7,binary_sensor.dining_room_shutter_1,binary_sensor.dining_room_shutter_2,binary_sensor.play_room_shutter_1
-    - binary_sensor.play_room_shutter_2,cover.alis_garage_door,cover.blakes_garage_door
+    - binary_sensor.play_room_shutter_2,cover.ali_s_garage_door,cover.blake_s_garage_door

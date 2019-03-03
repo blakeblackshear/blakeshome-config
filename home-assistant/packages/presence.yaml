@@ -170,7 +170,7 @@ automation:
 
   - alias: Notify if our location stops updating
     trigger:
-      - platform: time
+      - platform: time_pattern
         minutes: '/15'
     condition:
       - condition: template
