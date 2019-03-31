@@ -1,3 +1,8 @@
+camera:
+  - platform: mqtt
+    name: Downstairs Vacuum Map
+    topic: valetudo/downstairs/map
+
 sensor:
   - platform: history_stats
     name: Vacuum time in the last 24 hours

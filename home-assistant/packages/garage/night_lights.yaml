@@ -29,7 +29,7 @@ automation:
       event_data: 
         entity_id: timer.outside_lights_after_dark
     action:
-      - wait_template: "{{ states.sensor.backyard_person_score.state|int == 0 }}"
+      - wait_template: "{{ states.sensor.backyard_person.state == 'off' }}"
         timeout: '00:10:00'
         continue_on_timeout: 'false'
       - service: scene.turn_on

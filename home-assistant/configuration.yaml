@@ -52,6 +52,7 @@ logbook:
 recorder:
   db_url: !secret postgres_url
 
+system_health:
 
 # Track the sun
 sun:
@@ -95,6 +96,7 @@ cover:
 
 ecobee:
   api_key: !secret ecobee_api_key
+  hold_temp: true
 
 group: !include groups.yaml
 script: !include scripts.yaml

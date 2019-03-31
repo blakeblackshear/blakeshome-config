@@ -1,0 +1,23 @@
+automation:
+  - alias: Turn on kitchen lights with double tap up
+    trigger:
+      - platform: mqtt
+        topic: 'homeassistant_hub/scene_activated/17/1/3'
+      - platform: mqtt
+        topic: 'homeassistant_hub/scene_activated/16/1/3'
+      - platform: mqtt
+        topic: 'homeassistant_hub/scene_activated/15/1/3'
+    action:
+      service: light.turn_on
+      entity_id: light.kitchen_lights
+  - alias: Turn off kitchen lights with double tap down
+    trigger:
+      - platform: mqtt
+        topic: 'homeassistant_hub/scene_activated/17/2/3'
+      - platform: mqtt
+        topic: 'homeassistant_hub/scene_activated/16/2/3'
+      - platform: mqtt
+        topic: 'homeassistant_hub/scene_activated/15/2/3'
+    action:
+      service: light.turn_off
+      entity_id: light.kitchen_lights

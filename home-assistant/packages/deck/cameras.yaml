@@ -4,21 +4,14 @@ camera:
     still_image_url: https://cameras.blakeshome.com/nvr/back.jpg
   - name: Backyard Last Person
     platform: generic
-    still_image_url: http://192.168.2.148:5000/best_person.jpg
+    still_image_url: http://192.168.2.119:5000/back/best_person.jpg
 binary_sensor:
-  - name: Backyard Camera Motion
+  - name: Backyard Person
     platform: mqtt
-    state_topic: "cameras/back/motion"
-    device_class: motion
-    availability_topic: "cameras/back/available"
-
-sensor:
-  - name: Backyard Person Score
-    platform: mqtt
-    state_topic: "cameras/back/objects"
+    state_topic: "frigate/back/objects"
     value_template: '{{ value_json.person }}'
-    unit_of_measurement: '%'
-    availability_topic: "cameras/back/available"
+    device_class: moving
+    availability_topic: "frigate/available"
 
 script:
   play_backyard_camera:
@@ -33,9 +26,10 @@ script:
 automation:
   - alias: Turn on the outside lights when a person is detected at night
     trigger: 
-      platform: numeric_state
-      entity_id: sensor.backyard_person_score
-      above: 20
+      platform: state
+      entity_id: sensor.backyard_person
+      from: 'off'
+      to: 'on'
     condition:
       condition: or
       conditions:
@@ -48,9 +42,10 @@ automation:
         entity_id: scene.backyard_night_active
   - alias: Turn off the outside lights when no people are detected at night
     trigger: 
-      platform: numeric_state
-      entity_id: sensor.backyard_person_score
-      below: 20
+      platform: state
+      entity_id: sensor.backyard_person
+      from: 'on'
+      to: 'off'
       for:
         seconds: 5
     condition:
@@ -65,9 +60,10 @@ automation:
         entity_id: scene.backyard_night_normal
   - alias: Alert me if a person is detected while armed away
     trigger: 
-      platform: numeric_state
-      entity_id: sensor.backyard_person_score
-      above: 20
+      platform: state
+      entity_id: sensor.backyard_person
+      from: 'off'
+      to: 'on'
     condition:
       - condition: state
         entity_id: alarm_control_panel.home_alarm

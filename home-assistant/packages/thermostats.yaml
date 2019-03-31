@@ -1,0 +1,90 @@
+###
+# Downstairs:
+#   When below 50 outside, heated to 72 during day and 70 at night. When over 75 outside, cooled to 74 during day and 69 at night.
+
+sensor:
+  - platform: template
+    sensors:
+      target_down_temperature:
+        friendly_name: Target Downstairs Temperature
+        unit_of_measurement: "°F"
+        value_template: >-
+          {% set t = strptime(states('sensor.time'), '%H:%M') %}
+          {% if state_attr('climate.downstairs','operation_mode') == 'heat' -%}
+            {%- if t.hour <6 or t.hour >=21 -%}
+              62
+            {%- else -%}
+              72
+            {%- endif -%}
+          {%- elif state_attr('climate.downstairs','operation_mode') == 'cool' -%}
+            {%- if t.hour <6 or t.hour >=21 -%}
+              82
+            {%- else -%}
+              74
+            {%- endif -%}
+          {%- endif %}
+      target_up_temperature:
+        friendly_name: Target Upstairs Temperature
+        unit_of_measurement: "°F"
+        value_template: >-
+          {% set t = strptime(states('sensor.time'), '%H:%M') %}
+          {% if state_attr('climate.upstairs','operation_mode') == 'heat' -%}
+            {%- if t.hour <8 or t.hour >=19 -%}
+              69
+            {%- else -%}
+              71
+            {%- endif -%}
+          {%- elif state_attr('climate.upstairs','operation_mode') == 'cool' -%}
+            {%- if t.hour <6 or t.hour >=21 -%}
+              69
+            {%- elif t.hour >=19 and t.hour < 21 -%}
+              71
+            {%- else -%}
+              74
+            {%- endif -%}
+          {%- endif %}
+automation:
+  - alias: If outside temperature drops below 50, switch to Heat
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.outside_temperature
+      below: 50
+    action:
+      - service: climate.set_operation_mode
+        data:
+          operation_mode: 'heat'
+          entity_id:
+            - climate.downstairs
+            - climate.upstairs
+  - alias: If outside temperature goes above 60, switch to Cool
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.outside_temperature
+      above: 60
+    action:
+      - service: climate.set_operation_mode
+        data:
+          operation_mode: 'cool'
+          entity_id:
+            - climate.downstairs
+            - climate.upstairs
+  - alias: Set the downstairs thermostat to the target temperature
+    trigger:
+      platform: state
+      entity_id: sensor.target_down_temperature
+    action:
+      - service: climate.set_temperature
+        data_template:
+          temperature: "{{ states('sensor.target_down_temperature')|float }}"
+          entity_id:
+            - climate.downstairs
+  - alias: Set the upstairs thermostat to the target temperature
+    trigger:
+      platform: state
+      entity_id: sensor.target_up_temperature
+    action:
+      - service: climate.set_temperature
+        data_template:
+          temperature: "{{ states('sensor.target_up_temperature')|float }}"
+          entity_id:
+            - climate.upstairs

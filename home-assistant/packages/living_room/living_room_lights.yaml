@@ -1,0 +1,26 @@
+automation:
+  - alias: Activate goodnight scene after 8 on foyer back double tap down
+    trigger:
+      - platform: mqtt
+        topic: 'homeassistant_hub/scene_activated/20/2/3'
+    condition:
+      condition: or
+      conditions:
+        - condition: time
+          after: '20:00:00'
+        - condition: time
+          before: '04:00:00'
+    action: 
+      - service: scene.turn_on
+        entity_id: scene.goodnight
+      - service: lock.lock
+        entity_id: 
+          - lock.back_door_lock
+          - lock.front_door_lock
+      - wait_template: "{{ states.sensor.backyard_person.state == 'off' }}"
+        timeout: '00:10:00'
+        continue_on_timeout: 'false'
+      - service: cover.close_cover
+        entity_id:
+          - cover.blake_s_garage_door
+          - cover.ali_s_garage_door

@@ -6,6 +6,7 @@ default_view:
     - scene.lockup
     - sensor.locked_up
     - vacuum.xiaomi_vacuum_cleaner
+    - camera.downstairs_vacuum_map
     - input_boolean.guest_mode
 
 downstairs:
@@ -277,7 +278,7 @@ security:
     - scene.lockup
     - sensor.locked_up
     - binary_sensor.backyard_camera_motion
-    - sensor.backyard_person_score
+    - binary_sensor.backyard_person
     - binary_sensor.playroom_motion
     - binary_sensor.half_bath_motion
     - lock.back_door_lock
