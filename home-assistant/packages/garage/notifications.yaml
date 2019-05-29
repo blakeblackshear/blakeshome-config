@@ -11,20 +11,19 @@ automation:
         entity_id: group.garage_doors
         state: open
     action:
-      - service: notify.html5_blake_phone
+      - service: notify.blake_telegram
         data:
           message: "The garage is open, but nobody is home!"
           data:
-            actions:
-              - action: 'close_garage'
-                title: 'Close Garage'
+            inline_keyboard:
+              - 'Close Garage:/close_garage'
 
   - alias: Close garage from notification
     trigger:
-      platform: event
-      event_type: html5_notification.clicked
-      event_data:
-        action: close_garage
+      - platform: event
+        event_type: telegram_callback
+        event_data:
+          data: '/close_garage'
     action:
       - service: cover.close_cover
         entity_id:

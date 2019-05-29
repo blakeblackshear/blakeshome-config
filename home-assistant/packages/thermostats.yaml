@@ -1,6 +1,6 @@
 ###
 # Downstairs:
-#   When below 50 outside, heated to 72 during day and 70 at night. When over 75 outside, cooled to 74 during day and 69 at night.
+#   When below 50 outside, heated to 72 during day and 70 at night. When over 60 outside, cooled to 74 during day and 69 at night.
 
 sensor:
   - platform: template
@@ -35,16 +35,14 @@ sensor:
               71
             {%- endif -%}
           {%- elif state_attr('climate.upstairs','operation_mode') == 'cool' -%}
-            {%- if t.hour <6 or t.hour >=21 -%}
-              69
-            {%- elif t.hour >=19 and t.hour < 21 -%}
+            {%- if t.hour >=19 or t.hour <6 -%}
               71
             {%- else -%}
               74
             {%- endif -%}
           {%- endif %}
 automation:
-  - alias: If outside temperature drops below 50, switch to Heat
+  - alias: If outside temperature drops below 55, switch to Heat
     trigger:
       platform: numeric_state
       entity_id: sensor.outside_temperature
@@ -56,11 +54,11 @@ automation:
           entity_id:
             - climate.downstairs
             - climate.upstairs
-  - alias: If outside temperature goes above 60, switch to Cool
+  - alias: If outside temperature goes above 65, switch to Cool
     trigger:
       platform: numeric_state
       entity_id: sensor.outside_temperature
-      above: 60
+      above: 65
     action:
       - service: climate.set_operation_mode
         data:
@@ -72,6 +70,10 @@ automation:
     trigger:
       platform: state
       entity_id: sensor.target_down_temperature
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
     action:
       - service: climate.set_temperature
         data_template:
@@ -82,6 +84,10 @@ automation:
     trigger:
       platform: state
       entity_id: sensor.target_up_temperature
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
     action:
       - service: climate.set_temperature
         data_template:

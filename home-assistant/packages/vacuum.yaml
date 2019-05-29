@@ -74,21 +74,20 @@ automation:
         entity_id: sensor.vacuum_time_in_the_last_24_hours
         below: 1
     action:
-      service: notify.html5_blake_phone
+      service: notify.blake_telegram
       #target: ['specific device to notify']
       data:
         message: "Should I vacuum while you are gone?"
         data:
-          actions:
-            - action: 'run_vacuum'
-              title: 'Yes'
+          inline_keyboard:
+            - 'Yes:/run_vacuum'
 
   - alias: Run vacuum action clicked
     trigger:
-      platform: event
-      event_type: html5_notification.clicked
-      event_data:
-        action: run_vacuum
+      - platform: event
+        event_type: telegram_callback
+        event_data:
+          data: '/run_vacuum'
     condition:
       - condition: state
         entity_id: vacuum.xiaomi_vacuum_cleaner

@@ -23,10 +23,10 @@ frontend:
 config:
 
 http:
-  # Uncomment this to add a password (recommended!)
-  # api_password: !secret api_password
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   base_url: https://hass.blakeshome.com
+  use_x_forwarded_for: True
+  trusted_proxies:
+    - 127.0.0.1
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -48,6 +48,20 @@ history:
 
 # View all events in a logbook
 logbook:
+  exclude:
+    entities:
+      - sensor.date
+      - sensor.date_time
+      - sensor.time
+      - sensor.time_date
+      - sensor.time_utc
+      - automation.update_battery_status_group_members
+      - automation.battery_notification
+      - automation.battery_notification_clear
+      - automation.battery_sensor_from_attributes
+      - automation.clear_mqtt_topic
+      - automation.filter_out_blake_s_location_updates_that_are_old_and_republish
+      - automation.filter_out_ali_s_location_updates_that_are_old_and_republish
 
 recorder:
   db_url: !secret postgres_url
@@ -132,7 +146,23 @@ twilio:
   account_sid: !secret twilio_account_sid
   auth_token: !secret twilio_auth_token
 
-notify:
+telegram_bot:
+  - platform: webhooks
+    api_key: !secret telegram_api_key
+    trusted_networks:
+      - 149.154.167.197/32
+      - 149.154.167.198/31
+      - 149.154.167.200/29
+      - 149.154.167.208/28
+      - 149.154.167.224/29
+      - 149.154.167.232/31
+    allowed_chat_ids:
+      - 707447684
+
+notify:  
+  - name: blake_telegram
+    platform: telegram
+    chat_id: 707447684
   - name: html5
     platform: html5
     gcm_api_key: !secret google_messaging_server_key

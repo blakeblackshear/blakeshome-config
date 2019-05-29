@@ -59,9 +59,23 @@ device_tracker:
     password: !secret unifi_password
     ssid_filter:
       - 'blakeshome'
+    detection_time: 600
+    monitored_conditions:
+     - signal
+     - last_seen
     consider_home: 3600
     new_device_defaults:
       track_new_devices: false
+  
+sensor:
+  - platform: template
+    sensors:
+      blake_unifi_last_seen:
+        friendly_name: Blake Unifi Last Seen
+        value_template: "{{ state_attr('device_tracker.blake_phone', 'last_seen') }}"
+      ali_unifi_last_seen:
+        friendly_name: Ali Unifi Last Seen
+        value_template: "{{ state_attr('device_tracker.ali_phone', 'last_seen') }}"
 
 group:
   people:
@@ -84,6 +98,7 @@ group:
       - device_tracker.bayley_phone
       - device_tracker.beau_phone
       - device_tracker.bentley_phone
+      - device_tracker.emma_phone
       - device_tracker.grace_phone
       - device_tracker.grace_watch
 
@@ -108,6 +123,11 @@ automation:
           topic: location/blake_blackshear
           payload: !secret blakeshome_payload
           retain: true
+      - service: device_tracker.see
+        data_template:
+          mac: 3C:28:6D:2A:F0:F4
+          dev_id: blake_phone
+          location_name: home
       - service: input_datetime.set_datetime
         entity_id: input_datetime.blake_last_seen
         data_template:
@@ -121,6 +141,8 @@ automation:
     condition:
       - condition: template
         value_template: '{{ trigger.payload_json.datetime > states.input_datetime.blake_last_seen.attributes.timestamp }}'
+      # - condition: template
+      #   value_template: '{{ trigger.payload_json.datetime > states.device_tracker.blake_phone.attributes.last_seen }}'
     action:
       - service: mqtt.publish
         data_template:
@@ -143,6 +165,11 @@ automation:
           topic: location/ali_blackshear
           payload: !secret blakeshome_payload
           retain: true
+      - service: device_tracker.see
+        data_template:
+          mac: 3C:28:6D:E3:EC:C4
+          dev_id: ali_phone
+          location_name: home
       - service: input_datetime.set_datetime
         entity_id: input_datetime.ali_last_seen
         data_template:
@@ -156,6 +183,8 @@ automation:
     condition:
       - condition: template
         value_template: '{{ trigger.payload_json.datetime > states.input_datetime.ali_last_seen.attributes.timestamp }}'
+      - condition: template
+        value_template: '{{ trigger.payload_json.datetime > states.device_tracker.ali_phone.attributes.last_seen }}'
     action:
       - service: mqtt.publish
         data_template:
@@ -181,5 +210,33 @@ automation:
       service: notify.html5_blake_phone
       data:
         message: "Uh oh. I haven't gotten a location update in over an hour."
+
+  - alias: Update Blake last seen from Unifi
+    trigger:
+      - platform: state
+        entity_id: sensor.blake_unifi_last_seen
+    condition:
+      - condition: template
+        value_template: "{{ float(states('sensor.blake_unifi_last_seen')) > states.input_datetime.blake_last_seen.attributes.timestamp }}"
+    action:
+      - service: input_datetime.set_datetime
+        entity_id: input_datetime.blake_last_seen
+        data_template:
+          time: "{{ float(states('sensor.blake_unifi_last_seen')) | timestamp_custom('%H:%M:%S', true) }}"
+          date: "{{ float(states('sensor.blake_unifi_last_seen')) | timestamp_custom('%Y-%m-%d', true) }}"
+
+  - alias: Update Ali last seen from Unifi
+    trigger:
+      - platform: state
+        entity_id: sensor.ali_unifi_last_seen
+    condition:
+      - condition: template
+        value_template: "{{ float(states('sensor.ali_unifi_last_seen')) > states.input_datetime.ali_last_seen.attributes.timestamp }}"
+    action:
+      - service: input_datetime.set_datetime
+        entity_id: input_datetime.ali_last_seen
+        data_template:
+          time: "{{ float(states('sensor.ali_unifi_last_seen')) | timestamp_custom('%H:%M:%S', true) }}"
+          date: "{{ float(states('sensor.ali_unifi_last_seen')) | timestamp_custom('%Y-%m-%d', true) }}"
     
 

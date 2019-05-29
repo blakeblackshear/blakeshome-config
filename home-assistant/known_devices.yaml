@@ -40,7 +40,8 @@ blake_phone:
   hide_if_away: false
   icon:
   mac: 3C:28:6D:2A:F0:F4
-  name: Blake
+  consider_home: 30
+  name: Blake Phone
   picture:
   track: true
 
@@ -48,7 +49,8 @@ ali_phone:
   hide_if_away: false
   icon:
   mac: 3C:28:6D:E3:EC:C4
-  name: Ali
+  consider_home: 30
+  name: Ali Phone
   picture:
   track: true
 
@@ -89,6 +91,14 @@ grace_phone:
   icon:
   mac: B4:9C:DF:52:47:57
   name: Grace Phone
+  picture:
+  track: true
+
+emma_phone:
+  hide_if_away: false
+  icon:
+  mac: B4:F7:A1:C0:43:6E
+  name: Emma Phone
   picture:
   track: true
 

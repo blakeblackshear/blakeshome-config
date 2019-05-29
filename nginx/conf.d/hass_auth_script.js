@@ -1,5 +1,5 @@
 var fs = require('fs');
-var token_string = fs.readFileSync('/etc/nginx/tokens.json', 'utf8');
+var token_string = fs.readFileSync('/etc/nginx/tokens.json');
 var tokens = JSON.parse(token_string);
 
 function get_token(r) {

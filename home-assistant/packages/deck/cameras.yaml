@@ -4,13 +4,13 @@ camera:
     still_image_url: https://cameras.blakeshome.com/nvr/back.jpg
   - name: Backyard Last Person
     platform: generic
-    still_image_url: http://192.168.2.119:5000/back/best_person.jpg
+    still_image_url: http://192.168.2.219:5000/back/best_person.jpg
 binary_sensor:
   - name: Backyard Person
     platform: mqtt
     state_topic: "frigate/back/objects"
     value_template: '{{ value_json.person }}'
-    device_class: moving
+    device_class: motion
     availability_topic: "frigate/available"
 
 script:
@@ -27,7 +27,7 @@ automation:
   - alias: Turn on the outside lights when a person is detected at night
     trigger: 
       platform: state
-      entity_id: sensor.backyard_person
+      entity_id: binary_sensor.backyard_person
       from: 'off'
       to: 'on'
     condition:
@@ -43,7 +43,7 @@ automation:
   - alias: Turn off the outside lights when no people are detected at night
     trigger: 
       platform: state
-      entity_id: sensor.backyard_person
+      entity_id: binary_sensor.backyard_person
       from: 'on'
       to: 'off'
       for:
@@ -61,7 +61,7 @@ automation:
   - alias: Alert me if a person is detected while armed away
     trigger: 
       platform: state
-      entity_id: sensor.backyard_person
+      entity_id: binary_sensor.backyard_person
       from: 'off'
       to: 'on'
     condition:
@@ -73,6 +73,6 @@ automation:
       # - condition: state
       #   entity_id: alarm_control_panel.home_alarm
       #   state: armed_away
-      - service: notify.html5_blake_phone
+      - service: notify.blake_telegram
         data_template:
           message: "A person was detected in the backyard."

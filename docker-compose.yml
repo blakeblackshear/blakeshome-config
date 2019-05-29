@@ -232,6 +232,27 @@ services:
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
     ports:
       - "127.0.0.1:5432:5432"
+  netdata:
+    restart: always
+    hostname: netdata.blakeshome.com
+    image: netdata/netdata
+    ports:
+      - "127.0.0.1:19999:19999"
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+  valetudo_downstairs_map:
+    restart: always
+    image: blakeblackshear/icantbelieveitsnotvaletudo:0.2.0
+    volumes:
+      - ./valetudo_maps/downstairs.json:/app/config.json
+    ports:
+      - "127.0.0.1:3000:3000"
 
 volumes:
   mosquitto_data:

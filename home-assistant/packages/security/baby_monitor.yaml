@@ -42,7 +42,7 @@ automation:
       entity_id: input_boolean.baby_monitor
       state: 'on'
     action:
-      - service: notify.html5_blake_phone
+      - service: notify.blake_telegram
         data_template:
           message: "{{ trigger.to_state.attributes.friendly_name }} has detected motion!"
       - service: notify.html5_ali_phone

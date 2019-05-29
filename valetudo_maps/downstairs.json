@@ -1,0 +1,22 @@
+{
+    "mqtt" : {
+        "identifier": "downstairs",
+        "topicPrefix": "valetudo",
+        "autoconfPrefix": "homeassistant",
+        "broker_url": "mqtt://mqtt",
+        "mapSettings": {
+            "drawPath": true,
+            "drawCharger": true,
+            "drawRobot": true,
+            "border": 2,
+            "scale": 4
+        },
+        "mapDataTopic": "valetudo/downstairs/map_data",
+        "minMillisecondsBetweenMapUpdates": 10000,
+        "publishMapImage": true
+    },
+    "webserver": {
+        "enabled": true,
+        "port": 3000
+    }
+}

@@ -22,7 +22,7 @@ automation:
       entity_id: input_boolean.dog_sitter
       state: 'on'
     action:
-      - service: notify.html5_blake_phone
+      - service: notify.blake_telegram
         data:
           title: Dog Sitter Mode
           message: Motion detected upstairs
@@ -56,7 +56,7 @@ automation:
         entity_id: vacuum.xiaomi_vacuum_cleaner
         state: 'docked'
     action:
-      - service: notify.html5_blake_phone
+      - service: notify.blake_telegram
         data_template:
           message: "Running the vacuum after dog sitter visit."
       - service: vacuum.start

@@ -16,21 +16,20 @@ automation:
           entity_id: climate.media
           state: 'off'
     action:
-      service: notify.html5_blake_phone
+      service: notify.blake_telegram
       #target: ['specific device to notify']
       data:
         message: "Should I cool down the media room?"
         data:
-          actions:
-            - action: 'cool_media'
-              title: 'Yes'
+          inline_keyboard:
+            - 'Yes:/cool_media'
 
   - alias: Cool media action clicked
     trigger:
-      platform: event
-      event_type: html5_notification.clicked
-      event_data:
-        action: cool_media
+      - platform: event
+        event_type: telegram_callback
+        event_data:
+          data: '/cool_media'
     condition:
       condition: and
       conditions:

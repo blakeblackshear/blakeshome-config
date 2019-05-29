@@ -129,7 +129,7 @@ automation:
     action:
       - service: input_boolean.turn_on
         entity_id: input_boolean.vacation_mode
-      - service: notify.html5_blake_phone
+      - service: notify.blake_telegram
         data:
           message: "Vacation mode enabled."
   
@@ -152,7 +152,7 @@ automation:
     action:
       - service: input_boolean.turn_off
         entity_id: input_boolean.vacation_mode
-      - service: notify.html5_blake_phone
+      - service: notify.blake_telegram
         data:
           message: "Vacation mode disabled."
     
