@@ -185,8 +185,8 @@ hall:
     - climate.upstairs
     - sensor.upstairs_humidity
     - sensor.upstairs_temperature
-    - light.hall_left_lamp
-    - light.hall_right_lamp
+    - light.master_table_left_lamp
+    - light.master_table_right_lamp
     - light.hall_lights
     - light.hall_stairs_light
     - light.laundry_room_light

@@ -15,7 +15,7 @@ ali_phone_mqtt:
 murray_phone:
   hide_if_away: false
   icon:
-  mac: 40:4E:36:20:B0:46
+  mac: 7C:D9:5C:B0:33:83
   name: Murray
   picture:
   track: true
@@ -39,7 +39,7 @@ faye_phone:
 blake_phone:
   hide_if_away: false
   icon:
-  mac: 3C:28:6D:2A:F0:F4
+  mac: 58:CB:52:14:AC:73
   consider_home: 30
   name: Blake Phone
   picture:

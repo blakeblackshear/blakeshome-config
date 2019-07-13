@@ -131,6 +131,9 @@ automation:
       - condition: state
         entity_id: group.people
         state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
       - service: alarm_control_panel.alarm_arm_away
         data:
           entity_id: alarm_control_panel.home_alarm

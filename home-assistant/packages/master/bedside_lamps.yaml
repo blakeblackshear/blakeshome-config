@@ -4,8 +4,38 @@ light:
     entities:
       - light.master_blake_lamp
       - light.master_ali_lamp
+  - platform: group
+    name:  Master Table Lamps
+    entities:
+      - light.master_table_right_lamp
+      - light.master_table_left_lamp
+  - platform: mqtt
+    schema: json
+    name: Master Table Right Lamp
+    state_topic: "zigbee/0x000b57fffe2f0751"
+    availability_topic: "zigbee/bridge/state"
+    brightness: true
+    command_topic: "zigbee/0x000b57fffe2f0751/set"
+  - platform: mqtt
+    schema: json
+    name: Master Table Left Lamp
+    state_topic: "zigbee/0x000b57fffe2e2fef"
+    availability_topic: "zigbee/bridge/state"
+    brightness: true
+    command_topic: "zigbee/0x000b57fffe2e2fef/set"
 
 automation:
+  - alias: Turn on master lamps at sunset
+    trigger:
+      platform: sun
+      event: sunset
+    action:
+      service: light.turn_on
+      entity_id: 
+        - light.master_table_lamps
+        - light.master_lamps
+      data:
+          brightness_pct: 50
   - alias: Toggle Blake lamp
     trigger:
       platform: mqtt
@@ -52,4 +82,8 @@ automation:
       value_template: "{{ 'triple' == trigger.payload_json.click }}"
     action:
       service: light.turn_off
-      entity_id: light.all_master_bath_lights
+      entity_id: 
+        - light.all_master_bath_lights
+        - light.master_lamps
+        - light.master_table_lamps
+        - light.master_bedroom_light

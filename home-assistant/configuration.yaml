@@ -62,6 +62,8 @@ logbook:
       - automation.clear_mqtt_topic
       - automation.filter_out_blake_s_location_updates_that_are_old_and_republish
       - automation.filter_out_ali_s_location_updates_that_are_old_and_republish
+      - automation.update_blake_last_seen_from_unifi
+      - automation.update_ali_last_seen_from_unifi
 
 recorder:
   db_url: !secret postgres_url

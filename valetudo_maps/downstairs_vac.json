@@ -1,0 +1,23 @@
+{
+    "spots": [],
+    "areas": [],
+    "mqtt": {
+      "enabled": true,
+      "identifier": "downstairs",
+      "broker_url": "mqtt://mqtt.blakeshome.com",
+      "mapSettings": {
+        "drawPath": true,
+        "drawCharger": true,
+        "drawRobot": true,
+        "border": 2,
+        "doCropping": true,
+        "scale": 4
+      },
+      "mapUpdateInterval": 30000
+    },
+    "dummycloud": {
+      "spoofedIP": "203.0.113.1",
+      "bindIP": "127.0.0.1"
+    },
+    "map_upload_host": "http://127.0.0.1"
+  }

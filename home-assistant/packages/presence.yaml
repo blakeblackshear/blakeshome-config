@@ -116,7 +116,7 @@ automation:
   - alias: Simulate a home message when blake's phone gets a dhcp lease
     trigger:
       platform: mqtt
-      topic: network/dhcp/3c:28:6d:2a:f0:f4
+      topic: network/dhcp/58:cb:52:14:ac:73
     action:
       - service: mqtt.publish
         data_template:
@@ -125,7 +125,7 @@ automation:
           retain: true
       - service: device_tracker.see
         data_template:
-          mac: 3C:28:6D:2A:F0:F4
+          mac: 58:CB:52:14:AC:73
           dev_id: blake_phone
           location_name: home
       - service: input_datetime.set_datetime

@@ -40,10 +40,15 @@ automation:
           entity_id: climate.media
           state: 'off'
     action:
-      service: climate.set_operation_mode
-      data:
-        entity_id: climate.media
-        operation_mode: 'cool'
+      - service: climate.set_operation_mode
+        data:
+          entity_id: climate.media
+          operation_mode: 'cool'
+      - service: climate.set_temperature
+        data_template:
+          temperature: 71
+          entity_id:
+            - climate.media
 
   - alias: Turn off media thermostat at 9:30pm
     trigger:
