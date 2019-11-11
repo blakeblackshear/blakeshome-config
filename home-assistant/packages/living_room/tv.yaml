@@ -1,13 +1,13 @@
 switch:
   - platform: rest
     name: Downstairs TV
-    resource: http://192.168.2.223:5000/device/0/power
+    resource: http://192.168.2.224:5000/device/0/power
     body_on: '{"state":"on"}'
     body_off: '{"state":"off"}'
     is_on_template: '{{ value_json.state == "starting" or value_json.state == "on" }}'
   - platform: rest
     name: Downstairs Shield
-    resource: http://192.168.2.223:5000/device/4/power
+    resource: http://192.168.2.224:5000/device/4/power
     body_on: '{"state":"on"}'
     body_off: '{"state":"off"}'
     is_on_template: '{{ value_json.state == "starting" or value_json.state == "on" }}'

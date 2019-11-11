@@ -52,30 +52,16 @@ device_tracker:
     consider_home: 3600
     new_device_defaults:
       track_new_devices: false
-  - platform: unifi
-    host: !secret unifi_host
-    port: 443
-    username: homeassistant
-    password: !secret unifi_password
-    ssid_filter:
-      - 'blakeshome'
-    detection_time: 600
-    monitored_conditions:
-     - signal
-     - last_seen
-    consider_home: 3600
-    new_device_defaults:
-      track_new_devices: false
-  
+
 sensor:
   - platform: template
     sensors:
       blake_unifi_last_seen:
         friendly_name: Blake Unifi Last Seen
-        value_template: "{{ state_attr('device_tracker.blake_phone', 'last_seen') }}"
+        value_template: "{{ state_attr('device_tracker.blake_phone', 'last_seen') or 0 }}"
       ali_unifi_last_seen:
         friendly_name: Ali Unifi Last Seen
-        value_template: "{{ state_attr('device_tracker.ali_phone', 'last_seen') }}"
+        value_template: "{{ state_attr('device_tracker.ali_phone', 'last_seen') or 0 }}"
 
 group:
   people:
@@ -141,9 +127,6 @@ automation:
     condition:
       - condition: template
         value_template: '{{ trigger.payload_json.datetime > states.input_datetime.blake_last_seen.attributes.timestamp }}'
-      # - condition: template
-      #   value_template: '{{ trigger.payload_json.datetime > states.device_tracker.blake_phone.attributes.last_seen }}'
-    action:
       - service: mqtt.publish
         data_template:
           topic: location/blake_blackshear
@@ -183,8 +166,6 @@ automation:
     condition:
       - condition: template
         value_template: '{{ trigger.payload_json.datetime > states.input_datetime.ali_last_seen.attributes.timestamp }}'
-      - condition: template
-        value_template: '{{ trigger.payload_json.datetime > states.device_tracker.ali_phone.attributes.last_seen }}'
     action:
       - service: mqtt.publish
         data_template:
