@@ -2,9 +2,9 @@ camera:
   - name: Backyard Camera
     platform: generic
     still_image_url: https://cameras.blakeshome.com/nvr/back.jpg
-  - name: Backyard Last Person
-    platform: generic
-    still_image_url: http://192.168.2.248:5000/back/best_person.jpg
+  - platform: mqtt
+    name: Backyard Last Person
+    topic: frigate/back/snapshot
 binary_sensor:
   - name: Backyard Person
     platform: mqtt
@@ -69,10 +69,14 @@ automation:
         entity_id: alarm_control_panel.home_alarm
         state: armed_away
     action:
-      # - delay: '00:01:00'
+      # - delay: '00:00:30'
       # - condition: state
       #   entity_id: alarm_control_panel.home_alarm
       #   state: armed_away
       - service: notify.blake_telegram
-        data_template:
+        data:
           message: "A person was detected in the backyard."
+          data:
+            photo:
+              - url: http://192.168.2.186:5000/back/best_person.jpg
+                caption: A person was detected in the backyard.

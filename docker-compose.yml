@@ -67,7 +67,7 @@ services:
   #     - ./mqttlogger:/mqttlogger
   homeassistant:
     container_name: hass
-    image: homeassistant/home-assistant:0.88.2
+    image: homeassistant/home-assistant:0.101.3
     volumes:
       - /srv/blakeshome/home-assistant:/config
     network_mode: host

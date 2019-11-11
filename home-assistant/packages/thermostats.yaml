@@ -10,13 +10,13 @@ sensor:
         unit_of_measurement: "°F"
         value_template: >-
           {% set t = strptime(states('sensor.time'), '%H:%M') %}
-          {% if state_attr('climate.downstairs','operation_mode') == 'heat' -%}
+          {% if states('climate.downstairs') == 'heat' -%}
             {%- if t.hour <6 or t.hour >=21 -%}
               62
             {%- else -%}
               72
             {%- endif -%}
-          {%- elif state_attr('climate.downstairs','operation_mode') == 'cool' -%}
+          {%- elif states('climate.downstairs') == 'cool' -%}
             {%- if t.hour <6 or t.hour >=21 -%}
               82
             {%- else -%}
@@ -28,13 +28,13 @@ sensor:
         unit_of_measurement: "°F"
         value_template: >-
           {% set t = strptime(states('sensor.time'), '%H:%M') %}
-          {% if state_attr('climate.upstairs','operation_mode') == 'heat' -%}
+          {% if states('climate.upstairs') == 'heat' -%}
             {%- if t.hour <8 or t.hour >=19 -%}
               69
             {%- else -%}
               71
             {%- endif -%}
-          {%- elif state_attr('climate.upstairs','operation_mode') == 'cool' -%}
+          {%- elif states('climate.upstairs') == 'cool' -%}
             {%- if t.hour >=19 or t.hour <6 -%}
               71
             {%- else -%}
@@ -48,9 +48,9 @@ automation:
       entity_id: sensor.outside_temperature
       below: 50
     action:
-      - service: climate.set_operation_mode
+      - service: climate.set_hvac_mode
         data:
-          operation_mode: 'heat'
+          hvac_mode: 'heat'
           entity_id:
             - climate.downstairs
             - climate.upstairs
@@ -60,9 +60,9 @@ automation:
       entity_id: sensor.outside_temperature
       above: 65
     action:
-      - service: climate.set_operation_mode
+      - service: climate.set_hvac_mode
         data:
-          operation_mode: 'cool'
+          hvac_mode: 'cool'
           entity_id:
             - climate.downstairs
             - climate.upstairs
