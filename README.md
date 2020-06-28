@@ -1,5 +1,5 @@
 # DEPRECATED
-I have moved my configuration to [blakeblackshear/blakeshome-k8s] and run on k3os now that CoreOS is no longer supported. Also, in response to the move to UI-based configuration of HomeAssistant, I no longer manage my HomeAssistant config via github.
+I have moved my configuration to [blakeblackshear/blakeshome-k8s](https://github.com/blakeblackshear/blakeshome-k8s) and run on k3os now that CoreOS is no longer supported. Also, in response to the move to UI-based configuration of HomeAssistant, I no longer manage my HomeAssistant config via github.
 
 ## Overview
 This is the my configuration for my home server. It serves the following functions:
